@@ -25,6 +25,7 @@ gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem 'devise'
+gem "cancan"
 
 
 # To use ActiveModel has_secure_password
