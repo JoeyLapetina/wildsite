@@ -9,7 +9,7 @@
   <% @item_link = i.css(@stream.item_link).map { |link| link['href'] }.first unless @stream.item_link.empty? || i.at_css(@stream.item_link).nil?  %>
 
   <div class="span12" style="padding-bottom:20px;">
-    <%= image_tag @picture, class: "pull-left", style: "padding-right:10px;" %>
+    <%= image_tag "#{@stream.site_root}#{@picture}", class: "pull-left", style: "padding-right:10px;" %>
     <h5><%= link_to @title , "#{@stream.site_root}#{@item_link}" %></h5>
     <p><%= @body if @body %></p>
     <%= link_to "[MORE]", "#{@stream.site_root}#{@item_link}" %>
