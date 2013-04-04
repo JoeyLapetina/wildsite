@@ -7,9 +7,8 @@
   <% @body = i.at_css(@stream.body).text unless @stream.body.empty? || i.at_css(@stream.body).nil?  %>
   <% @picture = i.at_css(@stream.picture).text unless @stream.picture.empty? || i.at_css(@stream.picture).nil?  %>
   <% @item_link = i.css(@stream.item_link).map { |link| link['href'] }.first unless @stream.item_link.empty? || i.at_css(@stream.item_link).nil?  %>
-  <h5><%= @title if @title %></h5>
-  <p><%= @item_link if @item_link %></p>
-  <p><%= @by_line if @by_line %></p>
+
+  <h5><%= link_to @title , "#{@stream.site_root}#{@item_link}" %></h5>
   <p><%= @body if @body %></p>
    
 <% end %>
@@ -39,6 +38,11 @@
 <p>
   <b>Title:</b>
   <%= @stream.title %>
+</p>
+
+<p>
+  <b>Site root:</b>
+  <%= @stream.site_root %>
 </p>
 
 <p>
