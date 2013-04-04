@@ -5,11 +5,16 @@
   <% @title = i.at_css(@stream.title).text unless @stream.title.empty? || i.at_css(@stream.title).nil?  %>
   <% @by_line = i.at_css(@stream.by_line).text unless @stream.by_line.empty? || i.at_css(@stream.by_line).nil?  %>
   <% @body = i.at_css(@stream.body).text unless @stream.body.empty? || i.at_css(@stream.body).nil?  %>
-  <% @picture = i.at_css(@stream.picture).text unless @stream.picture.empty? || i.at_css(@stream.picture).nil?  %>
+  <% @picture = i.css(@stream.picture).map { |link| link['src'] }.first unless @stream.picture.empty? || i.css(@stream.picture).nil?  %>
   <% @item_link = i.css(@stream.item_link).map { |link| link['href'] }.first unless @stream.item_link.empty? || i.at_css(@stream.item_link).nil?  %>
 
-  <h5><%= link_to @title , "#{@stream.site_root}#{@item_link}" %></h5>
-  <p><%= @body if @body %></p>
+  <div class="span12" style="padding-bottom:20px;">
+    <%= image_tag @picture, class: "pull-left", style: "padding-right:10px;" %>
+    <h5><%= link_to @title , "#{@stream.site_root}#{@item_link}" %></h5>
+    <p><%= @body if @body %></p>
+    <%= link_to "[MORE]", "#{@stream.site_root}#{@item_link}" %>
+  </div>
+  <br>
    
 <% end %>
 <br>
