@@ -1,22 +1,24 @@
 <% @streams.each do |stream| %>
-  <% @stream = stream %>
-  <% data = Nokogiri::HTML(open(@stream.stream_url)) %>
+  <div class="span<%= stream.span %>">
+    <% @stream = stream %>
+    <% data = Nokogiri::HTML(open(@stream.stream_url)) %>
 
-  <% data.css(@stream.item).each do |item| %>
-    <% feed_me(@stream, item) %>
-    <% if @title && @item_link %>
-      <div class="span<%= @stream.span %>" style="padding-bottom:20px;">
-        <%= image_tag "#{@stream.site_root}#{@picture}", class: "pull-left", style: "width: 95%; padding-bottom: 10px;" %>
-        <h5><%= link_to @title , "#{@stream.site_root}#{@item_link}" %></h5>
-        <p><%= @body if @body %></p>
-        <%= link_to "[MORE]", "#{@stream.site_root}#{@item_link}" %>
-      </div>
-      <% @title = nil %>
-      <% @item_link = nil %>
-      <% @by_line = nil %>
-      <% @body = nil %>
-      <% @picture = nil %>
+    <% data.css(@stream.item).each do |item| %>
+      <% feed_me(@stream, item) %>
+      <% if @title && @item_link %>
+        <div class="span<%= @stream.span %>" style="padding-bottom:20px;">
+          <%= image_tag "#{@stream.site_root}#{@picture}", class: "pull-left", style: "width: 95%; padding-bottom: 10px;" %>
+          <h5><%= link_to @title , "#{@stream.site_root}#{@item_link}" %></h5>
+          <p><%= @body if @body %></p>
+          <%= link_to "[MORE]", "#{@stream.site_root}#{@item_link}" %>
+        </div>
+        <% @title = nil %>
+        <% @item_link = nil %>
+        <% @by_line = nil %>
+        <% @body = nil %>
+        <% @picture = nil %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 <% end %>
   
