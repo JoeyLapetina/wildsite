@@ -1,15 +1,18 @@
 class StreamsController < ApplicationController
   # GET /streams
   # GET /streams.json
+  
   layout 'application'
+
   require 'nokogiri'
   require 'open-uri'
 
   def index
+    
     @streams = Stream.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render :layout => "main_page" }
       format.json { render json: @streams }
     end
   end
