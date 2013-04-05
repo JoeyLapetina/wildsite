@@ -1,5 +1,5 @@
 # Be sure to restart your server when you modify this file.
-if false
+
 require 'twitter'
 
 Twitter.configure do |config|
@@ -8,4 +8,4 @@ Twitter.configure do |config|
   config.oauth_token = ENV["YOUR_OAUTH_TOKEN"]
   config.oauth_token_secret = ENV["YOUR_OAUTH_TOKEN_SECRET"]
 end
-end
+

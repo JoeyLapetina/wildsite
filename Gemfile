@@ -27,6 +27,7 @@ gem "twitter-bootstrap-rails"
 gem 'devise'
 gem "cancan"
 gem 'nokogiri'
+gem 'twitter'
 
 
 # To use ActiveModel has_secure_password
