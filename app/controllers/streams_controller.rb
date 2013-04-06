@@ -10,7 +10,8 @@ class StreamsController < ApplicationController
   def index
     
     @streams = Stream.all
-    #@tweets = Twitter.search("#ruby -rt", :lang => "ja", :count => 1).results.first.text
+    @wild_star = Twitter.search("The_WildStar", :count => 30, :result_type => "recent")
+    @feed = Twitter.search("WildStar", :count => 30, :result_type => "recent")
 
     respond_to do |format|
       format.html { render :layout => "main_page" }
