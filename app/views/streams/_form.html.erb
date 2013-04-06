@@ -11,48 +11,52 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :span %><br />
+    <%= f.label :span %>
     <%= f.text_field :span %>
   </div>
   <div class="field">
-    <%= f.label :by_line %><br />
+    <%= f.label :by_line %>
     <%= f.text_field :by_line %>
   </div>
   <div class="field">
-    <%= f.label :stream_url %><br />
+    <%= f.label :stream_url %>
     <%= f.text_field :stream_url %>
   </div>
   <div class="field">
-    <%= f.label :item %><br />
+    <%= f.label :item %>
     <%= f.text_field :item %>
   </div>
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :site_root %><br />
+    <%= f.label :site_root %>
     <%= f.text_field :site_root %>
   </div>
   <div class="field">
-    <%= f.label :item_link %><br />
-    <%= f.text_field :item_link %>
+    <%= f.label :item_link %>
+    <p><%= f.text_field :item_link, style: "margin-right:20px;" %><%= f.check_box :link_root %> Use Root</p>
   </div>
   <div class="field">
-    <%= f.label :body %><br />
+    <%= f.label :body %>
     <%= f.text_field :body %>
   </div>
   <div class="field">
-    <%= f.label :picture %><br />
-    <%= f.text_field :picture %>
+    <%= f.label :picture %>
+    <%= f.text_field :picture, style: "margin-right:20px;"  %><%= f.check_box :picture_root %> Use Root</p>
   </div>
   <div class="field">
-    <%= f.label :video %><br />
+    <%= f.label :video %>
     <%= f.text_field :video %>
+  </div>
+  <div class="field">
+    <%= f.label :limit %>
+    <%= f.number_field :limit %>
   </div>
   <div class="actions">
     <%= f.submit %>

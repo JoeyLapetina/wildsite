@@ -1,37 +1,47 @@
 
+<div class="span4" style="margin-left: 20px;">
+  <div class="span4" style="margin-left:0px;">
+    <a class="twitter-timeline" href="https://twitter.com/Team_WildStar" data-widget-id="320389343254544384" data-chrome="noheader nofooter noborders transparent">Tweets by @Team_WildStar</a>
+    <a class="twitter-timeline" href="https://twitter.com/search?q=WildStar" data-widget-id="320382935079469057" data-chrome="noheader nofooter noborders transparent">Tweets about "WildStar"</a>
+  </div>
+</div>
+
 <% @streams.each do |stream| %>
   <div class="span<%= stream.span %>">
     <% @stream = stream %>
     <% data = Nokogiri::HTML(open(@stream.stream_url)) %>
+    <% @count = @stream.limit %>
 
     <% data.css(@stream.item).each do |item| %>
-      <% feed_me(@stream, item) %>
-      <% if @title && @item_link %>
-        <div class="span<%= @stream.span %>" style="padding-bottom:20px;">
-          <%= image_tag "#{@stream.site_root}#{@picture}", class: "pull-left", style: "width: 95%; padding-bottom: 10px;" %>
-          <h5><%= link_to @title , "#{@stream.site_root}#{@item_link}" %></h5>
-          <p><%= @body if @body %></p>
-          <%= link_to "[MORE]", "#{@stream.site_root}#{@item_link}" %>
-        </div>
-        <% @title = nil %>
-        <% @item_link = nil %>
-        <% @by_line = nil %>
-        <% @body = nil %>
-        <% @picture = nil %>
+      
+      <% if @count.nil? || @count > 0 %>
+        <% @count -= 1 unless @count.nil? %>
+        <% feed_me(@stream, item) %>
+        <% if @title && @item_link %>
+          <div class="span<%= @stream.span %> stream_item" style="padding-bottom:20px;">
+            
+            <%= link_to stream.picture_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" do %>
+              <%= image_tag stream.picture_root ? "#{@stream.site_root}#{@picture}" : "#{@picture}", class: "pull-left", style: "width: 95%; padding-bottom: 10px;" %>
+            <% end %>
+            
+            <h5><%= link_to @title , stream.link_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" %></h5>
+            
+            <p><%= @body if @body %></p>
+            
+            <%= link_to "[MORE]", stream.link_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" %>
+
+          </div>
+          <% @title = nil %>
+          <% @item_link = nil %>
+          <% @by_line = nil %>
+          <% @body = nil %>
+          <% @picture = nil %>
+        <% end %>
       <% end %>
     <% end %>
+
   </div>
 <% end %>
-
-<div class="span4" style="margin-left: 60px;">
-  <iframe style="margin-bottom:20px;" width="370" height="208" src="http://www.youtube.com/embed/_4_riSI7Ydg" frameborder="0" allowfullscreen></iframe>
-  <br>
-  <div class="span4" style="margin-left: 0px; margin-top:-10px">
-  <a class="twitter-timeline" href="https://twitter.com/Team_WildStar" data-widget-id="320389343254544384" data-chrome="noheader nofooter noborders transparent">Tweets by @Team_WildStar</a>
-  <a class="twitter-timeline" href="https://twitter.com/search?q=WildStar" data-widget-id="320382935079469057" data-chrome="noheader nofooter noborders transparent">Tweets about "WildStar"</a>
-</div>
-</div>
-
 
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405020057) do
+ActiveRecord::Schema.define(:version => 20130406160146) do
 
   create_table "streams", :force => true do |t|
     t.string   "stream_url"
@@ -21,12 +21,15 @@ ActiveRecord::Schema.define(:version => 20130405020057) do
     t.string   "body"
     t.string   "picture"
     t.string   "video"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.string   "name"
     t.string   "by_line"
     t.string   "site_root"
     t.string   "span"
+    t.boolean  "picture_root"
+    t.boolean  "link_root"
+    t.integer  "limit"
   end
 
   create_table "users", :force => true do |t|
