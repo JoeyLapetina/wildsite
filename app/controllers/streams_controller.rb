@@ -11,9 +11,7 @@ class StreamsController < ApplicationController
   def index
     
     @streams = Stream.all
-    @wild_star = Twitter.search("The_WildStar", :count => 30, :result_type => "recent")
-    @feed = Twitter.search("WildStar", :count => 30, :result_type => "recent")
-
+    
     respond_to do |format|
       format.html { render :layout => "main_page" }
       format.json { render json: @streams }
