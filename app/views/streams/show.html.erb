@@ -11,15 +11,20 @@
       <% if @count.nil? || @count > 0 %>
         <% @count -= 1 unless @count.nil? %>
         <% feed_me(@stream, item) %>
-        <% if @title && @item_link %>
+        <% unless @title && @item_link %>
+          <%= " title: #{@title}" %><br>
+          <%= "by_line: #{@by_line}" %><br>
+          <%= "body: #{@body}" %><br>
+          <%= "picture: #{@picture}" %><br>
+          <%= "item_link: #{@item_link}" %><br>
+
+        <% else %>
           <div class="span<%= @stream.span %> stream_item" style="padding-bottom:20px;">
             <% unless @stream.picture == "" %>
               <%= link_to @stream.picture_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" do %>
                 <%= image_tag @stream.picture_root ? "#{@stream.site_root}#{@picture}" : "#{@picture}", class: "pull-left", style: "width: 95%; padding-bottom: 10px;" %>
               <% end %>
             <% end %>
-            
-            
             
               <h5><%= link_to @title , @stream.link_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" %></h5>
                 <p><%= @body if @body %></p>
@@ -32,7 +37,6 @@
                     <%= "Rank: #{@views}" if @views %>
                   <% end %>
                 </div>
-
 
           </div>
           <% if @body %>
