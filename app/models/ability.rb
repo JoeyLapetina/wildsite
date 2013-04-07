@@ -4,15 +4,8 @@ class Ability
   def initialize(user)
     unless user
       user = User.new
-      user.access = 'none'
     end
       can :read, :all
-
-      if user.basic?
-        can :create, [Type, Thing, Review]
-        can :update, Type, owner: user
-        can :update, Thing, owner: user
-      end
 
       if user.admin?
         can :manage, :all

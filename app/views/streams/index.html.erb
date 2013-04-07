@@ -1,56 +1,127 @@
+<table>
+  <tr>
+    <td>
+      <div class="span4" style="margin-left: 20px;">
+        <div class="span4" style="margin-left:0px;">
+          <p style="margin-left: 30px;"><small>Twitter: #WildStar</small></p>
+          <a class="twitter-timeline" href="https://twitter.com/search?q=WildStar" data-widget-id="320382935079469057" data-chrome="noheader nofooter noborders transparent">Tweets about "WildStar"</a>
+          <p style="margin-left: 30px;"><small>Twitter: @Team_WildStar</small></p>
+          <a class="twitter-timeline" href="https://twitter.com/Team_WildStar" data-widget-id="320389343254544384" data-chrome="noheader nofooter noborders transparent">Tweets by @Team_WildStar</a>
+        </div>
+        <div>
+          <%= link_to "New stream", new_stream_path() %>
+        </div>
+      </div>
+    </td>
+    <% @add_list = Array.new %>
+    <% @add_list = ['pax','pc','ps3', 'ps4'] %>
 
-<div class="span4" style="margin-left: 20px;">
-  <div class="span4" style="margin-left:0px;">
-    <a class="twitter-timeline" href="https://twitter.com/Team_WildStar" data-widget-id="320389343254544384" data-chrome="noheader nofooter noborders transparent">Tweets by @Team_WildStar</a>
-    <a class="twitter-timeline" href="https://twitter.com/search?q=WildStar" data-widget-id="320382935079469057" data-chrome="noheader nofooter noborders transparent">Tweets about "WildStar"</a>
-  </div>
-</div>
+    <% @drop_list = Array.new %>
+    <% @drop_list = ['that','this','with','have','about','what','the','latest','your','were','from','some','like','been','last','today','also','they','then','good','more','those','youll','after','finally','first','which','than','when','here','because','though','right','anyone','keep','there','reason','kind','just','down','names','thats','ready','probably','since','comments','selfwildstar','their','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The',] %>
+    <% @frequencies = Hash.new(0) %>
+    <% @streams.shuffle.each do |stream| %>
+    <td>
+      <div class="span<%= stream.span %>" style="margin-left:10px;">
+        <p style="margin-left: 30px;"><small><%= link_to stream.name, stream.stream_url %></small></p>
+        <% @stream = stream %>
+        <% data = Nokogiri::HTML(open(@stream.stream_url)) %>
+        <% @count = @stream.limit %>
 
-<% @streams.each do |stream| %>
-  <div class="span<%= stream.span %>">
-    <% @stream = stream %>
-    <% data = Nokogiri::HTML(open(@stream.stream_url)) %>
-    <% @count = @stream.limit %>
+        <% data.css(@stream.item).each do |item| %>
+          
+          <% if @count.nil? || @count > 0 %>
+            <% @count -= 1 unless @count.nil? %>
+            <% feed_me(@stream, item) %>
+            <% if @title && @item_link %>
+              <div class="span<%= @stream.span %> stream_item" style="padding-bottom:20px;">
+                <% unless @stream.picture == "" %>
+                  <%= link_to stream.picture_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" do %>
+                    
+                      <%= image_tag stream.picture_root ? "#{@stream.site_root}#{@picture}" : "#{@picture}", class: "pull-left", style: "width: 95%; padding-bottom: 10px;" %>
+                      
+                  <% end %>
+                <% end %>
+                
+                <h5><%= link_to @title , @stream.link_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" %></h5>
+                <p><%= @body if @body %></p>
+                <%= link_to "[MORE]", @stream.link_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" %>
+                <div class="pull-right" style="margin-right:10px">
+                  <%= "Replies: #{@replies} | " if @replies %>
+                  <% if @stream.stream_type == "forum" %>
+                    <%= "views: #{@views}" if @views %>
+                  <% elsif @stream.stream_type == "reddit" %>
+                    <%= "Rank: #{@views}" if @views %>
+                  <% end %>
+                </div>
 
-    <% data.css(@stream.item).each do |item| %>
-      
-      <% if @count.nil? || @count > 0 %>
-        <% @count -= 1 unless @count.nil? %>
-        <% feed_me(@stream, item) %>
-        <% if @title && @item_link %>
-          <div class="span<%= @stream.span %> stream_item" style="padding-bottom:20px;">
-            
-            <%= link_to stream.picture_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" do %>
-              <%= image_tag stream.picture_root ? "#{@stream.site_root}#{@picture}" : "#{@picture}", class: "pull-left", style: "width: 95%; padding-bottom: 10px;" %>
+              </div>
+              <% if @body %>
+                <% @body = @body.capitalize.gsub(/[^a-z\s]/, '')%>
+                <% words = @body.split(" ") %>
+                <% words = words.delete_if do |word| %>
+                  <% unless @add_list.include? word %>
+                    <% word.length < 4 %>
+                  <% end %>
+                <% end %>
+                <% words -= @drop_list %>
+                <% words.each { |word| @frequencies[word.capitalize] += 1 } %>
+                <% words = nil %>
+              <% end %>
+
+              <% if @title %>
+                <% @title = @title.capitalize.gsub(/[^a-z\s]/, '')%>
+                <% words = @title.split(" ") %>
+                <% words = words.delete_if {|word| word.length < 4 }%>
+                <% words -= @drop_list %>
+                <% words.each { |word| @frequencies[word.capitalize] += 1 } %>
+                <% words = nil %>
+              <% end %>
+
+              <% @title = nil %>
+              <% @replies = nil %>
+              <% @views = nil %>
+              <% @item_link = nil %>
+              <% @by_line = nil %>
+              <% @body = nil %>
+              <% @picture = nil %>
+
             <% end %>
-            
-            <h5><%= link_to @title , stream.link_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" %></h5>
-            
-            <p><%= @body if @body %></p>
-            
-            <%= link_to "[MORE]", stream.link_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" %>
-
-          </div>
-          <% @title = nil %>
-          <% @item_link = nil %>
-          <% @by_line = nil %>
-          <% @body = nil %>
-          <% @picture = nil %>
+          <% end %>
         <% end %>
-      <% end %>
+        <div style="margin-left: 30px;">
+          <%= link_to 'Edit', edit_stream_path(@stream) %> |
+          <%= link_to 'Back', streams_path %>
+        </div>
+
+      </div>
+      
+    </td>
     <% end %>
 
-  </div>
-<% end %>
+    <td>
+
+      <% @frequencies = @frequencies.sort_by {|a, b| b } %>
+      <% @frequencies.reverse! %>
+      <div class="span2" style="margin-left:40px;">
+        <p><small>WildSite: Histogram</small></p>
+        <% @frequencies.each do |word, frequency| %>
+          <%= "#{frequency.to_s}: #{word}" %><br>
+        <% end %>
+      </div>
+    </td>
+  </tr>
+</table>
 
 
 
 
-
-
-
-
-
+<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+<%= link_to "Sign in", user_session_path() %>
+<script>
+  $(document).ready(function() {
+    $('body').draggable({ appendTo: "body" });
+  });
+</script>
 
 
 

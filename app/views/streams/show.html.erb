@@ -1,23 +1,62 @@
+<% drop_list = Array.new %>
+<% @drop_list = ['that','this','with','have','about','what','the','latest','your','were','from','some','like','been','last','today','also','they','then','good','more','those','youll','after','finally','first','which','than','when','here','because','though','right','anyone','keep','there','reason','kind','just','down','names','thats','ready','probably','since','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The',] %>
+<% @frequencies = Hash.new(0) %>
 <p id="notice"><%= notice %></p>
-  
-  <% @data.css(@stream.item).each do |item| %>
-    <% feed_me(@stream, item) %>
-    <% if @title && @item_link %>
-      <div class="span<%= @stream.span %>" style="padding-bottom:20px;">
-        <%= image_tag "#{@stream.site_root}#{@picture}", class: "pull-left", style: "width: 95%; padding-bottom: 10px;" %>
-        <h5><%= link_to @title , "#{@stream.site_root}#{@item_link}" %></h5>
-        <p><%= @body if @body %></p>
-        <%= link_to "[MORE]", "#{@stream.site_root}#{@item_link}" %>
-        <% if true %>
-        <% @title = nil %>
-        <% @item_link = nil %>
-        <% @by_line = nil %>
-        <% @body = nil %>
-        <% @picture = nil %>
+  <div class="span<%= @stream.span %>" style="margin-left:10px;">
+    <% data = Nokogiri::HTML(open(@stream.stream_url)) %>
+    <% @count = @stream.limit %>
+
+    <% data.css(@stream.item).each do |item| %>
+      
+      <% if @count.nil? || @count > 0 %>
+        <% @count -= 1 unless @count.nil? %>
+        <% feed_me(@stream, item) %>
+        <% if @title && @item_link %>
+          <div class="span<%= @stream.span %> stream_item" style="padding-bottom:20px;">
+            <% unless @stream.picture == "" %>
+              <%= link_to @stream.picture_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" do %>
+                <%= image_tag @stream.picture_root ? "#{@stream.site_root}#{@picture}" : "#{@picture}", class: "pull-left", style: "width: 95%; padding-bottom: 10px;" %>
+              <% end %>
+            <% end %>
+            
+            
+            
+              <h5><%= link_to @title , @stream.link_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" %></h5>
+                <p><%= @body if @body %></p>
+                <%= link_to "[MORE]", @stream.link_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" %>
+                <div class="pull-right" style="margin-right:10px">
+                  <%= "Replies: #{@replies} | " if @replies %>
+                  <% if @stream.stream_type == "forum" %>
+                    <%= "views: #{@views}" if @views %>
+                  <% elsif @stream.stream_type == "reddit" %>
+                    <%= "Rank: #{@views}" if @views %>
+                  <% end %>
+                </div>
+
+
+          </div>
+          <% if @body %>
+            <% @body = @body.capitalize.gsub(/[^a-z\s]/, '')%>
+            <% words = @body.split(" ") %>
+            <% words = words.delete_if {|word| word.length < 4 }%>
+            <% words -= @drop_list %>
+            <% words.each { |word| @frequencies[word.capitalize] += 1 } %>
+            <% words = nil %>
+          <% end %>
+
+          <% @title = nil %>
+          <% @replies = nil %>
+          <% @views = nil %>
+          <% @item_link = nil %>
+          <% @by_line = nil %>
+          <% @body = nil %>
+          <% @picture = nil %>
+
         <% end %>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
+
+  </div>
 
 <%= link_to 'Edit', edit_stream_path(@stream) %> |
 <%= link_to 'Back', streams_path %>

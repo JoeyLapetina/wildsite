@@ -15,16 +15,16 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
+    <%= f.label :stream_url %>
+    <%= f.text_field :stream_url %>
+  </div>
+  <div class="field">
     <%= f.label :span %>
     <%= f.text_field :span %>
   </div>
-  <div class="field">
-    <%= f.label :by_line %>
-    <%= f.text_field :by_line %>
-  </div>
-  <div class="field">
-    <%= f.label :stream_url %>
-    <%= f.text_field :stream_url %>
+    <div class="field">
+    <%= f.label :stream_type %>
+    <%= f.text_field :stream_type %>
   </div>
   <div class="field">
     <%= f.label :item %>
@@ -35,29 +35,45 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :site_root %>
-    <%= f.text_field :site_root %>
-  </div>
-  <div class="field">
-    <%= f.label :item_link %>
-    <p><%= f.text_field :item_link, style: "margin-right:20px;" %><%= f.check_box :link_root %> Use Root</p>
+    <%= f.label :picture %>
+    <%= f.text_field :picture, style: "margin-right:20px;"  %><%= f.check_box :picture_root %> Use Root</p>
   </div>
   <div class="field">
     <%= f.label :body %>
     <%= f.text_field :body %>
   </div>
   <div class="field">
-    <%= f.label :picture %>
-    <%= f.text_field :picture, style: "margin-right:20px;"  %><%= f.check_box :picture_root %> Use Root</p>
-  </div>
-  <div class="field">
-    <%= f.label :video %>
-    <%= f.text_field :video %>
+    <%= f.label :item_link %>
+    <p><%= f.text_field :item_link, style: "margin-right:20px;" %><%= f.check_box :link_root %> Use Root</p>
   </div>
   <div class="field">
     <%= f.label :limit %>
     <%= f.number_field :limit %>
   </div>
+
+  <p>For if it's a forum or something</p>
+  <div class="field">
+    <%= f.label :replies %>
+    <%= f.text_field :replies %>
+  </div>
+  <div class="field">
+    <%= f.label :views %>
+    <%= f.text_field :views %>
+  </div>
+
+  <div class="field">
+    <%= f.label :by_line %>
+    <%= f.text_field :by_line %>
+  </div>
+  <div class="field">
+    <%= f.label :site_root %>
+    <%= f.text_field :site_root %>
+  </div>
+  <div class="field">
+    <%= f.label :video %>
+    <%= f.text_field :video %>
+  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

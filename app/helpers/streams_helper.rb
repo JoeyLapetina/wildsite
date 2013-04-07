@@ -11,6 +11,13 @@ module StreamsHelper
 	  @picture = i.css(@stream.picture).map { |link| link['src'] }.first unless @stream.picture.empty? || i.css(@stream.picture).nil? 
 	  @item_link = i.css(@stream.item_link).map { |link| link['href'] }.first unless @stream.item_link.empty? || i.at_css(@stream.item_link).nil? 
 
+	  #forum info
+	  if @stream.stream_type == "forum" || @stream.stream_type == "reddit"
+		  @replies = i.at_css(@stream.replies).text unless @stream.replies.empty? || i.at_css(@stream.replies).nil?
+		  @views = i.at_css(@stream.views).text unless @stream.views.empty? || i.at_css(@stream.views).nil?
+		end
+
+
 		@bad_list = Array.new
 	  @bad_list << "Read the rest of this entry"
 

@@ -28,6 +28,7 @@ gem 'devise'
 gem "cancan"
 gem 'nokogiri'
 gem 'twitter'
+gem 'hirb'
 
 
 # To use ActiveModel has_secure_password

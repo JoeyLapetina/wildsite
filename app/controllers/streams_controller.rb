@@ -1,4 +1,5 @@
 class StreamsController < ApplicationController
+  load_and_authorize_resource
   # GET /streams
   # GET /streams.json
   
