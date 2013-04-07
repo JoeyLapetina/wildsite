@@ -88,10 +88,12 @@
             <% end %>
           <% end %>
         <% end %>
-        <div style="margin-left: 30px;">
-          <%= link_to 'Edit', edit_stream_path(@stream) %> |
-          <%= link_to 'Back', streams_path %>
-        </div>
+        <% if can? :manage, @stream %><div style="margin-left: 30px;">
+            <%= link_to 'Edit', edit_stream_path(@stream) %> |
+            <%= link_to 'Back', streams_path %>
+          </div>
+          
+        <% end %>
 
       </div>
       
