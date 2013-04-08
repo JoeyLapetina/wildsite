@@ -10,7 +10,7 @@ module StreamsHelper
 	  @body = i.at_css(@stream.body).text unless @stream.body.empty? || i.at_css(@stream.body).nil?  
 	  @picture = i.css(@stream.picture).map { |link| link['src'] }.first unless @stream.picture.empty? || i.css(@stream.picture).nil? 
 	  @item_link = i.css(@stream.item_link).map { |link| link['href'] }.first unless @stream.item_link.empty? || i.at_css(@stream.item_link).nil? 
-	  
+
 	  #forum info
 	  if @stream.stream_type == "forum" || @stream.stream_type == "reddit"
 		  @replies = i.at_css(@stream.replies).text unless @stream.replies.empty? || i.at_css(@stream.replies).nil?
@@ -19,7 +19,6 @@ module StreamsHelper
 		  if @stream.stream_type == "reddit"
 		  	if @body == "(self.WildStar)"
 			  	@item_link = "#{@stream.site_root}#{@item_link}"
-
 			  end
 		  end
 		end
