@@ -35,7 +35,7 @@
             <% if @title && @item_link %>
               <div class="span<%= @stream.span %> stream_item" style="padding-bottom:20px;">
                 <% unless @stream.picture == "" %>
-                  <%= link_to stream.picture_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" do %>
+                  <%= link_to stream.link_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" do %>
                     
                       <%= image_tag stream.picture_root ? "#{@stream.site_root}#{@picture}" : "#{@picture}", class: "pull-left", style: "width: 95%; padding-bottom: 10px;" %>
                       
