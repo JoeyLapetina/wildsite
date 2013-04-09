@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Wildsite</title>
+  <title>WildScrape</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -9,10 +9,30 @@
   td {
 		vertical-align:top;
 	}
+  #tab {
+    position: absolute;
+    margin-top: -25px;
+    margin-left: 200px;
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: black;
+    color: white;
+    padding-top: 20px;
+  }
+
+  #tab p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
   </style>
 </head>
 <body>
-	<div class="" style="margin-top:20px;">
+  <%= link_to "" do %>
+    <div id="tab">
+      <p>WILDSCRAPE BETA</p>
+    </div>
+  <% end %>
+	<div class="" style="margin-top:10px;">
 		<%= yield %>
 	</div>
 </body>
@@ -26,4 +46,18 @@
   ga('create', 'UA-39871477-1', 'wildscrape.com');
   ga('send', 'pageview');
 
+</script>
+<script>
+$(document).ready(function() {
+
+  $('#info').hide();
+  $('#tab').mouseenter(function() {
+    $('#info').show('fast');
+    $('#tab').css("margin-top", "-10px")
+  });
+  $('#tab').mouseleave(function() {
+    $('#info').hide('fast');
+    $('#tab').css("margin-top", "-25px")
+  });
+});
 </script>

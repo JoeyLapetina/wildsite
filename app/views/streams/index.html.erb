@@ -1,7 +1,29 @@
 <table>
   <tr>
     <td>
-      <div class="span4" style="margin-left: 20px;">
+      <div class="span4" style="margin-left: 30px;">
+        <div id="info" style="margin-top:40px; margin-bottom:30px;">
+          <h5>What is WildScrape: </h5>
+          <ul>
+            <li>The #1 WildStar Scrape Site?</li>
+            <li>The only WildStar Scrape Site?</li>
+            <li>A totally new kind of fan site?</li>
+            <li>An attempt to contribute to the community!</li>
+            <li><b>A bid at a beta key cupcake!</b></li>
+          </ul>
+          <h5>How do you use WildScrape: </h5>
+          <p>Look at things. Click on what your interested in. View it at it's source on the inter-webs. Oh, and make sure you scroll to the right - you don't want to miss anything.</p>
+          <h5>What makes WildScrape cool: </h5>
+          <p>Look around and you can see news spreading around the Internet like a living thing.</p>
+          <h5>Whats Next: </h5>
+          <ul>
+            <li>Get rid of all the boring stuff in the Histogram</li>
+            <li>Provide a way for users to submit new streams to scrape</li>
+            <li><b>Get a beta key cupcake!</b></li>
+          </ul>
+          <div style="padding:30px; background-color:black; color:white;"><p><small>Heya, My name is Joey Lapetina, I'm a professional programmer/developer (RoR mostly - I'm not great at it.) I am super excited about modding WildStar. I am looking for nexus adventuring buddies.</small></p></div>
+          
+        </div>
         <div class="span4" style="margin-left:0px;">
           <p style="margin-left: 30px;"><small>Twitter: #WildStar</small></p>
           <a class="twitter-timeline" href="https://twitter.com/search?q=WildStar" data-widget-id="320382935079469057" data-chrome="noheader nofooter noborders transparent">Tweets about "WildStar"</a>
@@ -46,7 +68,12 @@
                 <% end %>
                 
                 <h5><%= link_to @title , @stream.link_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" %></h5>
-                <p><%= @body if @body %></p>
+
+                <% if @stream.stream_type == "reddit" %>
+                  <p><% @body if @body %></p>
+                <% else %>
+                  <p><%= @body if @body %></p>
+                <% end %>
                 <%= link_to "[MORE]", @stream.link_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" %>
                 <div class="pull-right" style="margin-right:10px">
                   <%= "Replies: #{@replies} | " if @replies %>
@@ -122,11 +149,6 @@
 
 <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
 <%= link_to "Sign in", user_session_path() %>
-<script>
-  $(document).ready(function() {
-    $('body').draggable({ appendTo: "body" });
-  });
-</script>
 
 
 
