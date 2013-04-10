@@ -40,12 +40,14 @@
           <p style="margin-left: 30px;"><small>Twitter: @Team_WildStar</small></p>
           <a class="twitter-timeline" href="https://twitter.com/Team_WildStar" data-widget-id="320389343254544384" data-chrome="noheader nofooter noborders transparent">Tweets by @Team_WildStar</a>
         </div>
+        <% if current_user &&  current_user.admin %>
         <div>
           <%= link_to "New stream", new_stream_path() %><br>
           <% @streams.each do |s|%>
           <%= link_to 'edit', edit_stream_path(s) %> | <%= link_to s.name, s %><br>
           <% end %>
         </div>
+        <% end %>
       </div>
     </td>
     <% @add_list = Array.new %>
