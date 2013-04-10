@@ -53,6 +53,7 @@
       <div class="span<%= stream.span %>" style="margin-left:10px;">
         <p style="margin-left: 30px;"><small><%= link_to stream.name, stream.stream_url %></small></p>
         <% @stream = stream %>
+        
         <% data = Nokogiri::HTML(open(@stream.stream_url)) %>
         <% @count = @stream.limit %>
 
