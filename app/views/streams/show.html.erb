@@ -3,6 +3,8 @@
 <% @frequencies = Hash.new(0) %>
 <p id="notice"><%= notice %></p>
   <div class="span<%= @stream.span %>" style="margin-left:10px;">
+    <%= link_to 'Edit', edit_stream_path(@stream) %> |
+    <%= link_to 'All Streams', streams_path %>
     <% data = Nokogiri::HTML(open(@stream.stream_url)) %>
     <% @count = @stream.limit %>
 
@@ -62,5 +64,4 @@
 
   </div>
 
-<%= link_to 'Edit', edit_stream_path(@stream) %> |
-<%= link_to 'Back', streams_path %>
+

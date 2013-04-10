@@ -38,7 +38,10 @@
           <a class="twitter-timeline" href="https://twitter.com/Team_WildStar" data-widget-id="320389343254544384" data-chrome="noheader nofooter noborders transparent">Tweets by @Team_WildStar</a>
         </div>
         <div>
-          <%= link_to "New stream", new_stream_path() %>
+          <%= link_to "New stream", new_stream_path() %><br>
+          <% @streams.each do |s|%>
+          <%= link_to 'edit', edit_stream_path(s) %> | <%= link_to s.name, s %><br>
+          <% end %>
         </div>
       </div>
     </td>
@@ -50,18 +53,15 @@
     <% @frequencies = Hash.new(0) %>
     <% @streams.shuffle.each do |stream| %>
     <% begin %>
-    <% thing = open(stream.stream_url) %>
+      <% thing = open(stream.stream_url) %>
     <% rescue %>
 
     <% else %>
-
-      <td>
-        <div class="span<%= stream.span %>" style="margin-left:10px;">
-          <p style="margin-left: 30px;"><small><%= link_to stream.name, stream.stream_url %></small></p>
-          <% @stream = stream %>
-
-          
-          
+      <% if stream.active %>
+        <td>
+          <div class="span<%= stream.span %>" style="margin-left:10px;">
+            <p style="margin-left: 30px;"><small><%= link_to stream.name, stream.stream_url %></small></p>
+            <% @stream = stream %>
             <% data = Nokogiri::HTML(thing) %>
             <% @count = @stream.limit %>
 
@@ -138,13 +138,10 @@
                 <%= link_to 'Edit', edit_stream_path(@stream) %> |
                 <%= link_to 'Back', streams_path %>
               </div>
-              
             <% end %>
-          
-
-        </div>
-        
-      </td>
+          </div>
+        </td>
+      <% end %>
     <% end %>
     <% end %>
 
