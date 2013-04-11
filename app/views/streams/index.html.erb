@@ -34,7 +34,7 @@
           <div style="padding:30px; background-color:black; color:white;"><p><small>Heya, My name is Joey Lapetina. I'm a professional app developer in Houston Texas and I am super excited about modding WildStar. I am looking for nexus adventuring buddies. Drop me a line!</small></p></div>
           
         </div>
-        <div class="span4" style="margin-left:0px;">
+        <div class="span4" style="margin-left:0px; color: white !important;">
           <p><small>Twitter: WildStar</small></p>
           <a class="twitter-timeline" href="https://twitter.com/search?q=WildStar" data-widget-id="320382935079469057" data-chrome="noheader nofooter noborders transparent">Tweets about "WildStar"</a>
           <p style="margin-left: 30px;"><small>Twitter: @Team_WildStar</small></p>
@@ -50,11 +50,11 @@
         <% end %>
       </div>
     </td>
-    <% @add_list = Array.new %>
-    <% @add_list = ['pax','pc','ps3', 'ps4'] %>
 
     <% @drop_list = Array.new %>
-    <% @drop_list = ['that','this','with','have','about','what','the','latest','your','were','from','some','like','been','last','today','also','they','then','good','more','those','youll','after','finally','first','which','than','when','here','because','though','right','anyone','keep','there','reason','kind','just','down','names','thats','ready','probably','since','comments','selfwildstar','their','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The','The',] %>
+    <% Word.all.each do |w| %>
+      <% @drop_list << w.word %>
+    <% end %>
     <% @frequencies = Hash.new(0) %>
     <% @streams.shuffle.each do |stream| %>
     <% begin %>
@@ -109,11 +109,6 @@
                   <% if @body %>
                     <% @body = @body.capitalize.gsub(/[^a-z\s]/, '')%>
                     <% words = @body.split(" ") %>
-                    <% words = words.delete_if do |word| %>
-                      <% unless @add_list.include? word %>
-                        <% word.length < 4 %>
-                      <% end %>
-                    <% end %>
                     <% words -= @drop_list %>
                     <% words.each { |word| @frequencies[word.capitalize] += 1 } %>
                     <% words = nil %>
@@ -157,7 +152,11 @@
       <div class="span2" style="margin-left:40px;">
         <p><small>WildSite: Histogram</small></p>
         <% @frequencies.each do |word, frequency| %>
-          <%= "#{frequency.to_s}: #{word}" %><br>
+          <% if current_user && current_user.admin? %>
+            <%= link_to "#{frequency.to_s}: #{word}", new_word_path(word: word), class: 'remove', remote: true %><br>
+          <% else %>
+            <%= "#{frequency.to_s}: #{word}" %><br>
+          <% end %>
         <% end %>
       </div>
     </td>
@@ -165,13 +164,13 @@
 </table>
 
 
-
-
 <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
 <%= link_to "Sign in", user_session_path() %>
-
-
-
+<script>
+  $('.remove').click(function(){
+    $(this).hide();
+  });
+</script>
 
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>

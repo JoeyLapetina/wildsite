@@ -1,6 +1,9 @@
 Wildsite::Application.routes.draw do
 
   
+  resources :words
+
+
   resources :streams  
   devise_for :users
 
