@@ -5,42 +5,19 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-
-  
-  <style>
-  img {
-    padding-bottom: 0px !important;
-    margin-bottom: 10px;
-    border: solid;
-    border-width: 1px;
-    border-color: rgb(53, 52, 52);
-  }
-
-  td {
-		vertical-align:top;
-	}
-  #tab {
-    position: absolute;
-    margin-top: -25px;
-    margin-left: 200px;
-    padding-left: 8px;
-    padding-right: 8px;
-    background-color: rgb(53, 52, 52);
-    color: white;
-    padding-top: 20px;
-  }
-
-  #tab p {
-    margin-top: 0px;
-    margin-bottom: 0px;
-  }
-
-  </style>
 </head>
-<body>
-  <%= link_to "" do %>
+<body class="on">
+  <%= link_to "#" do %>
     <div id="tab">
       <p>WILDSCRAPE INFO</p>
+    </div>
+  <% end %>
+  <%= link_to "#" do %>
+    <div id="bulb_off">
+      <p><i class="icon-bolt"></i> lights off</p>
+    </div>
+    <div id="bulb_on">
+      <p><i class="icon-bolt"></i> lights on</p>
     </div>
   <% end %>
 	<div class="" style="margin-top:10px;">
@@ -60,14 +37,37 @@
 </script>
 <script>
 $(document).ready(function() {
+  $('#bulb_on').hide();
+  $('#bulb_off').click(function(){
+    $('body').removeClass('on').addClass('off');
+    $('#bulb_off').hide();
+    $('#bulb_on').show();
+  });
+
+  $('#bulb_on').click(function(){
+    $('body').removeClass('off').addClass('on');
+    $('#bulb_on').hide();
+    $('#bulb_off').show();
+  });
+
   $('#info').hide();
   $('#tab').mouseenter(function() {
     $('#info').show('fast');
-    $('#tab').css("margin-top", "-10px")
+    $('#tab').css("margin-top", "-15px")
   });
   $('#tab').mouseleave(function() {
     $('#info').hide('fast');
     $('#tab').css("margin-top", "-25px")
+  });
+
+  $('#info').hide();
+  $('#bulb').mouseenter(function() {
+    $('#info').show('fast');
+    $('#bulb').css("margin-top", "-15px")
+  });
+  $('#bulb').mouseleave(function() {
+    $('#info').hide('fast');
+    $('#bulb').css("margin-top", "-25px")
   });
 });
 </script>
