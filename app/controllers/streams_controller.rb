@@ -1,5 +1,5 @@
 class StreamsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource  except: [:lights_on, :lights_off]
   # GET /streams
   # GET /streams.json
   
@@ -88,5 +88,13 @@ class StreamsController < ApplicationController
       format.html { redirect_to streams_url }
       format.json { head :no_content }
     end
+  end
+
+  def lights_on 
+    cookies[:theme]='lights_on'
+  end
+
+  def lights_off
+    cookies[:theme]='lights_off'
   end
 end

@@ -4,7 +4,13 @@ Wildsite::Application.routes.draw do
   resources :words
 
 
-  resources :streams  
+  resources :streams do 
+    collection do 
+      post :lights_on
+      post :lights_off 
+    end
+  end
+
   devise_for :users
 
   # The priority is based upon order of creation:
