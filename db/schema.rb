@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130413032622) do
+ActiveRecord::Schema.define(:version => 20130411032005) do
 
   create_table "streams", :force => true do |t|
     t.string   "stream_url"
@@ -51,10 +51,6 @@ ActiveRecord::Schema.define(:version => 20130413032622) do
     t.datetime "updated_at",                             :null => false
     t.boolean  "admin"
     t.string   "level"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
