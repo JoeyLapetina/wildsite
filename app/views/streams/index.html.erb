@@ -125,7 +125,7 @@
 
                   <%= link_to bump_stream_path(stream), class: "pull-right bump", remote: true do %>
                     <span class="label label-color" id="bump<%= stream.id %>"><i class="icon-thumbs-up"></i><%= " #{stream.rank}" %></span>
-                    <span class="label lable-color" style="background-color:rgb(16, 192, 1) !important;" id="bump_rank<%= stream.id %>"><i class="icon-thumbs-up"></i><%= " #{stream.rank + 1}" %></span>
+                    <span class="label lable-color .hide" style="background-color:rgb(16, 192, 1) !important;" id="bump_rank<%= stream.id %>"><i class="icon-thumbs-up"></i><%= " #{stream.rank + 1}" %></span>
                   <% end %>
 
                   <% if false %>
