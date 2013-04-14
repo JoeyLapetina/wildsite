@@ -1,5 +1,5 @@
 class StreamsController < ApplicationController
-  load_and_authorize_resource  except: [:lights_on, :lights_off]
+  load_and_authorize_resource  except: [:lights_on, :lights_off, :bump, :send_left, :send_right]
   # GET /streams
   # GET /streams.json
   
@@ -10,7 +10,7 @@ class StreamsController < ApplicationController
 
   def index
     
-    @streams = Stream.all
+    @streams = Stream.all.sort! {|a, b| b.rank <=> a.rank }
     
     respond_to do |format|
       format.html { render :layout => "main_page" }
@@ -94,7 +94,55 @@ class StreamsController < ApplicationController
     cookies[:theme]='lights_on'
   end
 
-  def lights_off
+  def lights_off 
     cookies[:theme]='lights_off'
   end
+
+  def bump
+    @stream = Stream.find(params[:id])
+    @stream.rank += 1
+    @stream.save
+  end
+
+  def send_left
+    @stream = Stream.find(params[:id])
+    if cookies[:order_array]
+      order_array = cookies[:order_array].split(",")
+    else
+      order_array = []
+    end
+    order_array.insert(0, @stream.id)
+    cookies[:order_array] = ""
+    order_array.each do |id|
+      cookies[:order_array] += "#{id.to_s},"
+    end
+  end
+
+  def send_right
+    @stream = Stream.find(params[:id])
+    if cookies[:order_array]
+      order_array = cookies[:order_array].split(",")
+      order_array[:last] = @stream.id
+
+
+      cookies[:order_array] = ""
+      order_array.each do |id| 
+        cookies[:order_array] += "#{id.to_s},"
+      end
+    end
+  end
+
 end
+
+
+
+
+
+
+
+
+
+
+
+
+

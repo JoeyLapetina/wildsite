@@ -7,8 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
   <body class="on">
+    <% if false %>
+      <%= link_to "#" do %>
+        <div id="explanation_tab">
+          <p>WHATS WHAT?</p>
+        </div>
+      <% end %>
+    <% end %>
+
     <%= link_to "#" do %>
-      <div id="tab">
+      <div id="info_tab">
         <p>WILDSCRAPE INFO</p>
       </div>
     <% end %>
@@ -44,6 +52,12 @@
 
 <script>
   $(document).ready(function() {
+
+
+    $('.bump_text').click(function() {
+      $(this).replaceWith('thanks');
+    });
+
     $('#bulb_off').click(function(){
       $('body').removeClass('on').addClass('off');
       $.post('/streams/lights_off');
@@ -59,24 +73,30 @@
     });
 
     $('#info').hide();
-    $('#tab').mouseenter(function() {
+    $('#info_tab').mouseenter(function() {
       $('#info').show('fast');
-      $('#tab').css("margin-top", "-15px")
+      $('#info_tab').css("margin-top", "-15px")
     });
-    $('#tab').mouseleave(function() {
+    $('#info_tab').mouseleave(function() {
       $('#info').hide('fast');
-      $('#tab').css("margin-top", "-25px")
+      $('#info_tab').css("margin-top", "-25px")
     });
 
-    $('#info').hide();
-    $('#bulb').mouseenter(function() {
-      $('#info').show('fast');
-      $('#bulb').css("margin-top", "-15px")
+    $('#explanation').hide();
+    $('#explanation_tab').mouseenter(function() {
+      $('#explanation').show('fast');
+      $('#explanation_tab').css("margin-top", "-15px")
     });
-    $('#bulb').mouseleave(function() {
-      $('#info').hide('fast');
-      $('#bulb').css("margin-top", "-25px")
+    $('#explanation_tab').mouseleave(function() {
+      $('#explanation').hide('fast');
+      $('#explanation_tab').css("margin-top", "-25px")
     });
+
+    $('#kill').click(function() {
+      $('#hist').remove();
+    });
+
+    
   });
 </script>
 

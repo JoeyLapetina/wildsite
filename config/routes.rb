@@ -5,6 +5,12 @@ Wildsite::Application.routes.draw do
 
 
   resources :streams do 
+    member do
+      get :bump
+      get :send_left
+      get :send_right
+    end
+
     collection do 
       post :lights_on
       post :lights_off 

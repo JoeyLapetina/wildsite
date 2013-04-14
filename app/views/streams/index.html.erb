@@ -1,8 +1,44 @@
 <table>
   <tr>
     <td>
+<table class="pull-left">
+  <tr>
+    <td>
       <div class="span4" style="margin-left: 30px;">
-        <div id="info" style="margin-top:10px; margin-bottom:30px;">
+        <div id="info" style="margin-top:45px; margin-bottom:30px;">
+          <h5>What is WildScrape: </h5>
+          <ul>
+            <li>The #1(only) WildStar Scrape Site?</li>
+            <li>A totally new kind of fan site?</li>
+            <li>An attempt to contribute to the community!</li>
+            <li><b>A bid at a beta key cupcake!</b></li>
+          </ul>
+          <h5>What makes WildScrape cool: </h5>
+          <div style="padding-top:15px; padding-bottom:5px; padding-left:30px; background-color:darkgray;">
+            <p style='margin-bottom:0px; color:white;'><i>Er, that's pretty damn cool.</i></p>
+            <p style='margin-top:0px; color:white;'><small>-jg (Carbine Studios Executive Producer)</small></p>
+          </div>
+
+          <h5>How do you use WildScrape: </h5>
+          <p>Look at things. Click on what your interested in. View it on the inter-webs. Come back and do it again! Oh, and make sure you scroll to the right - you don't want to miss anything.</p>
+          <h5>WildScrape feedback goes where?</h5>
+          <ul>
+            <li>@WildScrape</li>
+            <li>TheWildScrape@gmail.com</li>
+          </ul>
+          <h5>Whats Next in the WildScrape Beta: </h5>
+          <ul>
+            <li>The Histogram will be cleaned</li>
+            <li>Users will submit new streams</li>
+            <li>There will be an easy side scroll</li>
+            <li>The Server will not crash (more power)</li>
+            <li><b>I will get a beta key!</b></li>
+          </ul>
+          <div style="padding:30px; background-color:black; color:white;"><p><small>Heya, My name is Joey Lapetina. I'm a professional app developer in Houston Texas and I am super excited about modding WildStar. I am looking for nexus adventuring buddies. Drop me a line!</small></p></div>
+          
+        </div>
+
+        <div id="explanation" style="margin-top:45px; margin-bottom:30px;">
           <h5>What is WildScrape: </h5>
           <ul>
             <li>The #1(only) WildStar Scrape Site?</li>
@@ -54,22 +90,55 @@
         <% end %>
       </div>
     </td>
+  </tr>
+</table>
+</td>
+<td>
+<table>
+  <tbody>
+  <tr id="stream_table">
 
     <% @drop_list = Array.new %>
     <% Word.all.each do |w| %>
       <% @drop_list << w.word %>
     <% end %>
     <% @frequencies = Hash.new(0) %>
-    <% @streams.shuffle.each do |stream| %>
+    <% @streams.each do |stream| %>
     <% begin %>
       <% thing = open(stream.stream_url) %>
     <% rescue %>
 
     <% else %>
       <% if stream.active %>
-        <td>
-          <div class="span<%= stream.span %>" style="margin-left:10px;">
-            <p style="margin-left: 30px;"><small><%= link_to stream.name, stream.stream_url %></small></p>
+      
+        <td id="stream<%= stream.id %>">
+          <div class="span<%= stream.span %>" style="margin-left:10px; margin-top: 20px;">
+            <div style="margin-left: 30px;">
+              <p style="margin-right: -20px;">
+                
+                <div class="pull-left">
+                  <% if false %>
+                  <small><%= link_to send_right_stream_path(stream), style: "margin-left:5px;", class: "pull-right", id: "right#{stream.id}", remote: true do %>
+                    <i class="icon-arrow-right"></i>
+                  <% end %></small>
+                  <% end %>
+
+                  <%= link_to bump_stream_path(stream), class: "pull-right bump", remote: true do %>
+                    <span class="label label-color" id="bump<%= stream.id %>"><i class="icon-thumbs-up"></i><%= " #{stream.rank}" %></span>
+                    <span class="label lable-color" style="background-color:rgb(16, 192, 1) !important;" id="bump_rank<%= stream.id %>"><i class="icon-thumbs-up"></i><%= " #{stream.rank + 1}" %></span>
+                  <% end %>
+
+                  <% if false %>
+                  <small><%= link_to send_left_stream_path(stream), style: "margin-right:5px;", class: "pull-right", id: "left#{stream.id}", remote: true do %>
+                    <i class="icon-arrow-left"></i>
+                  <% end %></small>
+                  <% end %>
+                </div>
+
+                <small><%= link_to stream.name, stream.stream_url, class: "pull-right", style: "margin-right:-20px;" %></small>
+              </p>
+            </div>
+            
             <% @stream = stream %>
             <% data = Nokogiri::HTML(thing) %>
             <% @count = @stream.limit %>
@@ -80,7 +149,7 @@
                 <% @count -= 1 unless @count.nil? %>
                 <% feed_me(@stream, item) %>
                 <% if @title && @item_link %>
-                  <div class="span<%= @stream.span %> stream_item" style="padding-bottom:20px;">
+                  <div class="span<%= @stream.span %> stream_item" style="padding-bottom:20px; margin-top: 10px;">
                     <% unless @stream.picture == "" || @stream.picture.nil? %>
 
                         <% if @picture %>
@@ -143,17 +212,26 @@
                 <%= link_to 'Back', streams_path %>
               </div>
             <% end %>
-          </div>
+          
         </td>
+      </div>
       <% end %>
     <% end %>
     <% end %>
+    </tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+  <tr>
 
     <td>
 
       <% @frequencies = @frequencies.sort_by {|a, b| b } %>
       <% @frequencies.reverse! %>
-      <div class="span2" style="margin-left:40px;">
+      <div id="hist" class="span2" style="margin-left:40px; margin-top: 30px;">
+        
         <p><small>WildSite: Histogram</small></p>
         <% @frequencies.each do |word, frequency| %>
           <% if current_user && current_user.admin? %>
@@ -164,7 +242,12 @@
         <% end %>
       </div>
     </td>
+    
   </tr>
+</tbody>
+</table>
+</td>
+</tr>
 </table>
 
 
@@ -175,6 +258,24 @@
     $(this).hide();
   });
 </script>
+
+<% @streams.each do |stream| %>
+  <script>
+    $('#bump_rank<%=j stream.id.to_s %>').hide();
+    $('#bump<%= stream.id %>').click(function(){
+      $('#bump<%= stream.id %>').hide();
+      $('#bump_rank<%= stream.id %>').show();      
+    });
+
+    $('#left<%= stream.id %>').click(function(){
+      $('#stream<%= stream.id %>').prependTo("#stream_table");
+    });
+
+    $('#right<%= stream.id %>').click(function(){
+      $('#stream<%= stream.id %>').appendTo("#stream_table");
+    });
+  </script>
+<% end %>
 
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>

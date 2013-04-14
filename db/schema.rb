@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411032005) do
+ActiveRecord::Schema.define(:version => 20130413222551) do
 
   create_table "streams", :force => true do |t|
     t.string   "stream_url"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20130411032005) do
     t.string   "replies"
     t.string   "views"
     t.boolean  "active"
+    t.integer  "rank",         :default => 0
   end
 
   create_table "users", :force => true do |t|
