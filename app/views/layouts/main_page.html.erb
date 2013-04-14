@@ -5,19 +5,22 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <style>
+  .hide {
+    display:none;
+  }
+  </style>
 </head>
   <body class="on">
-    <% if false %>
-      <%= link_to "#" do %>
-        <div id="explanation_tab">
-          <p>WHATS WHAT?</p>
-        </div>
-      <% end %>
+    <%= link_to "#" do %>
+      <div id="explanation_tab">
+        <p>About WildScrape</p>
+      </div>
     <% end %>
 
     <%= link_to "#" do %>
       <div id="info_tab">
-        <p>WILDSCRAPE INFO</p>
+        <p>Whats What?</p>
       </div>
     <% end %>
     
