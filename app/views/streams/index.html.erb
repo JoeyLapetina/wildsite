@@ -1,240 +1,154 @@
 <table>
   <tr>
     <td>
-<table id="info_table" class="pull-left">
-  <tr>
-    <td>
-      <div class="span4" style="margin-left: 30px;">
-        <div id="explanation" style="margin-top:45px; margin-bottom:30px;">
-          <h5>What is WildScrape: </h5>
-          <ul>
-            <li>The #1(only) WildStar Scrape Site?</li>
-            <li>A totally new kind of fan site?</li>
-            <li>An attempt to contribute to the community!</li>
-            <li><b>A bid at a beta key cupcake!</b></li>
-          </ul>
-          <h5>What makes WildScrape cool: </h5>
-          <div style="padding-top:15px; padding-bottom:5px; padding-left:30px; background-color:darkgray;">
-            <p style='margin-bottom:0px; color:white;'><i>Er, that's pretty damn cool.</i></p>
-            <p style='margin-top:0px; color:white;'><small>-jg (Carbine Studios Executive Producer)</small></p>
-          </div>
-
-          
-          <h5>WildScrape feedback goes where?</h5>
-          <ul>
-            <li>@WildScrape</li>
-            <li>TheWildScrape@gmail.com</li>
-          </ul>
-          <h5>Whats Next in the WildScrape Beta: </h5>
-          <ul>
-            <li>Thinking about adding simple login, then</li>
-            <li>allow users to order their streams.</li>
-            <li>The Server will not crash/timeout (more power)</li>
-            <li>maybe start saving stream items for dynamic uses.</li>
-            <li><b>I will get a beta key!</b></li>
-          </ul>
-          <div style="padding:30px; background-color:black; color:white;"><p><small>Heya, My name is Joey Lapetina. I'm a professional app developer in Houston Texas and I am super excited about modding WildStar. I am looking for nexus adventuring buddies. Drop me a line!</small></p></div>  
-        </div>
-
-        <div id="info" style="margin-top:45px; margin-bottom:30px;">
-          <h5>ERMAHGHERD - Whats on this page!? </h5>
-          <ul>
-            <li><span class="label" style="background-color:#f89406;"> Streams </span> - lists of tiny little teasers from all around the web. Each stream has a name at the top, then the most recent stream item under that. Follow news from that stream down the page.</li>
-            <li><span class="label" style="background-color:#f89406;"> Stream items </span> - each teaser in a stream. Click it to check it out.</li>
-            <li><span class="label" style="background-color:red;"> NEW </span>
-              <span class="label" style="background-color:#f89406;"> Bump buttons </span> ( <span class="label label-color"><i class="icon-thumbs-up"></i><%= " 32" %></span> ) - Show your favorite stream some love. Streams are default ordered by bumps.</li>
-            <li><span class="label" style="background-color:red;"> NEW </span> <span class="label" style="background-color:#f89406;"> <i class="icon-bolt"></i> Lights on, <i class="icon-bolt"></i> lights off </span> - Change your theme light to dark and vise versa. Should be the same when you come back.</li>
-          </ul>
-
-          <h5>How do you use WildScrape: </h5>
-          <p>Look at things. Click on what your interested in. View it on the inter-webs. Come back and do it again! Oh, and make sure you scroll to the right - you don't want to miss anything.</p>
-        </div>
-      </div>
-    </td>
-  </tr>
-</table>
-</td>
-<td>
-<table style="margin-left: -13px;">
-  <tbody>
-  <tr id="stream_table">
-
-    <% @drop_list = Array.new %>
-    <% Word.all.each do |w| %>
-      <% @drop_list << w.word %>
-    <% end %>
-    <% @frequencies = Hash.new(0) %>
-    <% @streams.each do |stream| %>
-    <% begin %>
-      <% thing = open(stream.stream_url) %>
-    <% rescue %>
-
-    <% else %>
-      <% if stream.active %>
-      
-        <td id="stream<%= stream.id %>">
-          <div class="span<%= stream.span %>" style="margin-left:10px; margin-top: 20px;">
-            <div style="margin-left: 30px;">
-              <p style="margin-right: -20px;">
-                
-                <div class="pull-left">
-                  <% if false %>
-                  <small><%= link_to send_right_stream_path(stream), style: "margin-left:5px;", class: "pull-right", id: "right#{stream.id}", remote: true do %>
-                    <i class="icon-arrow-right"></i>
-                  <% end %></small>
-                  <% end %>
-
-                  <%= link_to bump_stream_path(stream), class: "pull-right bump", remote: true do %>
-                    <span class="label label-color" id="bump<%= stream.id %>"><i class="icon-thumbs-up"></i><%= " #{stream.rank}" %></span>
-                    <span class="label lable-color .hide" style="background-color:rgb(16, 192, 1) !important;" id="bump_rank<%= stream.id %>"><i class="icon-thumbs-up"></i><%= " #{stream.rank + 1}" %></span>
-                  <% end %>
-
-                  <% if false %>
-                  <small><%= link_to send_left_stream_path(stream), style: "margin-right:5px;", class: "pull-right", id: "left#{stream.id}", remote: true do %>
-                    <i class="icon-arrow-left"></i>
-                  <% end %></small>
-                  <% end %>
+      <table id="info_table" class="pull-left">
+        <tr>
+          <td>
+            <div class="span4" style="margin-left: 30px;">
+              <div id="explanation" style="margin-top:45px; margin-bottom:30px;">
+                <h5>What is WildScrape: </h5>
+                <ul>
+                  <li>The #1(only) WildStar Scrape Site?</li>
+                  <li>A totally new kind of fan site?</li>
+                  <li>An attempt to contribute to the community!</li>
+                  <li><b>A bid at a beta key cupcake!</b></li>
+                </ul>
+                <h5>What makes WildScrape cool: </h5>
+                <div style="padding-top:15px; padding-bottom:5px; padding-left:30px; background-color:darkgray;">
+                  <p style='margin-bottom:0px; color:white;'><i>Er, that's pretty damn cool.</i></p>
+                  <p style='margin-top:0px; color:white;'><small>-jg (Carbine Studios Executive Producer)</small></p>
                 </div>
 
-                <small><%= link_to stream.name, stream.stream_url, class: "", style: "margin-left:5px;" %></small>
-              </p>
+                
+                <h5>WildScrape feedback goes where?</h5>
+                <ul>
+                  <li>@WildScrape</li>
+                  <li>TheWildScrape@gmail.com</li>
+                </ul>
+                <h5>Whats Next in the WildScrape Beta: </h5>
+                <ul>
+                  <li>Thinking about adding simple login, then</li>
+                  <li>allow users to order their streams.</li>
+                  <li>The Server will not crash/timeout (more power)</li>
+                  <li>maybe start saving stream items for dynamic uses.</li>
+                  <li><b>I will get a beta key!</b></li>
+                </ul>
+                <div style="padding:30px; background-color:black; color:white;"><p><small>Heya, My name is Joey Lapetina. I'm a professional app developer in Houston Texas and I am super excited about modding WildStar. I am looking for nexus adventuring buddies. Drop me a line!</small></p></div>  
+              </div>
+
+              <div id="info" style="margin-top:45px; margin-bottom:30px;">
+                <h5>ERMAHGHERD - Whats on this page!? </h5>
+                <ul>
+                  <li><span class="label" style="background-color:#f89406;"> Streams </span> - lists of tiny little teasers from all around the web. Each stream has a name at the top, then the most recent stream item under that. Follow news from that stream down the page.</li>
+                  <li><span class="label" style="background-color:#f89406;"> Stream items </span> - each teaser in a stream. Click it to check it out.</li>
+                  <li><span class="label" style="background-color:red;"> NEW </span>
+                    <span class="label" style="background-color:#f89406;"> Bump buttons </span> ( <span class="label label-color"><i class="icon-thumbs-up"></i><%= " 32" %></span> ) - Show your favorite stream some love. Streams are default ordered by bumps.</li>
+                  <li><span class="label" style="background-color:red;"> NEW </span> <span class="label" style="background-color:#f89406;"> <i class="icon-bolt"></i> Lights on, <i class="icon-bolt"></i> lights off </span> - Change your theme light to dark and vise versa. Should be the same when you come back.</li>
+                </ul>
+
+                <h5>How do you use WildScrape: </h5>
+                <p>Look at things. Click on what your interested in. View it on the inter-webs. Come back and do it again! Oh, and make sure you scroll to the right - you don't want to miss anything.</p>
+              </div>
             </div>
-            
-            <% @stream = stream %>
-            <% data = Nokogiri::HTML(thing) %>
-            <% @count = @stream.limit %>
-
-            <% data.css(@stream.item).each do |item| %>
-              
-              <% if @count.nil? || @count > 0 %>
-                <% @count -= 1 unless @count.nil? %>
-                <% feed_me(@stream, item) %>
-                <% if @title && @item_link %>
-                  <div class="span<%= @stream.span %> stream_item" style="padding-bottom:20px; margin-top: 10px;">
-                    <% unless @stream.picture == "" || @stream.picture.nil? %>
-
-                        <% if @picture %>
-                          <%= link_to stream.link_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" do %>
-                            
-                              <%= image_tag stream.picture_root ? "#{@stream.site_root}#{@picture}" : "#{@picture}", class: "pull-left", style: "width: 95%; padding-bottom: 10px;" %>
-                              
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td>
+      <table style="margin-left: -13px;">
+        <tbody>
+          <tr id="stream_table">
+            <% @streams.each do |stream| %>
+              <% if stream.active %>
+                <td id="stream<%= stream.id %>">
+                  <div class="span<%= stream.span %>" style="margin-left:10px; margin-top: 20px;">
+                    <div style="margin-left: 30px;">
+                      <p style="margin-right: -20px;">
+                        <div class="pull-left">
+                          <% if false %>
+                            <small><%= link_to send_right_stream_path(stream), style: "margin-left:5px;", class: "pull-right", id: "right#{stream.id}", remote: true do %>
+                              <i class="icon-arrow-right"></i>
+                            <% end %></small>
                           <% end %>
-                        <% end %>
-                    <% end %>
-                    
-                    <h5><%= link_to @title , @stream.link_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" %></h5>
 
-                    <% if @stream.stream_type == "reddit" %>
-                      <p><% @body if @body %></p>
-                    <% else %>
-                      <p><%= @body if @body %></p>
-                    <% end %>
-                    <%= link_to "[MORE]", @stream.link_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" %>
-                    <div class="pull-right" style="margin-right:10px">
-                      <%= "Replies: #{@replies} | " if @replies %>
-                      <% if @stream.stream_type == "forum" %>
-                        <%= "views: #{@views}" if @views %>
-                      <% elsif @stream.stream_type == "reddit" %>
-                        <%= "Rank: #{@views}" if @views %>
-                      <% end %>
+                          <%= link_to bump_stream_path(stream), class: "pull-right bump", remote: true do %>
+                            <span class="label label-color" id="bump<%= stream.id %>"><i class="icon-thumbs-up"></i><%= " #{stream.rank}" %></span>
+                            <span class="label lable-color .hide" style="background-color:rgb(16, 192, 1) !important;" id="bump_rank<%= stream.id %>"><i class="icon-thumbs-up"></i><%= " #{stream.rank + 1}" %></span>
+                          <% end %>
+
+                          <% if false %>
+                            <small><%= link_to send_left_stream_path(stream), style: "margin-right:5px;", class: "pull-right", id: "left#{stream.id}", remote: true do %>
+                              <i class="icon-arrow-left"></i>
+                            <% end %></small>
+                          <% end %>
+                        </div>
+                        <small><%= link_to stream.name, stream.stream_url, class: "", style: "margin-left:5px;" %></small>
+                      </p>
                     </div>
-
+                    <div id="stream_holder_<%= stream.id %>">
+                      
+                    </div>
                   </div>
-                  <% if @body %>
-                    <% @body = @body.capitalize.gsub(/[^a-z\s]/, '')%>
-                    <% words = @body.split(" ") %>
-                    <% words -= @drop_list %>
-                    <% words.each { |word| @frequencies[word.capitalize] += 1 } %>
-                    <% words = nil %>
-                  <% end %>
-
-                  <% if @title %>
-                    <% @title = @title.capitalize.gsub(/[^a-z\s]/, '')%>
-                    <% words = @title.split(" ") %>
-                    <% words = words.delete_if {|word| word.length < 4 }%>
-                    <% words -= @drop_list %>
-                    <% words.each { |word| @frequencies[word.capitalize] += 1 } %>
-                    <% words = nil %>
-                  <% end %>
-
-                  <% @title = nil %>
-                  <% @replies = nil %>
-                  <% @views = nil %>
-                  <% @item_link = nil %>
-                  <% @by_line = nil %>
-                  <% @body = nil %>
-                  <% @picture = nil %>
-
-                <% end %>
+                </td>
               <% end %>
             <% end %>
-            <% if can? :manage, @stream %><div style="margin-left: 30px;">
-                <%= link_to 'Edit', edit_stream_path(@stream) %> |
-                <%= link_to 'Back', streams_path %>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+    <td>
+      <table>
+        <tr>
+          <% if false %>
+          <td>
+            <% @frequencies = @frequencies.sort_by {|a, b| b } %>
+            <% @frequencies.reverse! %>
+            <div id="hist" class="span2" style="margin-left:40px; margin-top: 30px;">
+              
+              <p><small>WildSite: Histogram</small></p>
+              <% @frequencies.each do |word, frequency| %>
+                <% if current_user && current_user.admin? %>
+                  <%= link_to "#{frequency.to_s}: #{word}", new_word_path(word: word), class: 'remove', remote: true %><br>
+                <% else %>
+                  <%= "#{frequency.to_s}: #{word}" %><br>
+                <% end %>
+              <% end %>
+            </div>
+          </td>
+          <% end %>
+
+          <td>
+            <div class="span4" style="margin-left:0px; margin-top: 29px; margin-right:30px; ">
+              <div class="twit" style="margin-bottom:20px;">
+                <p><small>Twitter: WildStar</small></p>
+                <a class="twitter-timeline" href="https://twitter.com/search?q=WildStar" data-widget-id="320382935079469057" data-chrome="noheader nofooter noborders transparent">Tweets about "WildStar"</a>
+              </div>
+              <div class="twit">
+                <p><small>Twitter: @Team_WildStar</small></p>
+                <a class="twitter-timeline" href="https://twitter.com/Team_WildStar" data-widget-id="320389343254544384" data-chrome="noheader nofooter noborders transparent">Tweets by @Team_WildStar</a>
+              </div>
+            </div>
+
+            <% if current_user &&  current_user.admin %>
+              <div>
+                <%= link_to "New stream", new_stream_path() %><br>
+                <% @streams.each do |s|%>
+                  <%= link_to 'edit', edit_stream_path(s) %> | <%= link_to s.name, s %><br>
+                <% end %>
               </div>
             <% end %>
-          
-        </td>
-      </div>
-      <% end %>
-    <% end %>
-    <% end %>
-    </tr>
-</tbody>
-</table>
-</td>
-<td>
-<table>
-  <tr>
-
-    <td>
-
-      <% @frequencies = @frequencies.sort_by {|a, b| b } %>
-      <% @frequencies.reverse! %>
-      <div id="hist" class="span2" style="margin-left:40px; margin-top: 30px;">
-        
-        <p><small>WildSite: Histogram</small></p>
-        <% @frequencies.each do |word, frequency| %>
-          <% if current_user && current_user.admin? %>
-            <%= link_to "#{frequency.to_s}: #{word}", new_word_path(word: word), class: 'remove', remote: true %><br>
-          <% else %>
-            <%= "#{frequency.to_s}: #{word}" %><br>
-          <% end %>
-        <% end %>
-      </div>
+          </td>
+        </tr>
+      </table>
     </td>
-    <td>
-      <div class="span4" style="margin-left:0px; margin-top: 29px; margin-right:30px; ">
-          <div class="twit" style="margin-bottom:20px;">
-            <p><small>Twitter: WildStar</small></p>
-            <a class="twitter-timeline" href="https://twitter.com/search?q=WildStar" data-widget-id="320382935079469057" data-chrome="noheader nofooter noborders transparent">Tweets about "WildStar"</a>
-          </div>
-          <div class="twit">
-            <p><small>Twitter: @Team_WildStar</small></p>
-            <a class="twitter-timeline" href="https://twitter.com/Team_WildStar" data-widget-id="320389343254544384" data-chrome="noheader nofooter noborders transparent">Tweets by @Team_WildStar</a>
-          </div>
-        </div>
-        <% if current_user &&  current_user.admin %>
-          <div>
-            <%= link_to "New stream", new_stream_path() %><br>
-            <% @streams.each do |s|%>
-              <%= link_to 'edit', edit_stream_path(s) %> | <%= link_to s.name, s %><br>
-            <% end %>
-          </div>
-        <% end %>
-    </td>
-    
   </tr>
-</tbody>
-</table>
-</td>
-</tr>
 </table>
 
 
 
 <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
 <%= link_to "Sign in", user_session_path() %>
+
 <script>
   $('.remove').click(function(){
     $(this).hide();
@@ -256,6 +170,9 @@
     $('#right<%= stream.id %>').click(function(){
       $('#stream<%= stream.id %>').appendTo("#stream_table");
     });
+
+
+     $('#stream_holder_<%= stream.id %>').html("<%= escape_javascript(render partial: stream) %>");
   </script>
 <% end %>
 

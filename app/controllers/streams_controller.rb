@@ -12,6 +12,12 @@ class StreamsController < ApplicationController
     
     @streams = Stream.all.sort! {|a, b| b.rank <=> a.rank }
     
+    @drop_list = Array.new
+    
+    Word.all.each do |w|
+      @drop_list << w.word
+    end
+    
     respond_to do |format|
       format.html { render :layout => "main_page" }
       format.json { render json: @streams }

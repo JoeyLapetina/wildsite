@@ -1,8 +1,17 @@
 module StreamsHelper
 
 	def feed_me(stream, item)
+
+		@title = nil
+    @replies = nil
+    @views = nil
+    @item_link = nil
+    @by_line = nil
+    @body = nil
+    @picture = nil
 		
 		@stream = stream
+		
 		i = item
 		 
 	  @title = i.at_css(@stream.title).text unless @stream.title.empty? || i.at_css(@stream.title).nil? 
