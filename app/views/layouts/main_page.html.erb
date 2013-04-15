@@ -76,22 +76,27 @@
     });
 
     $('#info').hide();
+    $('#info_table').hide();
     $('#info_tab').mouseenter(function() {
       $('#info').show('fast');
+      $('#info_table').show();
       $('#info_tab').css("margin-top", "-15px")
     });
     $('#info_tab').mouseleave(function() {
       $('#info').hide('fast');
+      $('#info_table').hide();
       $('#info_tab').css("margin-top", "-25px")
     });
 
     $('#explanation').hide();
     $('#explanation_tab').mouseenter(function() {
       $('#explanation').show('fast');
+      $('#info_table').show();
       $('#explanation_tab').css("margin-top", "-15px")
     });
     $('#explanation_tab').mouseleave(function() {
       $('#explanation').hide('fast');
+      $('#info_table').hide();
       $('#explanation_tab').css("margin-top", "-25px")
     });
 
