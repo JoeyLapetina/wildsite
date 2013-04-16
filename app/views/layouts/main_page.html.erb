@@ -5,36 +5,25 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Bowlby+One+SC' rel='stylesheet' type='text/css'>
   <style>
   .hide {
     display:none;
   }
   </style>
 </head>
-  <body class="on">
+  <body class="off">
     <%= link_to "#" do %>
       <div id="explanation_tab">
-        <p>About WildScrape</p>
+        <p>ABOUT WILDSCRAPE</p>
       </div>
     <% end %>
 
     <%= link_to "#" do %>
       <div id="info_tab">
-        <p>Whats What?</p>
+        <p>WHATS WHAT?</p>
       </div>
     <% end %>
-    
-    <div id="bulb_off">
-      <%= link_to "#" do %>
-        <p><i class="icon-bolt"></i> lights off</p>
-      <% end %>
-    </div>
-
-    <div id="bulb_on">
-      <%= link_to "#" do %>
-        <p><i class="icon-bolt"></i> lights on</p> 
-      <% end %>
-    </div>
 
   	<div class="" style="margin-top:10px;">
   		<%= yield %>
@@ -56,23 +45,8 @@
 <script>
   $(document).ready(function() {
 
-
     $('.bump_text').click(function() {
       $(this).replaceWith('thanks');
-    });
-
-    $('#bulb_off').click(function(){
-      $('body').removeClass('on').addClass('off');
-      $.post('/streams/lights_off');
-      $('#bulb_off').hide();
-      $('#bulb_on').show();
-    });
-
-    $('#bulb_on').click(function(){
-      $('body').removeClass('off').addClass('on');
-      $.post('/streams/lights_on');
-      $('#bulb_on').hide();
-      $('#bulb_off').show();
     });
 
     $('#info').hide();
@@ -107,19 +81,4 @@
     
   });
 </script>
-
-<% if cookies[:theme] == "lights_on" %>
-  <script>
-    $('#bulb_on').hide();
-  </script>
-<% elsif cookies[:theme] == "lights_off" %>
-    <script>
-     $('#bulb_off').hide();
-     $('body').removeClass('on').addClass('off');
-    </script>
-<% else %>
-  <script>
-   $('#bulb_on').hide();
-  </script>
-<% end %>
 
