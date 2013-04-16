@@ -15,7 +15,7 @@
 //= require twitter/bootstrap
 //= require_tree .
 
-function updateStream(stream_id) { 
-	$.getScript('/streams/' + stream_id +'.js');  
-  setTimeout(function(){updateStream('10')}, 3000000);  
+function updateStream(stream_id) {
+	 $.getScript('/streams/' + stream_id +'.js');  
+	 setTimeout(function(){updateStream(stream_id)}, 3000000);
 }  
