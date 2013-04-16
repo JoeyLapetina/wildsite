@@ -85,7 +85,8 @@
                       </p>
                     </div>
                     <div id="stream_holder_<%= stream.id %>">
-                      
+                     
+        
                     </div>
                   </div>
                 </td>
@@ -175,8 +176,6 @@
   </tr>
 </table>
 
-
-
 <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
 <%= link_to "Sign in", user_session_path() %>
 
@@ -202,10 +201,18 @@
       $('#stream<%= stream.id %>').appendTo("#stream_table");
     });
 
+    setTimeout(function(){updateStream(<%= stream.id %>)}, 0);
 
-     $('#stream_holder_<%= stream.id %>').html("<%= escape_javascript(render partial: stream) %>");
+    // window.onload = function () { $('#stream_holder_<%= stream.id %>').html("<%=j render partial: stream %>"); }
+
   </script>
 <% end %>
 
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<% stream1 = @streams.first %>
+<script>
+  // window.onload = function () { $('#stream_holder_<%= stream1.id %>').html("<%=j render partial: stream1 %>"); }
+</script>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.c</script>
+reateElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>

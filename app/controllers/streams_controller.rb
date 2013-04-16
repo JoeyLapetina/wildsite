@@ -11,7 +11,7 @@ class StreamsController < ApplicationController
   def index
     
     @streams = Stream.all.sort! {|a, b| b.rank <=> a.rank }
-    
+
     @drop_list = Array.new
     
     Word.all.each do |w|
@@ -28,10 +28,10 @@ class StreamsController < ApplicationController
   # GET /streams/1.json
   def show
     @stream = Stream.find(params[:id])
-    @data = Nokogiri::HTML(open(@stream.stream_url))
 
     respond_to do |format|
       format.html # show.html.erb
+      format.js
       format.json { render json: @stream }
     end
   end
