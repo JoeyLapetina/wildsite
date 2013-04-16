@@ -5,7 +5,7 @@
         <tr>
           <td>
             <div class="span4" style="margin-left: 30px;">
-              <div id="explanation" style="margin-top:45px; margin-bottom:30px;">
+              <div id="explanation" style="margin-top:30px; margin-bottom:30px;">
                 <h5>What is WildScrape: </h5>
                 <ul>
                   <li>The #1(only) WildStar Scrape Site?</li>
@@ -36,7 +36,7 @@
                 <div style="padding:30px; background-color:black; color:white;"><p><small>Heya, My name is Joey Lapetina. I'm a professional app developer in Houston Texas and I am super excited about modding WildStar. I am looking for nexus adventuring buddies. Drop me a line!</small></p></div>  
               </div>
 
-              <div id="info" style="margin-top:45px; margin-bottom:30px;">
+              <div id="info" style="margin-top:30px; margin-bottom:30px;">
                 <h5>ERMAHGHERD - Whats on this page!? </h5>
                 <ul>
                   <li><span class="label" style="background-color:#f89406;"> Streams </span> - lists of tiny little teasers from all around the web. Each stream has a name at the top, then the most recent stream item under that. Follow news from that stream down the page.</li>
@@ -72,7 +72,7 @@
 
                           <%= link_to bump_stream_path(stream), class: "pull-right bump", remote: true do %>
                             <span class="label label-color" id="bump<%= stream.id %>"><i class="icon-thumbs-up"></i><%= " #{stream.rank}" %></span>
-                            <span class="label lable-color .hide" style="background-color:rgb(16, 192, 1) !important;" id="bump_rank<%= stream.id %>"><i class="icon-thumbs-up"></i><%= " #{stream.rank + 1}" %></span>
+                            <span class="label lable-color .hide" style="background-color:#f89406 !important;" id="bump_rank<%= stream.id %>"><i class="icon-thumbs-up"></i><%= " #{stream.rank + 1}" %></span>
                           <% end %>
 
                           <% if false %>
@@ -117,13 +117,13 @@
           <% end %>
 
           <td>
-            <div class="span4" style="margin-left:50px; margin-top: 29px; margin-right:30px; width:400px; margin-bottom:20px;">
+            <div class="span4" style="margin-left:50px; margin-top: 10px;; margin-right:30px; width:400px; margin-bottom:20px;">
               <div class="twit" style="margin-bottom:20px;">
-                <p><small>Twitter: WildStar</small></p>
+                <p style="color:white"><small>Twitter: WildStar</small></p>
                 <a class="twitter-timeline" href="https://twitter.com/search?q=WildStar" data-widget-id="320382935079469057" data-chrome="noheader nofooter noborders transparent">Tweets about "WildStar"</a>
               </div>
               <div class="twit">
-                <p><small>Twitter: @Team_WildStar</small></p>
+                <p style="color:white"><small>Twitter: @Team_WildStar</small></p>
                 <a class="twitter-timeline" href="https://twitter.com/Team_WildStar" data-widget-id="320389343254544384" data-chrome="noheader nofooter noborders transparent">Tweets by @Team_WildStar</a>
               </div>
             </div>
@@ -138,7 +138,7 @@
             <% end %>
           </td>
           <td>
-            <div class="span1" style="margin-left:0px; margin-top: 29px; margin-right:30px; width:160px">
+            <div class="span1" style="margin-left:0px; margin-top: 70px; margin-right:30px; width:160px">
               <div style="margin-bottom:30px;">
                 <script type="text/javascript"><!--
                   google_ad_client = "ca-pub-0864897116796518";
@@ -208,4 +208,4 @@
 <% end %>
 
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
