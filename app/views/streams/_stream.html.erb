@@ -17,7 +17,7 @@
           <% unless @stream.picture == "" || @stream.picture.nil? %>
               <% if @picture %>
                 <%= link_to stream.link_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" do %>
-                    <%= image_tag stream.picture_root ? "#{@stream.site_root}#{@picture}" : "#{@picture}", class: "pull-left", style: "width: 95%; padding-bottom: 10px;" %>
+                    <%= image_tag stream.picture_root ? "#{@stream.site_root}#{@picture}" : "#{@picture}", class: "pull-left", style: "width: 98%; padding-bottom: 10px;" %>
                 <% end %>
               <% end %>
           <% end %>
