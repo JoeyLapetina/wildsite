@@ -5,7 +5,7 @@
 <% else %>
   <% data = Nokogiri::HTML(thing) %>
   <% @stream = stream %>
-  <% @count = @stream.limit || 10 %>
+  <% @count = @stream.limit || 30 %>
 
   <% data.css(@stream.item).each do |item| %>
     <% if @count.nil? || @count > 0 %>
