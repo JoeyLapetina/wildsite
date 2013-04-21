@@ -33,13 +33,35 @@ module StreamsHelper
 		end
 
 
-		@bad_list = Array.new
-	  @bad_list << "Read the rest of this entry"
+		@bad_body_list = Array.new
+	  @bad_body_list << "Read the rest of this entry"
+
+	 	@bad_view_list = Array.new
+	  @bad_view_list << "views" 
+
+	  @bad_replies_list = Array.new
+	  @bad_replies_list << "replies" 
 
 	  if @body 
-	    @bad_list.each do |b| 
+	    @bad_body_list.each do |b| 
 	      if @body.include? b  
 	        @body.slice! b 
+	      end 
+	    end 
+	  end
+
+	  if @views 
+	    @bad_view_list.each do |b| 
+	      if @views.include? b  
+	        @views.slice! b 
+	      end 
+	    end 
+	  end
+
+	  if @replies 
+	    @bad_replies_list.each do |b| 
+	      if @replies.include? b  
+	        @replies.slice! b 
 	      end 
 	    end 
 	  end
