@@ -5,7 +5,8 @@ class Ability
     unless user
       user = User.new
     end
-      can :read, :all
+      can :read, Stream
+      can :create, Submission 
 
       if user.admin?
         can :manage, :all

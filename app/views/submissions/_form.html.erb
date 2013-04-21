@@ -1,0 +1,42 @@
+<%= form_for(@submission) do |f| %>
+  <% if @submission.errors.any? %>
+    <div id="error_explanation">
+      <h5 style="color:#33b5e5"><%= pluralize(@submission.errors.count, "error") %> prohibited this submission from being saved:</h5>
+
+      <ul>
+      <% @submission.errors.full_messages.each do |msg| %>
+        <li><p style="color:#33b5e5"><%= msg %></p></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<% if false %>
+  <div class="field">
+    <%= f.label :submission_type %><br />
+    <%= f.text_field :submission_type %>
+  </div>
+    <div class="field">
+    <%= f.label :submitter_name %><br />
+    <%= f.text_field :submitter_name %>
+  </div>
+  <div class="field">
+    <%= f.label :submitter_email %><br />
+    <%= f.text_field :submitter_email %>
+  </div>
+<% end %>
+
+  <div class="field">
+    <%= f.label :submission_url %>
+    <%= f.text_field :submission_url, placeholder: "Ex. www.linkToThing.com" %>
+  </div>
+  <br />
+  <div class="field">
+    <%= f.label :submission_description %>
+    <%= f.text_area :submission_description, placeholder: "Tell me a little about it if you want to." %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Submit",  class: "btn" %>
+  </div>
+<% end %>

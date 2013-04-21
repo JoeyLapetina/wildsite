@@ -1,6 +1,9 @@
 Wildsite::Application.routes.draw do
 
   
+  resources :submissions
+
+
   resources :words
 
 

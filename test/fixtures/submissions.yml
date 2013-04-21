@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  submission_type: MyString
+  submission_url: MyString
+  submission_description: MyText
+  submitter_name: MyString
+  submitter_email: MyString
+
+two:
+  submission_type: MyString
+  submission_url: MyString
+  submission_description: MyText
+  submitter_name: MyString
+  submitter_email: MyString

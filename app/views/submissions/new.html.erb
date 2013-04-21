@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WildScrape</title>
+  <link href="<%= asset_path('favicon.ico') %>" rel="shortcut icon">
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <style>
+  .hide {
+    display:none;
+  }
+  </style>
+</head>
+<body class="off">
+	<table>
+		<tr>
+			<td>
+				<div class="" style="padding-bottom:20px; margin-right:20px;">
+					<h1>Submit a new site!</h1>
+
+					<%= render 'form' %>
+
+					<%= link_to 'Back', streams_path %>
+				</div>
+			</td>
+			<td>
+				<div class="hero-unit" style="margin-top:125px; background-color:black; color:#33b5e5;">
+					<h1>Is there something cool you want to see on WildScrape?
+					Send me the link and I'll check it out! Let other people know about all the great WildStar stuff!</h1>
+				</div>
+			</td>
+		</tr>
+	
+</body>

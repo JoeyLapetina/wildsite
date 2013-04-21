@@ -31,7 +31,17 @@
       </div>
     <% end %>
 
-  	<div class="" style="margin-top:10px;">
+    <%= link_to new_submission_path do %>
+      <div id="new_submission_link" >
+        <p><i class="icon-cloud"></i> Add a stream!</p>
+      </div>
+    <% end %>
+
+    <% if params[:notice] %>
+      <div id="notice" class="btn btn-inverse"><%= notice %></div>
+    <% end %>
+
+  	<div class="" style="margin-top:10px;">  
   		<%= yield %>
   	</div>
   </body>
@@ -57,23 +67,30 @@
 
     $('#info').hide();
     $('#info_table').hide();
+    $('#explanation').hide();
+
+    $('#notice').click(function() {
+      $('#notice').hide('fast');
+    });
+
     $('#info_tab').mouseenter(function() {
       $('#info').show('fast');
       $('#info_table').show();
       $('#info_tab').css("margin-top", "-15px")
     });
+
     $('#info_tab').mouseleave(function() {
       $('#info').hide('fast');
       $('#info_table').hide();
       $('#info_tab').css("margin-top", "-25px")
     });
-
-    $('#explanation').hide();
+    
     $('#explanation_tab').mouseenter(function() {
       $('#explanation').show('fast');
       $('#info_table').show();
       $('#explanation_tab').css("margin-top", "-15px")
     });
+
     $('#explanation_tab').mouseleave(function() {
       $('#explanation').hide('fast');
       $('#info_table').hide();
