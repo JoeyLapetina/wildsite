@@ -9,8 +9,14 @@ class StreamsController < ApplicationController
   require 'open-uri'
 
   def index
-    
-    @streams = Stream.all.sort! {|a, b| b.rank <=> a.rank }
+    if params[:filter] 
+      if params[:filter] == 'wildstar'
+        @streams = Stream.where(game: 'wildstar').sort! {|a, b| b.rank <=> a.rank }
+      end
+      if params[:filter] == 'teso'
+        @streams = Stream.where(game: 'teso').sort! {|a, b| b.rank <=> a.rank }
+      end
+    end
 
     @drop_list = Array.new
     

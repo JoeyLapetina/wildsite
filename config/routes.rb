@@ -22,6 +22,9 @@ Wildsite::Application.routes.draw do
 
   devise_for :users
 
+    match 'wildstar' => 'streams#index', :defaults => { filter: 'wildstar' }, as: 'wildstar_streams'
+    match 'teso' => 'streams#index', :defaults => { filter: 'teso' }, as: 'teso_streams'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
