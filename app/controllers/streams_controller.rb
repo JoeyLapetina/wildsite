@@ -20,9 +20,9 @@ class StreamsController < ApplicationController
       end
     end
 
-    @streams ||= Stream.where(game: 'wildstar')
+    @streams = Stream.where(game: 'wildstar')
     @streams.sort! {|a, b| b.rank <=> a.rank }
-    
+
     @drop_list = Array.new
     
     Word.all.each do |w|
