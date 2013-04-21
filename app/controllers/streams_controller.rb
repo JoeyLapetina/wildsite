@@ -11,14 +11,18 @@ class StreamsController < ApplicationController
   def index
     if params[:filter] 
       if params[:filter] == 'wildstar'
-        @streams = Stream.where(game: 'wildstar').sort! {|a, b| b.rank <=> a.rank }
+        @streams = Stream.where(game: 'wildstar')
+        @streams.sort! {|a, b| b.rank <=> a.rank }
       end
       if params[:filter] == 'teso'
-        @streams = Stream.where(game: 'teso').sort! {|a, b| b.rank <=> a.rank }
+        @streams = Stream.where(game: 'teso')
+        @streams.sort! {|a, b| b.rank <=> a.rank } 
       end
     end
 
-    @streams ||= Stream.where(game: 'wildstar').sort! {|a, b| b.rank <=> a.rank }
+    @streams ||= Stream.where(game: 'wildstar')
+    @streams.sort! {|a, b| b.rank <=> a.rank }
+    
     @drop_list = Array.new
     
     Word.all.each do |w|
