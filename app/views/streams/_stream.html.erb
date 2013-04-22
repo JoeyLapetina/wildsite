@@ -32,9 +32,9 @@
 
           <%= link_to "[MORE]", @stream.link_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" %>
           <div class="pull-right" style="margin-right:10px">
-            <%= "Replies: #{@replies} | " if @replies %>
+            <%= "Replies: #{@replies}" if @replies %>
             <% if @stream.stream_type == "forum" %>
-              <%= "views: #{@views}" if @views %>
+              <%= " | Views: #{@views}" if @views %>
             <% elsif @stream.stream_type == "reddit" %>
               <%= "Rank: #{@views}" if @views %>
             <% end %>

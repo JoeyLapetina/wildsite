@@ -41,6 +41,7 @@ module StreamsHelper
 
 	  @bad_replies_list = Array.new
 	  @bad_replies_list << "replies" 
+	  @bad_replies_list << "Posts:"
 
 	  if @body 
 	    @bad_body_list.each do |b| 
