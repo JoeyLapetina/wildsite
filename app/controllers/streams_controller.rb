@@ -10,17 +10,22 @@ class StreamsController < ApplicationController
 
   def index
     @streams = nil
+
+    cookies[:filter] = 'wildstar' if params[:filter] && params[:filter] == 'wildstar'
+    cookies[:filter] = 'teso' if params[:filter] && params[:filter] == 'teso'
     
-    if params[:filter] 
-      if params[:filter] == 'wildstar'
+    if params[:filter] || cookies[:filter]
+      if params[:filter] == 'wildstar' || cookies[:filter] == 'wildstar'
         @streams = Stream.where(game: 'wildstar')
         @streams.sort! {|a, b| b.rank <=> a.rank }
         @game = 'wildstar'
+        cookies[:filter]='wildstar'
       end
-      if params[:filter] == 'teso'
+      if params[:filter] == 'teso' || cookies[:filter] == 'teso'
         @streams = Stream.where(game: 'teso')
         @streams.sort! {|a, b| b.rank <=> a.rank } 
         @game = 'teso'
+        cookies[:filter]='teso'
       end
     end
 
