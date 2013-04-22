@@ -15,15 +15,18 @@ class StreamsController < ApplicationController
       if params[:filter] == 'wildstar'
         @streams = Stream.where(game: 'wildstar')
         @streams.sort! {|a, b| b.rank <=> a.rank }
+        @game = 'wildstar'
       end
       if params[:filter] == 'teso'
         @streams = Stream.where(game: 'teso')
         @streams.sort! {|a, b| b.rank <=> a.rank } 
+        @game = 'teso'
       end
     end
 
     @streams ||= Stream.where(game: 'wildstar')
     @streams.sort! {|a, b| b.rank <=> a.rank }
+    @game ||= 'wildstar'
 
     @drop_list = Array.new
     
