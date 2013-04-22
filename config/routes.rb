@@ -24,6 +24,7 @@ Wildsite::Application.routes.draw do
 
     match 'wildstar' => 'streams#index', :defaults => { filter: 'wildstar' }, as: 'wildstar_streams'
     match 'teso' => 'streams#index', :defaults => { filter: 'teso' }, as: 'teso_streams'
+    match 'eso' => 'streams#index', :defaults => { filter: 'eso' }, as: 'eso_streams'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
