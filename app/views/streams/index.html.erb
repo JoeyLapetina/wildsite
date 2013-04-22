@@ -218,6 +218,17 @@
 
   </script>
 <% end %>
+ 
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background-color:black; color:white;">
+  
+    <p><%= link_to "WildStar", wildstar_streams_path() %></p>
+    <p><%= link_to "Elder Scrolls Online", teso_streams_path() %></p>
+
+    </br>
+    <p><%= link_to "[CLOSE]", "", type: "button", "data-dismiss" => "modal", aria_hidden: "true", remote: true %></p>
+
+</div>
 
 
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
