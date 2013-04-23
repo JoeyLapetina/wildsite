@@ -12,6 +12,7 @@ class StreamsController < ApplicationController
     @streams = nil
 
     cookies[:filter] = 'wildstar' if params[:filter] && params[:filter] == 'wildstar'
+    cookies[:filter] = 'tera' if params[:filter] && params[:filter] == 'tera'
     cookies[:filter] = 'teso' if params[:filter] && params[:filter] == 'teso' || params[:filter] == 'eso'
     
     if params[:filter] || cookies[:filter]
@@ -26,6 +27,12 @@ class StreamsController < ApplicationController
         @streams.sort! {|a, b| b.rank <=> a.rank } 
         @game = 'teso'
         cookies[:filter]='teso'
+      end
+      if params[:filter] == 'tera' || cookies[:filter] == 'tera'
+        @streams = Stream.where(game: 'tera')
+        @streams.sort! {|a, b| b.rank <=> a.rank } 
+        @game = 'tera'
+        cookies[:filter]='tera'
       end
     end
 

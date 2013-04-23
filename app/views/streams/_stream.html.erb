@@ -4,7 +4,6 @@
   <% #nothing here %>
 <% else %>
   <% data = Nokogiri::HTML(thing) %>
-  <% @stream = stream %>
   <% @count = @stream.limit || 30 %>
 
   <% data.css(@stream.item).each do |item| %>
@@ -13,6 +12,7 @@
 
       <% feed_me(@stream, item) %>
       <% if @title && @item_link %>
+
         <div class="span<%= @stream.span %> stream_item" style="padding-bottom:20px; margin-top: 10px;">
           <% unless @stream.picture == "" || @stream.picture.nil? %>
               <% if @picture %>
