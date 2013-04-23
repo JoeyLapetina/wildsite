@@ -37,7 +37,8 @@ module StreamsHelper
 	  @bad_body_list << "Read the rest of this entry"
 
 	 	@bad_view_list = Array.new
-	  @bad_view_list << "views" 
+	  @bad_view_list << "views" "Views"
+	  @bad_view_list << "Views"  
 
 	  @bad_replies_list = Array.new
 	  @bad_replies_list << "replies" 
