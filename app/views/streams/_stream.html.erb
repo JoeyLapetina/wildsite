@@ -13,7 +13,7 @@
       <% feed_me(@stream, item) %>
       <% if @title && @item_link %>
 
-        <div class="span<%= @stream.span %> stream_item" style="padding-bottom:20px; margin-top: 10px;">
+        <div class="span<%= @stream.span %> stream_item" style="padding-bottom:20px; margin-top: 10px; margin-left: 0px !important;">
           <% unless @stream.picture == "" || @stream.picture.nil? %>
               <% if @picture %>
                 <%= link_to stream.link_root ? "#{@stream.site_root}#{@item_link}" : "#{@item_link}" do %>

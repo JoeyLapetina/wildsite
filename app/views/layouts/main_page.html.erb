@@ -12,7 +12,7 @@
   }
   </style>
 </head>
-  <body class="off">
+  <body class="off bumpers">
     <%= link_to "#" do %>
       <div id="explanation_tab">
         <p>ABOUT WILDSCRAPE</p>
@@ -39,6 +39,26 @@
 
     <a href="#myModal" id="other_games_link" role="button" data-toggle="modal"><i class="icon-beaker"></i> Other Games</a>
 
+    <%= link_to "#", remote: true do %>
+      <div id="toggle_bumpers" >
+        <p><i class="icon-columns"></i> Toggle Bumpers</p>
+      </div>
+    <% end %>
+
+<% if false %>
+    <%= link_to "#", remote: true do %>
+      <div id="left">
+        <p><i class="icon-lines"></i> Left</p>
+      </div>
+    <% end %>
+
+    <%= link_to "#", remote: true do %>
+      <div id="right">
+        <p><i class="icon-lines"></i> Right</p>
+      </div>
+    <% end %>
+<% end %>
+
     <% if params[:notice] %>
       <div id="notice" class="btn btn-inverse"><%= notice %></div>
     <% end %>
@@ -62,6 +82,32 @@
 
 <script>
   $(document).ready(function() {
+    var window_width = $(window).width();
+    var table_width = $('#main_table').width();
+
+    $('#toggle_bumpers').click(function() {
+      if ($('body').hasClass('bumpers')) {
+        $('body').removeClass('bumpers');
+      } else {
+        $('body').addClass('bumpers');
+      }
+    });
+
+    $('#left').click(function() {
+      $('#main_table').animate({
+        'margin-left': '+=' + (window_width - 100)
+      }, 500, function(){
+
+      })
+    });
+
+    $('#right').click(function() {
+      $('#main_table').animate({
+        'margin-left': '-=' + (window_width - 100)
+      }, 500, function(){
+
+      })
+    });
 
     $('.bump_text').click(function() {
       $(this).replaceWith('thanks');
