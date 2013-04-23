@@ -146,10 +146,6 @@
                   <p style="color:white"><small>Twitter: @TERAonline</small></p>
                   <a class="twitter-timeline" href="https://twitter.com/TERAonline" data-widget-id="326542251822039040" data-chrome="noheader nofooter noborders transparent">Tweets by @TERAonline</a>
                 </div>
-                <div class="twit">
-                  <p style="color:white"><small>Twitter: #tera</small></p>
-                  <a class="twitter-timeline" href="https://twitter.com/search?q=%23tera" data-widget-id="326543736475623425" data-chrome="noheader nofooter noborders transparent">Tweets about "#tera"</a>
-                </div>
               <% end %>
             </div>
 
@@ -235,7 +231,7 @@
 
     <p><%= link_to "WildStar", wildstar_streams_path() %></p>
     <p><%= link_to "Elder Scrolls Online", teso_streams_path() %></p>
-    <p><%= link_to "Tera", tera_streams_path() %></p>
+    <p><% link_to "Tera", tera_streams_path() %></p>
 
     </br>
     <p><small><%= link_to "[CLOSE]", "", type: "button", "data-dismiss" => "modal", aria_hidden: "true", remote: true %></small></p>
