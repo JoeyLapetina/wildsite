@@ -227,11 +227,11 @@
 <% end %>
  
 <!-- Modal -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background-color:black; color:white;">
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background-color:black; color:white; padding:20px;">
 
     <p><%= link_to "WildStar", wildstar_streams_path() %></p>
     <p><%= link_to "Elder Scrolls Online", teso_streams_path() %></p>
-    <p><% link_to "Tera", tera_streams_path() %></p>
+    <p><%= link_to "Tera", tera_streams_path() %></p>
 
     </br>
     <p><small><%= link_to "[CLOSE]", "", type: "button", "data-dismiss" => "modal", aria_hidden: "true", remote: true %></small></p>
