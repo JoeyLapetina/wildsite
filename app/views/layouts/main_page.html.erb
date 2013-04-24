@@ -58,13 +58,6 @@
     var window_width = $(window).width();
     var table_width = $('#main_table').width();
 
-    $('#toggle_bumpers').click(function() {
-      if ($('body').hasClass('bumpers')) {
-        $('body').removeClass('bumpers');
-      } else {
-        $('body').addClass('bumpers');
-      }
-    });
 
     $('#left').click(function() {
       $('#main_table').animate({
@@ -86,36 +79,8 @@
       $(this).replaceWith('thanks');
     });
 
-    $('#info').hide();
-    $('#info_table').hide();
-    $('#explanation').hide();
-
     $('#notice').click(function() {
       $('#notice').hide('fast');
-    });
-
-    $('#info_tab').mouseenter(function() {
-      $('#info').show('fast');
-      $('#info_table').show();
-      $('#info_tab').css("margin-top", "-15px")
-    });
-
-    $('#info_tab').mouseleave(function() {
-      $('#info').hide('fast');
-      $('#info_table').hide();
-      $('#info_tab').css("margin-top", "-25px")
-    });
-    
-    $('#explanation_tab').mouseenter(function() {
-      $('#explanation').show('fast');
-      $('#info_table').show();
-      $('#explanation_tab').css("margin-top", "-15px")
-    });
-
-    $('#explanation_tab').mouseleave(function() {
-      $('#explanation').hide('fast');
-      $('#info_table').hide();
-      $('#explanation_tab').css("margin-top", "-25px")
     });
 
     $('#kill').click(function() {
