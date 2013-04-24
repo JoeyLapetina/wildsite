@@ -13,37 +13,10 @@
   </style>
 </head>
   <body class="off bumpers">
-    <%= link_to "#" do %>
-      <div id="explanation_tab">
-        <p>ABOUT WILDSCRAPE</p>
-      </div>
-    <% end %>
 
-    <%= link_to "#" do %>
-      <div id="info_tab">
-        <p>WHATS WHAT?</p>
-      </div>
-    <% end %>
-
-    <%= link_to "https://trello.com/board/wildscrape-roadmap/51718857476549314e005c22" do %>
-      <div id="road_map">
-        <i class="icon-truck"></i>
-      </div>
-    <% end %>
-
-    <%= link_to new_submission_path do %>
-      <div id="new_submission_link" >
-        <p><i class="icon-cloud"></i> Suggest a stream!</p>
-      </div>
-    <% end %>
-
-    <a href="#myModal" id="other_games_link" role="button" data-toggle="modal"><i class="icon-beaker"></i> Other Games</a>
-
-    <%= link_to "#", remote: true do %>
-      <div id="toggle_bumpers" >
-        <p><i class="icon-columns"></i> Toggle Bumpers</p>
-      </div>
-    <% end %>
+    <div class="box_rotate shadow" style="background-color:black; width:2000px; height:30px; margin-left:-988px; position: fixed;">
+      <h5><a href="#myModal" id="other_games_link" class="" role="button" data-toggle="modal"><i class="icon-beaker"></i> WildScrape!</a></h5>
+    </div>
 
 <% if false %>
     <%= link_to "#", remote: true do %>
