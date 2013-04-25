@@ -5,32 +5,34 @@
         <tbody>
           <tr id="stream_table">
             <td>
-            <div class="left_add" style="min-width:161px !important; margin-left:0px; margin-top: 0px; margin-right:10px; margin-left:10px; ">
-              <div style="margin-bottom:30px;">
-                <p style="text-align:center;">Featured Sponsor</p>
-                <script type="text/javascript"><!--
-                  google_ad_client = "ca-pub-0864897116796518";
-                  /* WIldScrape 1 */
-                  google_ad_slot = "1061179202";
-                  google_ad_width = 160;
-                  google_ad_height = 600;
-                  //-->
-                </script>
-                <script type="text/javascript"
-                  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-                </script>
+              
+              <div class="left_add" style="min-width:161px !important; margin-left:0px; margin-top: 0px; margin-right:10px; margin-left:10px; ">
+                <div class="pull-right" style="margin-bottom:30px;">
+                  <p style="text-align:center;">Featured Sponsor</p>
+                  <script type="text/javascript"><!--
+                    google_ad_client = "ca-pub-0864897116796518";
+                    /* WIldScrape 1 */
+                    google_ad_slot = "1061179202";
+                    google_ad_width = 160;
+                    google_ad_height = 600;
+                    //-->
+                  </script>
+                  <script type="text/javascript"
+                    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                  </script>
 
-                <div style="text-align:center;">
-                  <h4>Featured</br>Sponsor</h4>
+                  <div style="text-align:center;">
+                    <h4>Featured</br>Sponsor</h4>
 
-                  <%= link_to "Why Ads?", "https://www.heroku.com/pricing#2-1", target: "_blank" %>
+                    <%= link_to "Why Ads?", "https://www.heroku.com/pricing#2-1", target: "_blank" %>
+                  </div>
                 </div>
               </div>
-            </div>
-          </td>
-            <% @streams.each do |stream| %>
-              <% if stream.active %>
-                <td id="stream<%= stream.id %>" style="padding: 10px; padding-left: 13px;" >
+              
+            </td>
+              <% @streams.each do |stream| %>
+                <% if stream.active %>
+                  <td id="stream<%= stream.id %>" style="padding: 10px; padding-left: 13px;" >
                   <div class="span<%= stream.span %>" style="margin-left:0px; margin-top: -20px;">
                     <div class="fix_me" style="margin-left: 0px; background-color:black; position:; width:100%; padding-top:10px; margin-top:-10px;">
                       <p style="margin-right: 0px;">
@@ -60,9 +62,9 @@
                         <div class="bar" style="width: 100%;"></div>
                     </div>
                   </div>
-                </td>
+                  </td>
+                <% end %>
               <% end %>
-            <% end %>
           </tr>
         </tbody>
       </table>
