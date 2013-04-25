@@ -182,8 +182,13 @@
  
 <!-- Modal -->
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background-color:black; color:white; padding:20px; width:90%; left: 25% !important; top: 0% !important;">
-  <p><%= link_to "[CLOSE]", "", class: "pull-right", type: "button", "data-dismiss" => "modal", aria_hidden: "true", remote: true %></p>
+  
 <table>
+  <tr>
+    <div class="pull-right">
+      <p><%= link_to "[CLOSE]", "", class: "pull-right", type: "button", "data-dismiss" => "modal", aria_hidden: "true", remote: true %></p>
+    </div>
+  </tr>
   <tr>
     <td>
       <div class="span4" style="margin-left: 30px;">
