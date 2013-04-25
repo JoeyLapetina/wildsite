@@ -4,6 +4,30 @@
       <table id="main_table" style="margin-left: 30px;">
         <tbody>
           <tr id="stream_table">
+            <td>
+            <div class="span1 stick" style="margin-left:0px; margin-top: 0px; margin-right:10px; margin-left:10px; width:160px">
+              <div style="margin-bottom:30px;">
+                <p style="text-align:center;">Featured Sponsor</p>
+                <script type="text/javascript"><!--
+                  google_ad_client = "ca-pub-0864897116796518";
+                  /* WIldScrape 1 */
+                  google_ad_slot = "1061179202";
+                  google_ad_width = 160;
+                  google_ad_height = 600;
+                  //-->
+                </script>
+                <script type="text/javascript"
+                  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                </script>
+
+                <div style="text-align:center;">
+                  <h4>Featured</br>Sponsor</h4>
+
+                  <%= link_to "Why Ads?", "https://www.heroku.com/pricing#2-1", target: "_blank" %>
+                </div>
+              </div>
+            </div>
+          </td>
             <% @streams.each do |stream| %>
               <% if stream.active %>
                 <td id="stream<%= stream.id %>" style="padding: 10px; padding-left: 13px;" >
@@ -117,21 +141,6 @@
                 <script type="text/javascript"
                   src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
                 </script>
-                
-                </div>
-                  <script type="text/javascript"><!--
-                    google_ad_client = "ca-pub-0864897116796518";
-                    /* WIldScrape 1 */
-                    google_ad_slot = "1061179202";
-                    google_ad_width = 160;
-                    google_ad_height = 600;
-                    //-->
-                  </script>
-                  <script type="text/javascript"
-                    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-                  </script>
-                <div>
-                
               </div>
             </div>
           </td>
