@@ -10,9 +10,19 @@
   .hide {
     display:none;
   }
+  .fix_me {
+    position:;
+  }
   </style>
 </head>
   <body class="off bumpers">
+    <div id="left_box" style="position:fixed;">
+
+    </div>
+    
+    <div id="right_box" style="position:fixed;">
+    
+    </div>
 
     <div class="box_rotate shadow" style="background-color:black; width:3000px; height:30px; margin-left:-1487px; position: fixed;">
       <h5><a href="#myModal" id="other_games_link" class="" role="button" data-toggle="modal"><i class="icon-beaker"></i> WildScrape!</a></h5>
@@ -56,8 +66,66 @@
 <script>
   $(document).ready(function() {
     var window_width = $(window).width();
+    var window_height = $(window).height();
     var table_width = $('#main_table').width();
+    var right_over = false;
+    var left_over = false;
 
+    $("#left_box").css({
+      "width": window_width / 8,
+      "height": window_height
+    });
+
+    $("#right_box").css({
+      "width": window_width / 8,
+      "height": window_height,
+      "margin-left": window_width - window_width / 8
+    });
+
+    $("#right_box").mouseover(function() {
+        var current_margin = $('#main_table').css('margin-left');
+        var table_width = $('#main_table').width();
+        next_move = (current_margin - table_width);
+
+        $('#right_box').css({
+          "background": "rgba(255, 255, 255, 0.16)"
+        });
+
+        $('#main_table').animate({
+          'margin-left': '-=' + table_width
+        }, 7000, function() {
+          // Animation complete.
+        });
+    });
+
+    $("#left_box").mouseenter(function() {
+
+      $('#left_box').css({
+        "background": "rgba(255, 255, 255, 0.16)"
+      });
+
+      $('#main_table').animate({
+        'margin-left': '+=' + table_width
+      }, 7000, function() {
+        // Animation complete.
+      });
+    });
+
+    $('#right_box').mouseout(function() {
+      $('#main_table').stop();
+
+      $('#right_box').css({
+        "background": "rgba(255, 255, 255, 0)"
+      });
+    });
+
+    $('#left_box').mouseout(function() {
+      $('#main_table').stop();
+
+      $('#left_box').css({
+        "background": "rgba(255, 255, 255, 0)"
+      });
+    });
 
     $('#left').click(function() {
       $('#main_table').animate({
@@ -87,7 +155,6 @@
       $('#hist').remove();
     });
 
-    
 
     
   });
