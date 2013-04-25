@@ -66,8 +66,10 @@
 <script>
   $(document).ready(function() {
     var window_width = $(window).width();
+    var site_width = $('#main_table').width();
     var window_height = $(window).height();
     var table_width = $('#main_table').width();
+
     var right_over = false;
     var left_over = false;
 
@@ -87,30 +89,32 @@
     });
 
     $("#right_box").mouseover(function() {
-        var current_margin = $('#main_table').css('margin-left');
-        var table_width = $('#main_table').width();
-        next_move = (current_margin - table_width);
+        var current_margin = parseInt($('#main_table').css('margin-left'), 10);
+
+        var next_right = (current_margin + table_width - window_width + 620);
 
         $('#right_box').css({
           "background": "rgba(255, 255, 255, 0.16)"
         });
 
         $('#main_table').animate({
-          'margin-left': '-=' + table_width
-        }, 10000, function() {
+          'margin-left': '-=' + next_right
+        }, next_right, function() {
           // Animation complete.
         });
     });
 
     $("#left_box").mouseenter(function() {
+      var current_margin = parseInt($('#main_table').css('margin-left'), 10);
+      var next_left = (current_margin - 30);
 
       $('#left_box').css({
         "background": "rgba(255, 255, 255, 0.16)"
       });
 
       $('#main_table').animate({
-        'margin-left': '+=' + table_width
-      }, 10000, function() {
+        'margin-left': '-=' + next_left
+      }, next_left * -1, function() {
         // Animation complete.
       });
     });
