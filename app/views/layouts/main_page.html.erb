@@ -91,7 +91,7 @@
     $("#right_box").mouseover(function() {
         var current_margin = parseInt($('#main_table').css('margin-left'), 10);
 
-        var next_right = (current_margin + table_width - window_width + 620);
+        var next_right = (current_margin + table_width - window_width + 620 + window_width / 8);
 
         $('#right_box').css({
           "background": "rgba(255, 255, 255, 0.16)"
