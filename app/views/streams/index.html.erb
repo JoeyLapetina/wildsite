@@ -21,10 +21,10 @@
                     src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
                   </script>
 
-                  <div style="text-align:center;">
+                  <div style="text-align:center;" >
                     <h4>Featured</br>Sponsor</h4>
 
-                    <%= link_to "Why Ads?", "https://www.heroku.com/pricing#2-1", target: "_blank" %>
+                    <% link_to "Why Ads?", "https://www.heroku.com/pricing#2-1", target: "_blank" %>
                   </div>
                 </div>
               </div>
@@ -267,6 +267,10 @@
             <div id="" >
               <p><i class="icon-cloud"></i> Suggest a stream!</p>
             </div>
+          <% end %> 
+          
+          <%= link_to "https://www.heroku.com/pricing#2-1", target: "_blank" do %>
+            <p><i class="icon-money"></i> Why Ads?</p>
           <% end %>
           
         </div>
