@@ -1,14 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  def bump_it(stream, ammount)
-    stream.rank += ammount
-    stream.save
+  def bump_it(id, ammount)
+    @stream = Stream.find(id)
+    @stream.rank += ammount
+    @stream.save
   end
 
   def write_cook(sym, id)
-    
-		#method chaining
 		cookies[sym]=
 		cookies[sym].to_s.split(',').push(id.to_s).join(',')
   end
