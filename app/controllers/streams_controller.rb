@@ -190,6 +190,7 @@ class StreamsController < ApplicationController
 
   def compute_layout
     action_name == "edit" ? "application" : "main_page" 
+    action_name == "new" ? "application" : "main_page"
   end
 end
 
