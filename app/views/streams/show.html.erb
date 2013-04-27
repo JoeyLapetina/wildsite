@@ -44,12 +44,12 @@
                         </span>
 
                       <% else %>
-                      	<%= link_to bump_stream_path(stream), class: "bump", remote: true do %>
+                      	<%= link_to bump_stream_path(stream, featured: true), class: "bump", remote: true do %>
                      			<span class="label label-color" id="bump<%= stream.id %>" style="padding-left:10px; padding-right:10px;">
                      				<i class="icon-thumbs-up"></i><%= " #{stream.rank} : Featured" %>
                      			</span>
 										 			<span class="label lable-color hide" id="bump_rank<%= stream.id %>" style="background-color:#f89406 !important; padding-left:10px; padding-right:10px;">
-	                        	<i class="icon-thumbs-up"></i><%= " #{stream.rank + 1} : Featured " %>
+	                        	<i class="icon-thumbs-up"></i><%= " #{stream.rank + 3} : Featured " %>
 	                        </span>
                         <% end %>
                       <% end %>

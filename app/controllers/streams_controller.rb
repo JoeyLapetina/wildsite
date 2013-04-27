@@ -150,8 +150,14 @@ class StreamsController < ApplicationController
 
   def bump
     @stream = Stream.find(params[:id])
-    bump_it(@stream, 1)
     cookies["bump#{@stream.id}"] = { value: "#{@stream.id}", expires: 1.hour.from_now }
+    
+    if params[:featured]
+      bump_it(@stream.id, 3)
+    else
+      bump_it(@stream.id, 1)
+    end
+
   end
 
   def send_left
