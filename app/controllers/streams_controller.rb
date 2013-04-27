@@ -190,11 +190,11 @@ class StreamsController < ApplicationController
 
   def compute_layout
     if params[:action] == "edit"
-      "main_page"
+      "application"
     elsif params[:action] == "new"
-      'main_page'
-    else
       'application'
+    else
+      'main_page'
     end
   end
 end
