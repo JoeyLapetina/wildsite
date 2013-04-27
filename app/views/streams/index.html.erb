@@ -43,9 +43,13 @@
                             <% end %></small>
                           <% end %>
 
+                          <% unless cookies["bump#{stream.id}"] %>
                           <%= link_to bump_stream_path(stream), class: "pull-right bump", remote: true do %>
                             <span class="label label-color" id="bump<%= stream.id %>"><i class="icon-thumbs-up"></i><%= " #{stream.rank}" %></span>
                             <span class="label lable-color .hide" style="background-color:#f89406 !important;" id="bump_rank<%= stream.id %>"><i class="icon-thumbs-up"></i><%= " #{stream.rank + 1}" %></span>
+                          <% end %>
+                          <% else %>
+                            <span class="label lable-color" style="background-color:#f89406 !important;"><i class="icon-thumbs-up"></i><%= " #{stream.rank}" %></span>
                           <% end %>
 
                           <% if false %>
@@ -233,9 +237,9 @@
             <li><span class="label" style="background-color:#f89406;"> Streams </span> - lists of tiny little teasers from all around the web. Each stream has a name at the top, then the most recent stream item under that. Follow news from that stream down the page.</li>
             <li><span class="label" style="background-color:#f89406;"> Stream items </span> - each teaser in a stream. Click it to check it out.</li>
             <li><span class="label" style="background-color:red;"> NEW </span>
-              <span class="label" style="background-color:#f89406;"> Bump buttons </span> ( <span class="label label-color"><i class="icon-thumbs-up"></i><%= " 32" %></span> ) - Show your favorite stream some love. Streams are default ordered by bumps. Right now you can Bump streams once a visit - I'm trying to encourage and reward visits.
+              <span class="label" style="background-color:#f89406;"> Bump buttons </span> ( <span class="label label-color"><i class="icon-thumbs-up"></i><%= " 32" %></span> ) - Show your favorite stream some love. Streams are default ordered by bumps. Right now you can Bump streams once an hour - I'm trying to encourage and reward visits.
     
-              <p><small><span class="label" style="background-color:#f89406;"> Note: </span> People who want to refresh and bump all day - Works for me! (There will be more ways to order the streams soon.)</small></p>
+              <p><small><span class="label" style="background-color:#f89406;"> Note: </span> People who want to come back every hour and bump all day - Works for me! (There will be more ways to order the streams soon-ish.)</small></p>
             </li>
             <li><p><span class="label" style="background-color:red;"> NEW </span> <%= link_to "" do %><i class="icon-cloud"></i> Suggest a stream!<% end %> - click it and let me know about something cool you found on the web. Maybe I will feature it here on wildscrape!</p></li>
             <li><p><span class="label" style="background-color:red;"> NEW </span> <%= link_to "" do %><i class="icon-beaker"></i> Other Games<% end %> - YeeHaa! I am now wildly scraping multiple games. Check out some other Wild Scrapes!</p></li>
@@ -268,7 +272,7 @@
               <p><i class="icon-cloud"></i> Suggest a stream!</p>
             </div>
           <% end %> 
-          
+
           <%= link_to "https://www.heroku.com/pricing#2-1", target: "_blank" do %>
             <p><i class="icon-money"></i> Why Ads?</p>
           <% end %>

@@ -3,7 +3,7 @@ class StreamsController < ApplicationController
   # GET /streams
   # GET /streams.json
   
-  layout 'application'
+  layout :compute_layout
 
   require 'nokogiri'
   require 'open-uri'
@@ -56,9 +56,21 @@ class StreamsController < ApplicationController
   # GET /streams/1.json
   def show
     @stream = Stream.find(params[:id])
+    @game = @stream.game
+    cookies[:filter]=@game
+    @streams = Stream.where(game: @game)
+    @streams.sort! {|a, b| b.rank <=> a.rank }
+
+   
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html {
+        unless cookies["big_bump#{params[:id]}"]
+          bump_it(@stream, 2)
+          cookies["big_bump#{params[:id]}"] = { value: "params[:id]", expires: 1.hour.from_now }
+          @stream = Stream.find(params[:id])
+        end
+      }
       format.js
       format.json { render json: @stream }
     end
@@ -134,8 +146,8 @@ class StreamsController < ApplicationController
 
   def bump
     @stream = Stream.find(params[:id])
-    @stream.rank += 1
-    @stream.save
+    bump_it(@stream, 1)
+    cookies["bump#{@stream.id}"] = {value: "@stream.id", expires: 1.hour.from_now }
   end
 
   def send_left
@@ -166,6 +178,9 @@ class StreamsController < ApplicationController
     end
   end
 
+  def compute_layout
+    action_name == "edit" ? "application" : "main_page" 
+  end
 end
 
 

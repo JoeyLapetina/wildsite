@@ -67,9 +67,7 @@ module StreamsHelper
 	      end 
 	    end 
 	  end
-
 	end
-
 end
 
 
