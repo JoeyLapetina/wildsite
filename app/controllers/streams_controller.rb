@@ -61,12 +61,10 @@ class StreamsController < ApplicationController
     @streams = Stream.where(game: @game)
     @streams.sort! {|a, b| b.rank <=> a.rank }
 
-   
-
     respond_to do |format|
       format.html {
         unless cookies["big_bump#{params[:id]}"]
-          bump_it(@stream, 2)
+          #bump_it(@stream, 2)
           cookies["big_bump#{params[:id]}"] = { value: "params[:id]", expires: 1.hour.from_now }
           @stream = Stream.find(params[:id])
         end
