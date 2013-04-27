@@ -63,9 +63,9 @@ class StreamsController < ApplicationController
 
     respond_to do |format|
       format.html {
-        unless cookies["big_bump#{@stream.id}"]
+        if cookies["big_bump#{@stream.id}"].empty?
           cookies["big_bump#{@stream.id}"] = { value: "#{@stream.id}", expires: 1.hour.from_now }
-          bump_it(@stream, 2)
+          # bump_it(@stream, 2)
           @stream = Stream.find(params[:id])
         end
       }
