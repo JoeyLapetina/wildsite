@@ -61,14 +61,20 @@ class StreamsController < ApplicationController
     @streams = Stream.where(game: @game)
     @streams.sort! {|a, b| b.rank <=> a.rank }
 
+    if request.xhr?
+      # respond to Ajax request
+    else
+      if cookies["big_bump#{@stream.id}"]
+        var = cookies["big_bump#{@stream.id}"]
+      else 
+        cookies["big_bump#{@stream.id}"] = { value: "#{@stream.id}", expires: 1.hour.from_now }
+        bump_it(@stream, 2)
+        @stream = Stream.find(params[:id])
+      end
+    end
+
     respond_to do |format|
-      format.html {
-        unless cookies["big_bump#{@stream.id}"]
-          cookies["big_bump#{@stream.id}"] = { value: "#{@stream.id}", expires: 1.hour.from_now }
-          # bump_it(@stream, 2)
-          @stream = Stream.find(params[:id])
-        end
-      }
+      format.html
       format.js
       format.json { render json: @stream }
     end
