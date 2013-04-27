@@ -17,26 +17,26 @@ class StreamsController < ApplicationController
     
     if params[:filter] || cookies[:filter]
       if params[:filter] == 'wildstar' || cookies[:filter] == 'wildstar'
-        @streams = Stream.where(game: 'wildstar')
+        @streams = Stream.where(game: 'wildstar', active: true)
         @streams.sort! {|a, b| b.rank <=> a.rank }
         @game = 'wildstar'
         cookies[:filter]='wildstar'
       end
       if params[:filter] == 'teso' || cookies[:filter] == 'teso' || cookies[:filter] == 'eso'
-        @streams = Stream.where(game: 'teso')
+        @streams = Stream.where(game: 'teso', active: true)
         @streams.sort! {|a, b| b.rank <=> a.rank } 
         @game = 'teso'
         cookies[:filter]='teso'
       end
       if params[:filter] == 'tera' || cookies[:filter] == 'tera'
-        @streams = Stream.where(game: 'tera')
+        @streams = Stream.where(game: 'tera', active: true)
         @streams.sort! {|a, b| b.rank <=> a.rank } 
         @game = 'tera'
         cookies[:filter]='tera'
       end
     end
 
-    @streams ||= Stream.where(game: 'wildstar')
+    @streams ||= Stream.where(game: 'wildstar', active: true)
     @streams.sort! {|a, b| b.rank <=> a.rank }
     @game ||= 'wildstar'
 
@@ -45,8 +45,6 @@ class StreamsController < ApplicationController
     Word.all.each do |w|
       @drop_list << w.word
     end
-
-    @streams = @streams.where(active: true)
     
     respond_to do |format|
       format.html { render :layout => "main_page" }
@@ -60,8 +58,7 @@ class StreamsController < ApplicationController
     @stream = Stream.find(params[:id])
     @game = @stream.game
     cookies[:filter]=@game
-    @streams = Stream.where(game: @game)
-    @streams = @streams.where(active: true)
+    @streams = Stream.where(game: @game, active: true)
     @streams.sort! {|a, b| b.rank <=> a.rank }
 
     if request.xhr?
