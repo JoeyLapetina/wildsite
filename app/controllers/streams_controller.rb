@@ -45,6 +45,8 @@ class StreamsController < ApplicationController
     Word.all.each do |w|
       @drop_list << w.word
     end
+
+    @streams = @streams.where(active: true)
     
     respond_to do |format|
       format.html { render :layout => "main_page" }
@@ -59,6 +61,7 @@ class StreamsController < ApplicationController
     @game = @stream.game
     cookies[:filter]=@game
     @streams = Stream.where(game: @game)
+    @streams = @streams.where(active: true)
     @streams.sort! {|a, b| b.rank <=> a.rank }
 
     if request.xhr?
