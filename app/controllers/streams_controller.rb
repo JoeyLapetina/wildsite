@@ -39,6 +39,7 @@ class StreamsController < ApplicationController
     @streams ||= Stream.where(game: 'wildstar', active: true)
     @streams.sort! {|a, b| b.rank <=> a.rank }
     @game ||= 'wildstar'
+    @all_streams = Stream.all
 
     @drop_list = Array.new
     
@@ -60,6 +61,7 @@ class StreamsController < ApplicationController
     cookies[:filter]=@game
     @streams = Stream.where(game: @game, active: true)
     @streams.sort! {|a, b| b.rank <=> a.rank }
+    @all_streams = Stream.all
 
     if request.xhr?
       # respond to Ajax request

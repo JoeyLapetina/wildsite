@@ -14,12 +14,19 @@ module StreamsHelper
 		
 		i = item
 		 
-	  @title = i.at_css(@stream.title).text unless @stream.title.empty? || i.at_css(@stream.title).nil? 
-	  @by_line = i.at_css(@stream.by_line).text unless @stream.by_line.empty? || i.at_css(@stream.by_line).nil?  
-	  @body = i.at_css(@stream.body).text unless @stream.body.empty? || i.at_css(@stream.body).nil?  
-	  @picture = i.css(@stream.picture).map { |link| link['src'] }.first unless @stream.picture.empty? || i.css(@stream.picture).nil? 
-	  @item_link = i.css(@stream.item_link).map { |link| link['href'] }.first unless @stream.item_link.empty? || i.at_css(@stream.item_link).nil? 
+		if @stream.stream_type == "rss_stream"
+			@title = i.xpath('title').inner_text unless @stream.title.empty? || i.xpath('title').inner_text.nil?  
+		  @body = i.xpath('description').inner_text unless @stream.body.empty? || i.xpath('description').inner_text.nil?   
+		  @item_link = i.xpath('link').inner_text unless @stream.item_link.empty? || i.xpath('link').inner_text.nil? 
 
+		else
+		  @title = i.at_css(@stream.title).text unless @stream.title.empty? || i.at_css(@stream.title).nil? 
+		  @by_line = i.at_css(@stream.by_line).text unless @stream.by_line.empty? || i.at_css(@stream.by_line).nil?  
+		  @body = i.at_css(@stream.body).text unless @stream.body.empty? || i.at_css(@stream.body).nil?  
+		  @picture = i.css(@stream.picture).map { |link| link['src'] }.first unless @stream.picture.empty? || i.css(@stream.picture).nil? 
+		  @item_link = i.css(@stream.item_link).map { |link| link['href'] }.first unless @stream.item_link.empty? || i.at_css(@stream.item_link).nil? 
+		end
+	  
 	  #forum info
 	  if @stream.stream_type == "forum" || @stream.stream_type == "reddit"
 		  @replies = i.at_css(@stream.replies).text unless @stream.replies.empty? || i.at_css(@stream.replies).nil?
