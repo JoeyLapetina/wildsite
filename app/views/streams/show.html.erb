@@ -54,7 +54,7 @@
                         <% end %>
                       <% end %>
                     </div>
-                		<%= link_to stream.stream_url, style: "color: white !important;", class: "", target: "_blank" do %>
+                		<%= link_to (stream.stream_home_url ? stream.stream_home_url : stream.stream_url), style: "color: white !important;", class: "", target: "_blank" do %>
                   		<div style="background:#33b5e5; width:99%;">
 	                    	<h4 style="padding:5px; margin-top: 20px;">
 	                    		<%= stream.name %>
@@ -99,7 +99,7 @@
 	                          <% end %></small>
 	                        <% end %>
 	                      </div>
-	                      <small><%= link_to stream.name, stream.stream_url, class: "", style: "margin-left:5px;", target: "_blank" %></small>
+	                      <small><%= link_to stream.name, (stream.stream_home_url ? stream.stream_home_url : stream.stream_url), class: "", style: "margin-left:5px;", target: "_blank" %></small>
 	                    </p>
 	                  </div>
 	                  <div id="stream_holder_<%= stream.id %>">
