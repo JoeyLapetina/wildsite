@@ -1,0 +1,198 @@
+<table>
+  <tr>
+    <td>
+      <table id="main_table" style="margin-left: 30px;">
+        <tbody>
+          <tr id="stream_table">
+            <td>
+              
+              <div class="left_add" style="min-width:161px !important; margin-left:0px; margin-top: 0px; margin-right:10px; margin-left:10px; ">
+                <div class="pull-right" style="margin-bottom:30px;">
+                  <p style="text-align:center;">Featured Sponsor</p>
+                  <script type="text/javascript"><!--
+                    google_ad_client = "ca-pub-0864897116796518";
+                    /* WIldScrape 1 */
+                    google_ad_slot = "1061179202";
+                    google_ad_width = 160;
+                    google_ad_height = 600;
+                    //-->
+                  </script>
+                  <script type="text/javascript"
+                    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                  </script>
+
+                  <div style="text-align:center;" >
+                    <h4>Featured</br>Sponsor</h4>
+
+                    <% link_to "Why Ads?", "https://www.heroku.com/pricing#2-1", target: "_blank" %>
+                  </div>
+                </div>
+              </div>
+              
+            </td>
+            <% if @stream && (@stream.active || current_user.admin?) %>
+            	<% stream = @stream %>
+            	<td id="stream<%= stream.id %>" style="padding: 10px; padding-left: 20px; padding-right: 20px; background:rgba(0, 41, 255, 0.1)" >
+                <div class="span<%= stream.span %>" style="margin-left:0px; margin-top: -20px;">
+                  <div class="fix_me" style="margin-left: 0px; padding-top:10px; margin-top:0px;">
+
+                    <div>
+                      <% if cookies["bump#{stream.id}"] %>
+
+                      	<span class="label lable-color" style="background-color:#f89406 !important; padding-left:10px; padding-right:10px;">
+                        	<i class="icon-thumbs-up"></i><%= " #{stream.rank} : Featured " %>
+                        </span>
+
+                      <% else %>
+                      	<%= link_to bump_stream_path(stream, featured: true), class: "bump", remote: true do %>
+                     			<span class="label label-color" id="bump<%= stream.id %>" style="padding-left:10px; padding-right:10px;">
+                     				<i class="icon-thumbs-up"></i><%= " #{stream.rank} : Featured" %>
+                     			</span>
+										 			<span class="label lable-color hide" id="bump_rank<%= stream.id %>" style="background-color:#f89406 !important; padding-left:10px; padding-right:10px;">
+	                        	<i class="icon-thumbs-up"></i><%= " #{stream.rank + 3} : Featured " %>
+	                        </span>
+                        <% end %>
+                      <% end %>
+                    </div>
+                		<%= link_to (stream.stream_home_url ? stream.stream_home_url : stream.stream_url), style: "color: white !important;", class: "", target: "_blank" do %>
+                  		<div style="background:#33b5e5; width:99%;">
+	                    	<h4 style="padding:5px; margin-top: 20px;">
+	                    		<%= stream.name %>
+	                    	</h4>
+	                    </div>
+                    <% end %>
+                  </div>
+                  <div id="stream_holder_<%= stream.id %>">
+                    <div class="progress progress-striped active" style="width:100%; margin-left:0px;">
+                      <div class="bar" style="width: 100%;"></div>
+                  	</div>
+              		</div>
+            		</div>
+              </td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+    
+  </tr>
+</table>
+
+<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+<%= link_to "Sign in", user_session_path() %>
+
+<script>
+  $('.remove').click(function(){
+    $(this).hide();
+  });
+</script>
+
+
+ 
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background-color:black; color:white; padding:20px; width:90%; left: 25% !important; top: 0% !important;">
+  
+<table>
+  <tr>
+    <td colspan="3">
+      <div class="pull-right">
+        <p><%= link_to "[CLOSE]", "", class: "pull-right", type: "button", "data-dismiss" => "modal", aria_hidden: "true", remote: true %></p>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div class="span4" style="margin-left: 30px;">
+        <div id="explanation" style="margin-top:30px; margin-bottom:30px;">
+          <h5>What is WildScrape: </h5>
+          <ul>
+            <li>The #1(only) MMO Fan Scrape Site?</li>
+            <li>A totally new kind of fan site?</li>
+            <li>An attempt to contribute to the community!</li>
+            <li><b>A bid at a beta key cupcake!</b></li>
+          </ul>
+          <h5>What makes WildScrape cool: </h5>
+          <div style="padding-top:15px; padding-bottom:5px; padding-left:30px; background-color:#f89406;">
+            <p style='margin-bottom:0px; color:white;'><i>Er, that's pretty damn cool.</i></p>
+            <p style='margin-top:0px; color:white;'><small>-jg (Carbine Studios Executive Producer)</small></p>
+          </div>
+
+          
+          <h5>WildScrape feedback goes where?</h5>
+          <ul>
+            <li>@WildScrape</li>
+            <li>TheWildScrape@gmail.com</li>
+          </ul>
+          <h5>Whats Next in the WildScrape Beta: </h5>
+          <ul>
+            <li><b>I will get a beta key!</b></li>
+            <li><b>Click on the truck on the top left corner of the page to see whats coming up!</b></li>
+          </ul>
+          <div style="padding:30px; background-color:black; color:white;"><p><small>Heya, My name is Joey Lapetina. I'm a professional app developer in Houston Texas and I am super excited about playing MMOs. I am looking for nexus adventuring buddies. Drop me a line!</small></p></div>  
+        </div>
+      </div>
+    </td>
+    <td>
+      <div class="span4" style="margin-left: 30px;">
+        <div id="info" style="margin-top:30px; margin-bottom:30px;">
+          <h5>ERMAHGHERD - Whats on this page!? </h5>
+          <ul>
+            <li><span class="label" style="background-color:#f89406;"> Streams </span> - lists of tiny little teasers from all around the web. Each stream has a name at the top, then the most recent stream item under that. Follow news from that stream down the page.</li>
+            <li><span class="label" style="background-color:#f89406;"> Stream items </span> - each teaser in a stream. Click it to check it out.</li>
+            <li><span class="label" style="background-color:red;"> NEW </span>
+              <span class="label" style="background-color:#f89406;"> Bump buttons </span> ( <span class="label label-color"><i class="icon-thumbs-up"></i><%= " 32" %></span> ) - Show your favorite stream some love. Streams are default ordered by bumps. Right now you can Bump streams once an hour - I'm trying to encourage and reward visits.
+    
+              <p><small><span class="label" style="background-color:#f89406;"> Note: </span> People who want to come back every hour and bump all day - Works for me! (There will be more ways to order the streams soon-ish.)</small></p>
+            </li>
+            <li><p><span class="label" style="background-color:red;"> NEW </span> <%= link_to "" do %><i class="icon-cloud"></i> Suggest a stream!<% end %> - click it and let me know about something cool you found on the web. Maybe I will feature it here on wildscrape!</p></li>
+            <li><p><span class="label" style="background-color:red;"> NEW </span> <%= link_to "" do %><i class="icon-beaker"></i> Other Games<% end %> - YeeHaa! I am now wildly scraping multiple games. Check out some other Wild Scrapes!</p></li>
+          </ul>
+
+          <h5>How do you use WildScrape: </h5>
+          <p>Look at things. Click on what your interested in. View it on the inter-webs. Come back and do it again! Oh, and make sure you scroll to the right - you don't want to miss anything.</p>
+        </div>
+      </div>
+    </td>
+    <td>
+      <div class="span4" style="margin-left: 30px;">
+        <div id="info" style="margin-top:30px; margin-bottom:30px;">
+          <h5>Other Wild Scrapes!</h5>
+          <h3><%= link_to "WildStar", wildstar_streams_path() %></h3>
+          <h3><%= link_to "Elder Scrolls Online", teso_streams_path() %></h3>
+          <h3><%= link_to "Tera", tera_streams_path() %></h3>
+        </div>
+        <div id="info" style="margin-top:30px; margin-bottom:30px;">
+          <h5>WildScrape Stuff!</h5>
+          
+          <%= link_to "https://trello.com/board/wildscrape-roadmap/51718857476549314e005c22", target: "_blank" do %>
+            <div id="">
+              <p><i class="icon-truck"></i> Road Map</p>
+            </div>
+          <% end %>
+
+          <%= link_to new_submission_path do %>
+            <div id="" >
+              <p><i class="icon-cloud"></i> Suggest a stream!</p>
+            </div>
+          <% end %> 
+
+          <%= link_to "https://www.heroku.com/pricing#2-1", target: "_blank" do %>
+            <p><i class="icon-money"></i> Why Ads?</p>
+          <% end %>
+          
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>
+</div>
+
+
+  <script>
+
+    setTimeout(function(){updateStream(<%= @stream.id %>)}, 0);
+
+  </script>
+
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>

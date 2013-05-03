@@ -8,6 +8,13 @@ gem 'unicorn'
 
 group :development do
   gem 'sqlite3'
+  gem 'hirb'
+  gem 'foreman'
+  gem 'rails-footnotes'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+  #gem 'bullet'
 end
 
 group :production do

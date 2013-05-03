@@ -39,7 +39,8 @@ class StreamsController < ApplicationController
     @streams ||= Stream.where(game: 'wildstar', active: true)
     @streams.sort! {|a, b| b.rank <=> a.rank }
     @game ||= 'wildstar'
-    @all_streams = Stream.all
+    @all_streams = Stream.where(game: @game)
+    @all_streams += Stream.where(game: nil)
 
     @drop_list = Array.new
     
