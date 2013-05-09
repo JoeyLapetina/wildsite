@@ -15,9 +15,9 @@ module StreamsHelper
 		i = item
 		 
 		if @stream.stream_type == "rss_stream"
-			@title = i.xpath('title').inner_text unless @stream.title.empty? || i.xpath('title').inner_text.nil?  
-		  @body = i.xpath('description').inner_text.html_safe unless @stream.body.empty? || i.xpath('description').inner_text.nil?   
-		  @item_link = i.xpath('link').inner_text unless @stream.item_link.empty? || i.xpath('link').inner_text.nil? 
+			@title = i.xpath(@stream.title).inner_text unless @stream.title.empty? || i.xpath(@stream.title).inner_text.nil?  
+		  @body = i.xpath(@stream.body).inner_text.html_safe unless @stream.body.empty? || i.xpath(@stream.body).inner_text.nil?   
+		  @item_link = i.xpath(@stream.item_link).inner_text unless @stream.item_link.empty? || i.xpath(@stream.item_link).inner_text.nil?
 
 		else
 		  @title = i.at_css(@stream.title).text unless @stream.title.empty? || i.at_css(@stream.title).nil? 
