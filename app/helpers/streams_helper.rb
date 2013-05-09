@@ -18,7 +18,7 @@ module StreamsHelper
 			@title = i.xpath(@stream.title).inner_text unless @stream.title.empty? || i.xpath(@stream.title).inner_text.nil?  
 		  @body = i.xpath(@stream.body).inner_text.html_safe unless @stream.body.empty? || i.xpath(@stream.body).inner_text.nil?   
 		  @item_link = i.xpath(@stream.item_link).inner_text unless @stream.item_link.empty? || i.xpath(@stream.item_link).inner_text.nil?
-
+		  @picture = Nokogiri::HTML(item.xpath(@stream.picture).inner_html).search('img').first.attributes['src'].value unless @stream.picture.empty? || i.xpath(@stream.picture).inner_text.nil?
 		else
 		  @title = i.at_css(@stream.title).text unless @stream.title.empty? || i.at_css(@stream.title).nil? 
 		  @by_line = i.at_css(@stream.by_line).text unless @stream.by_line.empty? || i.at_css(@stream.by_line).nil?  
