@@ -6,13 +6,15 @@
   <link href='http://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
   <%= csrf_meta_tags %>
   <style>
   .fix_me {
     position:;
   }
 
-  #inner_tag p {
+  .my_tab p {
     font-family: 'Ultra', serif;
     color:black;
     text-align: center;
@@ -21,16 +23,19 @@
     font-weight: bold;
     font-size: 125%;
   }
+
+  .my_tab a:hover {
+    text-decoration: none;
+  }
   </style>
 </head>
   <body class="off bumpers">
     
-    <div id="outer_box" class="pull-left shadow" style="position:fixed; background:black; z-index: 2000 !important;">
-      <div id="outer_tag" style="background:#33b5e5;">
-        <div id="inner_tag" style="padding:5px;">
-          <%= link_to "#myModal", role: "button", "data-toggle" => "modal" do %>
-            <p style="margin-bottom: -10px;" ><i class="icon-beaker" style="font-size: 120% !important;"></i></p>
-            <p></br></p>
+    <div class="pull-left shadow" style="position:fixed; background:black; z-index: 2000 !important;">
+      <div style="background:#33b5e5;">
+        <div class="my_tab" style="padding:5px;">
+          <%= link_to "#wildScrapeModal", role: "button", "data-toggle" => "modal" do %>
+            <p style="margin-bottom: 5px;" ><i class="icon-rocket" style="font-size: 120% !important;"></i></p>
             <p>W</p>
             <p>I</p>
             <p>L</p>
@@ -46,6 +51,27 @@
       </div>
     </div>
 
+     <div class="pull-left shadow" style="position:fixed; background:black; z-index: 2000 !important; margin-top:250px;">
+      <div style="background:#33b5e5;">
+        <div class="my_tab" style="padding:5px;">
+          <%= link_to "#gamesModal", role: "button", "data-toggle" => "modal" do %>
+            <p style="margin-bottom: 5px;" ><i class="icon-gamepad" style="font-size: 120% !important;"></i></p>
+            <p>O</p>
+            <p>T</p>
+            <p>H</p>
+            <p>E</p>
+            <p>R</p>
+            <p></br></p>
+            <p>G</p>
+            <p>A</p>
+            <p>M</p>
+            <p>E</p>
+            <p>S</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    
     <div id="left_box" style="position:fixed;">
 
     </div>
