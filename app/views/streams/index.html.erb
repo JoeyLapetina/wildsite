@@ -58,7 +58,11 @@
                             <% end %></small>
                           <% end %>
                         </div>
-                        <small><%= link_to stream.name, (stream.stream_home_url ? stream.stream_home_url : stream.stream_url), class: "", style: "margin-left:5px;", target: "_blank" %></small>
+                        <% if stream.stream_home_url.present? %>
+                        <small><%= link_to stream.name, stream.stream_home_url , class: "", style: "margin-left:5px;", target: "_blank" %></small>
+                        <% else %>
+                        <small><%= link_to stream.name, stream.stream_url , class: "", style: "margin-left:5px;", target: "_blank" %></small>
+                        <% end %>
                       </p>
                     </div>
                     <div id="stream_holder_<%= stream.id %>">
