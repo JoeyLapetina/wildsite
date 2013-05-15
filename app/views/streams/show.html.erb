@@ -239,17 +239,10 @@
 <% end %>
  
 <!-- Modal -->
-<div id="wildScrapeModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background-color:black; color:white; width:100%; height: 100px; left: 15% !important; top: 0% !important;">
+<div id="wildScrapeModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background-color:black !important; color:white; padding:20px; width:100%; height: 100px; left: 25% !important; top: 0% !important;">
   
-  <table style="background-color:black">
-    <tr>
-      <td colspan="3">
-        <div class="pull-right">
-          <p><%= link_to "[CLOSE]", "", class: "pull-right", type: "button", "data-dismiss" => "modal", aria_hidden: "true", remote: true %></p>
-        </div>
-      </td>
-    </tr>
-    <tr>
+  <table style="background-color:black; padding:20px; padding-top:0px; margin-top:-40px;">
+    <tr> 
       <td>
         <div class="span4" style="margin-left: 30px;">
           <div id="explanation" style="margin-top:30px; margin-bottom:30px;">
@@ -265,6 +258,11 @@
               <p style='margin-bottom:0px; color:white;'><i>Er, that's pretty damn cool.</i></p>
               <p style='margin-top:0px; color:white;'><small>-jg (Carbine Studios Executive Producer)</small></p>
             </div>
+          </br>
+            <div style="padding-top:15px; padding-bottom:5px; padding-left:30px; background-color:#f89406;">
+              <p style='margin-bottom:0px; color:white;'><i>Is everyone paying attention to @WildScrape? The #WildStar team sure is.</i></p>
+              <p style='margin-top:0px; color:white;'><small>-Team WildStar</small></p>
+            </div>
 
             
             <h5>WildScrape feedback goes where?</h5>
@@ -275,7 +273,9 @@
             <h5>Whats Next in the WildScrape Beta: </h5>
             <ul>
               <li><b>I will get a beta key!</b></li>
-              <li><b>Click on the truck on the top left corner of the page to see whats coming up!</b></li>
+              <%= link_to "https://trello.com/board/wildscrape-roadmap/51718857476549314e005c22", target: "_blank" do %>
+              <li><b>Click here to see what I am working on RIGHT NOW! And what I have finished! And what I haven't started yet!</b></li>
+              <% end %>
             </ul>
             <div style="padding:30px; background-color:black; color:white;"><p><small>Heya, My name is Joey Lapetina. I'm a professional app developer in Houston Texas and I am super excited about playing MMOs. I am looking for nexus adventuring buddies. Drop me a line!</small></p></div>  
           </div>
@@ -303,54 +303,7 @@
         </div>
       </td>
       <td>
-        <div class="span4" style="margin-left: 30px;">
-          <div id="info" style="margin-top:30px; margin-bottom:30px;">
-            <h5>Other Wild Scrapes!</h5>
-            <h3><%= link_to "WildStar", wildstar_streams_path() %></h3>
-            <h3><%= link_to "Elder Scrolls Online", teso_streams_path() %></h3>
-            <h3><%= link_to "Tera", tera_streams_path() %></h3>
-          </div>
-          <div id="info" style="margin-top:30px; margin-bottom:30px;">
-            <h5>WildScrape Stuff!</h5>
-            
-            <%= link_to "https://trello.com/board/wildscrape-roadmap/51718857476549314e005c22", target: "_blank" do %>
-              <div id="">
-                <p><i class="icon-truck"></i> Road Map</p>
-              </div>
-            <% end %>
-
-            <%= link_to new_submission_path do %>
-              <div id="" >
-                <p><i class="icon-cloud"></i> Suggest a stream!</p>
-              </div>
-            <% end %> 
-
-            <%= link_to "https://www.heroku.com/pricing#2-1", target: "_blank" do %>
-              <p><i class="icon-money"></i> Why Ads?</p>
-            <% end %>
-            
-          </div>
-        </div>
-      </td>
-    </tr>
-  </table>
-
-</div>
-
-
-<div id="gamesModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true" style="background-color:black; color:white; padding:20px; width:100%; height: 100px; left: 15% !important; top: 0% !important;">
-  
-  <table style="background-color:black">
-    <tr>
-      <td colspan="3">
-        <div class="pull-right">
-          <p><%= link_to "[CLOSE]", "", class: "pull-right", type: "button", "data-dismiss" => "modal", aria_hidden: "true", remote: true %></p>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="span4" style="margin-left: 30px;">
+        <div class="span4" style="margin-left: 30px; margin-bottom: 240px;">
           <div id="info" style="margin-top:30px; margin-bottom:30px;">
             <h5>Other Wild Scrapes!</h5>
             <h3><%= link_to "WildStar", wildstar_streams_path() %></h3>
@@ -376,12 +329,66 @@
             <%= link_to "https://www.heroku.com/pricing#2-1", target: "_blank" do %>
               <p><i class="icon-money"></i> Why Ads?</p>
             <% end %>
-            
           </div>
+        </div>
+        <div>
+          <div class="pull-right">
+          <p><%= link_to "[CLOSE]", "", class: "pull-right", type: "button", "data-dismiss" => "modal", aria_hidden: "true", remote: true %></p>
+        </div>
         </div>
       </td>
     </tr>
   </table>
+
+</div>
+
+
+<div id="gamesModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true" style="background-color:black; color:white; padding:20px; padding-top:0px; width:100%; height: 100px; left: 25% !important; top: 0% !important;">
+
+  <div style="background-color:black;  padding:20px; padding-top:0px;">  
+    <table>
+      <tr>
+        <td>
+          <div class="span4" style="margin-left: 30px;">
+            <div id="info" style="margin-top:30px; margin-bottom:30px;">
+              <h5>Other Wild Scrapes!</h5>
+              <h3><%= link_to "WildStar", wildstar_streams_path() %></h3>
+              <h3><%= link_to "Neverwinter Online", neverwinter_streams_path() %></h3>
+              <h3><%= link_to "Elder Scrolls Online", teso_streams_path() %></h3>
+              <h3><%= link_to "Tera", tera_streams_path() %></h3>
+            </div>
+            <div id="info" style="margin-top:30px; margin-bottom:30px;">
+              <h5>WildScrape Stuff!</h5>
+              
+              <%= link_to "https://trello.com/board/wildscrape-roadmap/51718857476549314e005c22", target: "_blank" do %>
+                <div id="">
+                  <p><i class="icon-truck"></i> Road Map</p>
+                </div>
+              <% end %>
+
+              <%= link_to new_submission_path do %>
+                <div id="" >
+                  <p><i class="icon-cloud"></i> Suggest a stream!</p>
+                </div>
+              <% end %> 
+
+              <%= link_to "https://www.heroku.com/pricing#2-1", target: "_blank" do %>
+                <p><i class="icon-money"></i> Why Ads?</p>
+              <% end %>
+              
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <div class="pull-right">
+            <p><%= link_to "[CLOSE]", "", class: "pull-right", type: "button", "data-dismiss" => "modal", aria_hidden: "true", remote: true %></p>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
 
 </div>
 
