@@ -30,7 +30,7 @@
               </div>
               
             </td>
-            <% if @stream && (@stream.active || current_user.admin?) %>
+            <% if @stream && (@stream.active || (current_user && current_user.admin)) %>
             	<% stream = @stream %>
             	<td id="stream<%= stream.id %>" style="padding: 10px; padding-left: 20px; padding-right: 20px; background:rgba(0, 41, 255, 0.1)" >
                 <div class="span<%= stream.span %>" style="margin-left:0px; margin-top: -20px;">
@@ -53,25 +53,25 @@
 	                        </span>
                         <% end %>
                       <% end %>
-                    </div>
-                     <% if stream.stream_home_url.present? %>
-                      <small><%= link_to stream.name, stream.stream_home_url , class: "", style: "margin-left:5px;", target: "_blank" %></small>
-                      <%= link_to stream.stream_home_url, style: "color: white !important;", class: "", target: "_blank" do %>
-                      <div style="background:#33b5e5; width:99%;">
-                        <h4 style="padding:5px; margin-top: 20px;">
-                          <%= stream.name %>
-                        </h4>
-                      </div>
-                    <% end %>
 
+                    </div>
+                    <% if stream.stream_home_url.present? %>
+                      <%= link_to stream.stream_home_url, style: "color: white !important;", class: "", target: "_blank" do %>
+                        <div style="background:#33b5e5; width:99%;">
+                          <h4 style="padding:5px; margin-top: 20px;">
+                            <%= stream.name %>
+                          </h4>
+                        </div>
+                      <% end %>
                     <% else %>
                       <small><%= link_to stream.name, stream.stream_url , class: "", style: "margin-left:5px;", target: "_blank" %></small>
                       <%= link_to stream.stream_home_url, style: "color: white !important;", class: "", target: "_blank" do %>
-                      <div style="background:#33b5e5; width:99%;">
-                        <h4 style="padding:5px; margin-top: 20px;">
-                          <%= stream.name %>
-                        </h4>
-                      </div>
+                        <div style="background:#33b5e5; width:99%;">
+                          <h4 style="padding:5px; margin-top: 20px;">
+                            <%= stream.name %>
+                          </h4>
+                        </div>
+                      <% end %>
                     <% end %>
                 	</div>
                   <div id="stream_holder_<%= stream.id %>">
@@ -84,18 +84,12 @@
             <% end %>
             <% @streams.each do |stream| %>
              	<% unless @stream && @stream.id == stream.id %>
-	              <% if stream.active || current_user.admin? %>
+	              <% if stream.active || (current_user && current_user.admin) %>
 	                <td id="stream<%= stream.id %>" style="padding: 10px; padding-left: 13px;" >
 	                <div class="span<%= stream.span %>" style="margin-left:0px; margin-top: -20px;">
 	                  <div class="fix_me" style="margin-left: 0px; background-color:black; position:; width:100%; padding-top:10px; margin-top:-10px;">
 	                    <p style="margin-right: 0px;">
 	                      <div class="pull-left">
-	                        <% if false %>
-	                          <small><%= link_to send_right_stream_path(stream), style: "margin-left:5px;", class: "pull-right", id: "right#{stream.id}", remote: true do %>
-	                            <i class="icon-arrow-right"></i>
-	                          <% end %></small>
-	                        <% end %>
-
 	                        <% unless cookies["bump#{stream.id}"] %>
 		                        <%= link_to bump_stream_path(stream), class: "pull-right bump", remote: true do %>
 		                          <span class="label label-color" id="bump<%= stream.id %>"><i class="icon-thumbs-up"></i><%= " #{stream.rank}" %></span>
@@ -105,16 +99,11 @@
 	                          <span class="label lable-color" style="background-color:#f89406 !important;"><i class="icon-thumbs-up"></i><%= " #{stream.rank}" %></span>
 	                        <% end %>
 
-	                        <% if false %>
-	                          <small><%= link_to send_left_stream_path(stream), style: "margin-right:5px;", class: "pull-right", id: "left#{stream.id}", remote: true do %>
-	                            <i class="icon-arrow-left"></i>
-	                          <% end %></small>
-	                        <% end %>
 	                      </div>
-	                       <% if stream.stream_home_url %>
-                        <small><%= link_to stream.name, stream.stream_home_url , class: "", style: "margin-left:5px;", target: "_blank" %></small>
+	                      <% if stream.stream_home_url %>
+                          <small><%= link_to stream.name, stream.stream_home_url , class: "", style: "margin-left:5px;", target: "_blank" %></small>
                         <% else %>
-                        <small><%= link_to stream.name, stream.stream_url , class: "", style: "margin-left:5px;", target: "_blank" %></small>
+                          <small><%= link_to stream.name, stream.stream_url , class: "", style: "margin-left:5px;", target: "_blank" %></small>
                         <% end %>
 	                    </p>
 	                  </div>
@@ -134,23 +123,6 @@
     <td>
       <table>
         <tr>
-          <% if false %>
-            <td>
-              <% @frequencies = @frequencies.sort_by {|a, b| b } %>
-              <% @frequencies.reverse! %>
-              <div id="hist" class="span2" style="margin-left:40px; margin-top: 30px;">
-                
-                <p><small>WildSite: Histogram</small></p>
-                <% @frequencies.each do |word, frequency| %>
-                  <% if current_user && current_user.admin? %>
-                    <%= link_to "#{frequency.to_s}: #{word}", new_word_path(word: word), class: 'remove', remote: true %><br>
-                  <% else %>
-                    <%= "#{frequency.to_s}: #{word}" %><br>
-                  <% end %>
-                <% end %>
-              </div>
-            </td>
-          <% end %>
 
           <td>
             <% if @game == "wildstar" %>
@@ -192,7 +164,7 @@
               <% end %>
             </div>
 
-            <% if current_user &&  current_user.admin %>
+            <% if current_user && current_user.admin %>
               <div style="margin-left: 50px;">
                 <%= link_to "New stream", new_stream_path() %><br>
                 <% @all_streams.each do |s|%>
@@ -405,7 +377,6 @@
       </tr>
     </table>
   </div>
-
 </div>
 
 

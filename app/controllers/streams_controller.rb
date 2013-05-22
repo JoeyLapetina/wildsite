@@ -67,7 +67,11 @@ class StreamsController < ApplicationController
     @stream = Stream.find(params[:id])
     @game = @stream.game
     cookies[:filter]=@game
-    @streams = Stream.where(game: @game, active: true)
+    if current_user && current_user.admin
+      @streams = Stream.where(game: @game)
+    else
+      @streams = Stream.where(game: @game, active: true)
+    end
     @streams.sort! {|a, b| b.rank <=> a.rank }
     @all_streams = Stream.all
 
@@ -162,10 +166,12 @@ class StreamsController < ApplicationController
     @stream = Stream.find(params[:id])
     cookies["bump#{@stream.id}"] = { value: "#{@stream.id}", expires: 1.hour.from_now }
     
-    if params[:featured]
-      bump_it(@stream.id, 3)
-    else
-      bump_it(@stream.id, 1)
+    if cookies["bump#{@stream.id}"]
+      if params[:featured]
+        bump_it(@stream.id, 3)
+      else
+        bump_it(@stream.id, 1)
+      end
     end
 
   end
