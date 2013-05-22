@@ -67,11 +67,12 @@ class StreamsController < ApplicationController
     @stream = Stream.find(params[:id])
     @game = @stream.game
     cookies[:filter]=@game
+
+    @streams = Stream.where(game: @game, active: true)
     if current_user && current_user.admin
-      @streams = Stream.where(game: @game)
-    else
-      @streams = Stream.where(game: @game, active: true)
+      @streams << @stream
     end
+
     @streams.sort! {|a, b| b.rank <=> a.rank }
     @all_streams = Stream.all
 
