@@ -57,7 +57,7 @@ class StreamsController < ApplicationController
 
     if params[:category]
       @category = params[:category]
-      @streams = @streams.each.select {|s| s.category == @category}
+      @streams = @streams.each.select {|s| s.category == @category.singularize}
     end
     
     respond_to do |format|
