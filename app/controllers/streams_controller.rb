@@ -57,7 +57,12 @@ class StreamsController < ApplicationController
 
     if params[:category]
       @category = params[:category]
-      @streams = @streams.each.select {|s| s.category == @category.singularize}
+
+      if @category == 'others'
+        @streams = @streams.each.select {|s| s.category.nil? || s.category.empty? }
+      else
+        @streams = @streams.each.select {|s| s.category == @category.singularize}
+      end
     end
     
     respond_to do |format|
