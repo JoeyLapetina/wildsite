@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130429195726) do
+ActiveRecord::Schema.define(:version => 20130712010509) do
 
   create_table "streams", :force => true do |t|
     t.string   "stream_url"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20130429195726) do
     t.string   "game"
     t.boolean  "use_more",        :default => true
     t.string   "stream_home_url"
+    t.string   "category"
   end
 
   create_table "submissions", :force => true do |t|

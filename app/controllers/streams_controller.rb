@@ -54,6 +54,11 @@ class StreamsController < ApplicationController
     Word.all.each do |w|
       @drop_list << w.word
     end
+
+    if params[:category]
+      @category = params[:category]
+      @streams = @streams.each.select {|s| s.category == @category}
+    end
     
     respond_to do |format|
       format.html { render :layout => "main_page" }

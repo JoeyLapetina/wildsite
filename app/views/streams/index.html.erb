@@ -142,7 +142,7 @@
               <div style="margin-left: 50px;">
                 <%= link_to "New stream", new_stream_path() %><br>
                 <% @all_streams.each do |s|%>
-                  <%= link_to 'edit', edit_stream_path(s) %> | <%= s.game %> | <%= s.active ? "Active" : "off" %> | <%= link_to s.name, s %><br>
+                  <%= link_to 'edit', edit_stream_path(s) %> | <%= s.category %> | <%= s.game %> | <%= s.active ? "Active" : "off" %> | <%= link_to s.name, s %><br>
                 <% end %>
               </div>
             <% end %>
