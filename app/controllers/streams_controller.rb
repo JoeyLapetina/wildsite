@@ -49,11 +49,13 @@ class StreamsController < ApplicationController
         cookies[:filter]='all'
       end
       @game_streams = @streams
+    else
+      @streams ||= Stream.where(game: 'wildstar', active: true)
+      @streams.sort! {|a, b| b.rank <=> a.rank }
+      @game ||= 'wildstar'
+      @game_streams = @streams
     end
 
-    @streams ||= Stream.where(game: 'wildstar', active: true)
-    @streams.sort! {|a, b| b.rank <=> a.rank }
-    @game ||= 'wildstar'
     @all_streams = Stream.where(game: @game)
     @all_streams += Stream.where(game: nil)
 
