@@ -281,6 +281,12 @@
     var right_over = false;
     var left_over = false;
 
+    $('#main_table').animate({
+      'margin-left': '-=' + 200
+    }, 200 * 4, function() {
+      // Animation complete.
+    });
+
     $(".left_add").css({
         "width": window_width / 8,
     });
@@ -314,7 +320,7 @@
 
     $("#left_box").mouseenter(function() {
       var current_margin = parseInt($('#main_table').css('margin-left'), 10);
-      var next_left = (current_margin - 30);
+      var next_left = (current_margin - 20);
 
       $('#left_box').css({
         "background": "rgba(255, 255, 255, 0.16)"
@@ -370,8 +376,6 @@
     $('#kill').click(function() {
       $('#hist').remove();
     });
-
-    
   });
 </script>
 
