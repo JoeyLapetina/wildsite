@@ -48,6 +48,7 @@ class StreamsController < ApplicationController
         @game = 'all'
         cookies[:filter]='all'
       end
+      @game_streams = @streams
     end
 
     @streams ||= Stream.where(game: 'wildstar', active: true)
@@ -66,7 +67,8 @@ class StreamsController < ApplicationController
       @category = params[:category]
 
       if @category == 'others'
-        @streams = @streams.each.select {|s| s.category.nil? || s.category.empty? }
+
+        @streams = @streams.each.select {|s| s.category.nil? || s.category.empty? } 
       else
         @streams = @streams.each.select {|s| s.category == @category.singularize}
       end
@@ -84,6 +86,8 @@ class StreamsController < ApplicationController
     @stream = Stream.find(params[:id])
     @game = @stream.game
     cookies[:filter]=@game
+
+    @category = @stream.category unless s.category.nil? || s.category.empty?
 
     @streams = Stream.where(game: @game, active: true)
     if current_user && current_user.admin
