@@ -27,6 +27,7 @@ Wildsite::Application.routes.draw do
    match 'teso' => 'streams#index', :defaults => { filter: 'teso' }, as: 'teso_streams'
    match 'eso' => 'streams#index', :defaults => { filter: 'eso' }, as: 'eso_streams'
    match 'neverwinter' => 'streams#index', :defaults => { filter: 'neverwinter' }, as: 'neverwinter_streams'
+   match 'all' => 'streams#index', :defaults => { filter: 'all' }, as: 'all_streams'
    match ':filter/:category' => 'streams#index', :as => :categories
 
   # The priority is based upon order of creation:

@@ -15,6 +15,7 @@ class StreamsController < ApplicationController
     cookies[:filter] = 'tera' if params[:filter] && params[:filter] == 'tera'
     cookies[:filter] = 'neverwinter' if params[:filter] && params[:filter] == 'neverwinter'
     cookies[:filter] = 'teso' if params[:filter] && params[:filter] == 'teso' || params[:filter] == 'eso'
+    cookies[:filter] = 'all' if params[:filter] && params[:filter] == 'all'
     
     if params[:filter] || cookies[:filter]
       if params[:filter] == 'wildstar' || cookies[:filter] == 'wildstar'
@@ -40,6 +41,12 @@ class StreamsController < ApplicationController
         @streams.sort! {|a, b| b.rank <=> a.rank } 
         @game = 'neverwinter'
         cookies[:filter]='neverwinter'
+      end
+      if params[:filter] == 'all' || cookies[:filter] == 'all'
+        @streams = Stream.where(active: true)
+        @streams.sort! {|a, b| b.rank <=> a.rank } 
+        @game = 'all'
+        cookies[:filter]='all'
       end
     end
 

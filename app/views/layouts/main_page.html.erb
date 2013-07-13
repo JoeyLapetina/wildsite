@@ -90,19 +90,19 @@
       </div>
     <% end %>
 
-<% if false %>
-    <%= link_to "#", remote: true do %>
-      <div id="left">
-        <p><i class="icon-lines"></i> Left</p>
-      </div>
-    <% end %>
+    <% if false %>
+        <%= link_to "#", remote: true do %>
+          <div id="left">
+            <p><i class="icon-lines"></i> Left</p>
+          </div>
+        <% end %>
 
-    <%= link_to "#", remote: true do %>
-      <div id="right">
-        <p><i class="icon-lines"></i> Right</p>
-      </div>
+        <%= link_to "#", remote: true do %>
+          <div id="right">
+            <p><i class="icon-lines"></i> Right</p>
+          </div>
+        <% end %>
     <% end %>
-<% end %>
 
     <% if params[:notice] %>
       <div id="notice" class="btn btn-inverse"><%= notice %></div>
