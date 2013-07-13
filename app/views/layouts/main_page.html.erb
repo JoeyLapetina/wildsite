@@ -140,6 +140,14 @@
               <%= link_to "http://wildscrape.com/#{@game}", class: "brand" do %><b>WildScrape:</b><%= "#{@game.capitalize}"%><% end %>
             <% end %>
           <ul class="nav" style="margin-top: 2px;">
+            <li>
+              <%= link_to "#wildScrapeModal", role: "button", "data-toggle" => "modal" do %>
+                <span class="label ", style="color:black; font-size: 14px;">
+                  <i class="icon-rocket"></i>
+                  </span>
+                   Info
+              <% end %>
+            </li>
 
             <% if @category && @category == 'blogs' %>
               <li class="active">
@@ -242,16 +250,15 @@
             <% end %>
 
             <li>
-              <%= link_to "#wildScrapeModal", role: "button", "data-toggle" => "modal" do %>
-                About WildScrape
+              <%= link_to "#gamesModal", role: "button", "data-toggle" => "modal" do %>
+                <span class="label ", style="color:black; font-size: 14px;">
+                  <i class="icon-gamepad"></i>
+                </span>
+                 Scrapes
               <% end %>
             </li>
 
-            <li>
-              <%= link_to "#gamesModal", role: "button", "data-toggle" => "modal" do %>
-                Other Games
-              <% end %>
-            </li>
+            
           </ul>
      
           <!-- Everything you want hidden at 940px or less, place within here -->

@@ -65,16 +65,27 @@ class StreamsController < ApplicationController
       @drop_list << w.word
     end
 
-    @top = false
+    if cookies[:top] && cookies[:top] == 'on'
+      @top = true
+    elsif cookies[:top] && cookies[:top] == 'off'
+      @top = false
+    else
+      @top = false
+    end
 
     if params[:category]
       @category = params[:category]
 
       if @category == 'others'
         @streams = @streams.each.select {|s| s.category.nil? || s.category.empty? } 
-      elsif @category == 'top'
+      elsif @category == 'on'
         @top = true
         @category = nil
+        cookies[:top]='on'
+      elsif @category == 'off'
+        @top = false
+        @category = nil
+        cookies[:top]='off'
       else 
         @streams = @streams.each.select {|s| s.category == @category.singularize}
       end
