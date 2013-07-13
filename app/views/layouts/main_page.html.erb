@@ -33,7 +33,7 @@
   }
   </style>
 </head>
-  <body class="off bumpers" style="margin-bottom:100px;">
+  <body class="off bumpers" style="margin-bottom:100px; <%= "margin-top:60px" if @top == true %>">
     <% if false %>
       <div class="pull-left shadow" style="position:fixed; background:black; z-index: 1 !important;">
         <div style="background:#33b5e5;">
@@ -113,10 +113,15 @@
   		<%= yield %>
   	</div>
 
+<% unless @top %>
     <div class="navbar navbar-fixed-bottom navbar-inverse">
       <div class="navbar-inner" >
         <div class="container" style="background-color:black; width:100%; height:60px; border-top-color: #33b5e5; border-top-width: 1px; border-top-style: solid; padding-left:50px; padding-right:50px;">
-       
+<% else %>
+    <div class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner" >
+        <div class="container" style="background-color:black; width:100%; height:46px; border-bottom-color: #33b5e5; border-bottom-width: 1px; border-bottom-style: solid; padding-left:30px; padding-right:50px;">
+<% end %>       
           <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
          
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">

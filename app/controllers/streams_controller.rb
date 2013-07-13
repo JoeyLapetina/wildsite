@@ -65,12 +65,17 @@ class StreamsController < ApplicationController
       @drop_list << w.word
     end
 
+    @top = false
+
     if params[:category]
       @category = params[:category]
 
       if @category == 'others'
         @streams = @streams.each.select {|s| s.category.nil? || s.category.empty? } 
-      else
+      elsif @category == 'top'
+        @top = true
+        @category = nil
+      else 
         @streams = @streams.each.select {|s| s.category == @category.singularize}
       end
     end
