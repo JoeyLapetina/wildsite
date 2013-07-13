@@ -78,11 +78,11 @@ class StreamsController < ApplicationController
 
       if @category == 'others'
         @streams = @streams.each.select {|s| s.category.nil? || s.category.empty? } 
-      elsif @category == 'on'
+      elsif @category == 'jb_says_top'
         @top = true
         @category = nil
         cookies[:top]='on'
-      elsif @category == 'off'
+      elsif @category == 'joey_says_bottom'
         @top = false
         @category = nil
         cookies[:top]='off'
