@@ -87,7 +87,7 @@ class StreamsController < ApplicationController
         @category = nil
         cookies[:top]='off'
       else 
-        @streams = @streams.each.select {|s| s.category == @category.singularize}
+        @streams = @streams.each.select {|s| s.category.split(" ").include? @category.singularize}
       end
     end
     
@@ -104,7 +104,31 @@ class StreamsController < ApplicationController
     @game = @stream.game
     cookies[:filter]=@game
 
-    @category = @stream.category unless @stream.category.nil? || @stream.category.empty?
+    if params[:category]
+      @category = params[:category]
+
+      if @category == 'others'
+        @streams = @streams.each.select {|s| s.category.nil? || s.category.empty? } 
+      elsif @category == 'jb_says_top'
+        @top = true
+        @category = nil
+        cookies[:top]='on'
+      elsif @category == 'joey_says_bottom'
+        @top = false
+        @category = nil
+        cookies[:top]='off'
+      else 
+        @streams = @streams.each.select {|s| s.category.split(" ").include? @category.singularize}
+      end
+    end
+
+    if cookies[:top] && cookies[:top] == 'on'
+      @top = true
+    elsif cookies[:top] && cookies[:top] == 'off'
+      @top = false
+    else
+      @top = false
+    end
 
 
     @streams = Stream.where(game: @game, active: true)
