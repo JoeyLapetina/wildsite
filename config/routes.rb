@@ -28,7 +28,9 @@ Wildsite::Application.routes.draw do
    match 'eso' => 'streams#index', :defaults => { filter: 'eso' }, as: 'eso_streams'
    match 'neverwinter' => 'streams#index', :defaults => { filter: 'neverwinter' }, as: 'neverwinter_streams'
    match 'all' => 'streams#index', :defaults => { filter: 'all' }, as: 'all_streams'
-   match ':filter/:category' => 'streams#index', :as => :categories
+   match 'show/:filter/:category' => 'streams#index', :as => :categories
+   match 'wildstar/jb_says_top/' => 'streams#index', :defaults => { filter: 'wildstar', category: 'jb_says_top' }
+   match 'wildstar/joey_says_bottom/' => 'streams#index', :defaults => { filter: 'wildstar', category: 'joey_says_bottom' }
 
    devise_for :users
 
