@@ -1,0 +1,37 @@
+<h1>Listing stream_items</h1>
+
+<table>
+  <tr>
+    <th>Body</th>
+    <th>By line</th>
+    <th>Item link</th>
+    <th>Picture</th>
+    <th>Replies</th>
+    <th>Stream</th>
+    <th>Title</th>
+    <th>Views</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stream_items.each do |stream_item| %>
+  <tr>
+    <td><%= stream_item.body %></td>
+    <td><%= stream_item.by_line %></td>
+    <td><%= stream_item.item_link %></td>
+    <td><%= stream_item.picture %></td>
+    <td><%= stream_item.replies %></td>
+    <td><%= stream_item.stream_id %></td>
+    <td><%= stream_item.title %></td>
+    <td><%= stream_item.views %></td>
+    <td><%= link_to 'Show', stream_item %></td>
+    <td><%= link_to 'Edit', edit_stream_item_path(stream_item) %></td>
+    <td><%= link_to 'Destroy', stream_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stream item', new_stream_item_path %>

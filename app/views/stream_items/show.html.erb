@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Body:</b>
+  <%= @stream_item.body %>
+</p>
+
+<p>
+  <b>By line:</b>
+  <%= @stream_item.by_line %>
+</p>
+
+<p>
+  <b>Item link:</b>
+  <%= @stream_item.item_link %>
+</p>
+
+<p>
+  <b>Picture:</b>
+  <%= @stream_item.picture %>
+</p>
+
+<p>
+  <b>Replies:</b>
+  <%= @stream_item.replies %>
+</p>
+
+<p>
+  <b>Stream:</b>
+  <%= @stream_item.stream_id %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @stream_item.title %>
+</p>
+
+<p>
+  <b>Views:</b>
+  <%= @stream_item.views %>
+</p>
+
+
+<%= link_to 'Edit', edit_stream_item_path(@stream_item) %> |
+<%= link_to 'Back', stream_items_path %>

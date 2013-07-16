@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130714031221) do
+ActiveRecord::Schema.define(:version => 20130716194907) do
+
+  create_table "stream_items", :force => true do |t|
+    t.string   "body"
+    t.string   "by_line"
+    t.string   "item_link"
+    t.string   "picture"
+    t.string   "replies"
+    t.string   "stream_id"
+    t.string   "title"
+    t.string   "views"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "streams", :force => true do |t|
     t.string   "stream_url"
@@ -40,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20130714031221) do
     t.string   "stream_home_url"
     t.string   "category"
     t.boolean  "reverse_stream",  :default => false
+    t.boolean  "track",           :default => false
   end
 
   create_table "submissions", :force => true do |t|

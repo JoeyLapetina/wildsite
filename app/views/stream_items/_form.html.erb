@@ -1,0 +1,49 @@
+<%= form_for(@stream_item) do |f| %>
+  <% if @stream_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stream_item.errors.count, "error") %> prohibited this stream_item from being saved:</h2>
+
+      <ul>
+      <% @stream_item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_field :body %>
+  </div>
+  <div class="field">
+    <%= f.label :by_line %><br />
+    <%= f.text_field :by_line %>
+  </div>
+  <div class="field">
+    <%= f.label :item_link %><br />
+    <%= f.text_field :item_link %>
+  </div>
+  <div class="field">
+    <%= f.label :picture %><br />
+    <%= f.text_field :picture %>
+  </div>
+  <div class="field">
+    <%= f.label :replies %><br />
+    <%= f.text_field :replies %>
+  </div>
+  <div class="field">
+    <%= f.label :stream_id %><br />
+    <%= f.text_field :stream_id %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :views %><br />
+    <%= f.text_field :views %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
