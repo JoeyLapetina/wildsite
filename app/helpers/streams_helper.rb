@@ -39,7 +39,6 @@ module StreamsHelper
 		  end
 		end
 
-
 		@bad_body_list = Array.new
 	  @bad_body_list << "Read the rest of this entry"
 
@@ -47,11 +46,11 @@ module StreamsHelper
 	  @bad_view_list << "views" "Views"
 	  @bad_view_list << "Views"  
 
-	  @bad_replies_list = Array.new
-	  @bad_replies_list << "replies" 
-	  @bad_replies_list << "Posts:"
+		@bad_replies_list = Array.new
+		@bad_replies_list << "replies" 
+		@bad_replies_list << "Posts:"
 
-	  if @body 
+		if @body 
 	    @bad_body_list.each do |b| 
 	      if @body.include? b  
 	        @body.slice! b 
@@ -74,6 +73,7 @@ module StreamsHelper
 	      end 
 	    end 
 	  end
+
 	end
 end
 
