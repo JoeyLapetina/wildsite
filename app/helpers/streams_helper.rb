@@ -39,6 +39,8 @@ module StreamsHelper
 		  end
 		end
 
+		
+
 		@bad_body_list = Array.new
 	  @bad_body_list << "Read the rest of this entry"
 
@@ -73,6 +75,21 @@ module StreamsHelper
 	      end 
 	    end 
 	  end
+
+	  #check to  see if stream item exists
+		if @stream.track
+			unless @item_link.nil? || StreamItem.where(item_link: @item_link).present?
+				#make the items?
+				stream_item = StreamItem.new(stream_id: @stream.id, title: @title, item_link: @item_link)
+
+		    stream_item.replies = @replies if @replies
+		    stream_item.views = @views if @views 
+		    stream_item.by_line = @by_line if @by_line
+		    stream_item.body = @body if @body
+		    stream_item.picture = @picture if @picture
+		    stream_item.save
+			end
+		end
 
 	end
 end
