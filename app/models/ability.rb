@@ -6,6 +6,7 @@ class Ability
       user = User.new
     end
       can :read, Stream
+      can :read, StreamItem
       can :create, Submission 
 
       if user.admin?

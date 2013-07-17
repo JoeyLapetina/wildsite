@@ -1,6 +1,9 @@
 class StreamItemsController < ApplicationController
+  load_and_authorize_resource
   # GET /stream_items
   # GET /stream_items.json
+  layout :compute_layout
+
   def index
     @stream_items = StreamItem.all
 
@@ -78,6 +81,16 @@ class StreamItemsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to stream_items_url }
       format.json { head :no_content }
+    end
+  end
+
+  def compute_layout
+    if params[:action] == "edit"
+      "application"
+    elsif params[:action] == "new"
+      'application'
+    else
+      'application'
     end
   end
 end

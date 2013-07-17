@@ -1,37 +1,38 @@
-<h1>Listing stream_items</h1>
+<table class="table span4">
+  <% @stream_items.reverse.each do |stream_item| %>
+    <tr>
+      <td>
+        <% @stream = Stream.find(stream_item.stream_id) %>
+        <div class="span4 stream_item" style="padding-bottom:0px; margin-top: 10px; margin-left: 0px !important;">
+          <% if stream_item.picture %>
+            <%= link_to @stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" do %>
+              <%= image_tag @stream.picture_root ? "#{@stream.site_root}#{stream_item.picture}" : "#{stream_item.picture}", class: "pull-left", style: "width: 98%; padding-bottom: 10px;" %>
+            <% end %>
+          <% end %>
+          
+          <h5><%= link_to stream_item.title , @stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" %></h5>
 
-<table>
-  <tr>
-    <th>Body</th>
-    <th>By line</th>
-    <th>Item link</th>
-    <th>Picture</th>
-    <th>Replies</th>
-    <th>Stream</th>
-    <th>Title</th>
-    <th>Views</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+          <% if stream_item.body %>
+            <p><%= stream_item.body %></p>
+          <% end %>
+          
+          <p>
+            <% if @stream.use_more == true %>
+              <%= link_to "[MORE]", @stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" %>
+            <% end %>
+            <%= link_to "[FROM: #{@stream.name}]", @stream.stream_url, class: 'pull-right', style: "margin-right:10px;", target: "_blank" %>
+          </p>
 
-<% @stream_items.each do |stream_item| %>
-  <tr>
-    <td><%= stream_item.body %></td>
-    <td><%= stream_item.by_line %></td>
-    <td><%= stream_item.item_link %></td>
-    <td><%= stream_item.picture %></td>
-    <td><%= stream_item.replies %></td>
-    <td><%= stream_item.stream_id %></td>
-    <td><%= stream_item.title %></td>
-    <td><%= stream_item.views %></td>
-    <td><%= link_to 'Show', stream_item %></td>
-    <td><%= link_to 'Edit', edit_stream_item_path(stream_item) %></td>
-    <td><%= link_to 'Destroy', stream_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+          <div class="pull-right" style="margin-right:10px">
+            <%= "Replies: #{stream_item.replies}" if stream_item.replies %>
+            <% if @stream.stream_type == "forum" %>
+              <%= " | Views: #{stream_item.views}" if stream_item.views %>
+            <% elsif @stream.stream_type == "reddit" %>
+              <%= "Rank: #{stream_item.views}" if stream_item.views %>
+            <% end %>
+          </div>
+        </div>
+      </td>
+    </tr>
+  <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Stream item', new_stream_item_path %>
