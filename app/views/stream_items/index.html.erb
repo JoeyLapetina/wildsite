@@ -1,5 +1,5 @@
 <table class="table span4">
-  <% @stream_items.reverse.each do |stream_item| %>
+  <% @stream_items.each do |stream_item| %>
     <tr>
       <td>
         <% @stream = Stream.find(stream_item.stream_id) %>
