@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(:version => 20130717021757) do
     t.string   "views"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "string_id"
     t.text     "body"
-    t.integer  "string_id"
   end
 
   create_table "streams", :force => true do |t|
