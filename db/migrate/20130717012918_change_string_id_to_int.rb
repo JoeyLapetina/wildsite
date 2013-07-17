@@ -4,6 +4,6 @@ class ChangeStringIdToInt < ActiveRecord::Migration
   end
 
   def down
-  	change_column :stream_items, :body, :string
+  	change_column :stream_items, :stream_id, :string
   end
 end
