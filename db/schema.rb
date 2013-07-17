@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130717010816) do
+ActiveRecord::Schema.define(:version => 20130717012918) do
 
   create_table "stream_items", :force => true do |t|
     t.text     "body",       :limit => 255
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20130717010816) do
     t.string   "item_link"
     t.string   "picture"
     t.string   "replies"
-    t.string   "stream_id"
+    t.integer  "stream_id",  :limit => 255
     t.string   "title"
     t.string   "views"
     t.datetime "created_at",                :null => false

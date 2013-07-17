@@ -19,7 +19,7 @@
     <% end %>   
   <% end %>
   
-  <% @stream.items.each do |stream_item|%>
+  <% @stream.items.each do |stream_item| %>
     <div class="span<%= @stream.span %> stream_item" style="padding-bottom:20px; margin-top: 10px; margin-left: 0px !important;">
       <% if stream_item.picture %>
         <%= link_to stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" do %>
