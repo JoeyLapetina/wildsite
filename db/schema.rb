@@ -11,19 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130716194907) do
+ActiveRecord::Schema.define(:version => 20130717021757) do
 
   create_table "stream_items", :force => true do |t|
-    t.text     "body"
     t.string   "by_line"
     t.string   "item_link"
     t.string   "picture"
     t.string   "replies"
-    t.integer  "stream_id"
+    t.string   "stream_id"
     t.string   "title"
     t.string   "views"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.text     "body"
+    t.integer  "string_id"
   end
 
   create_table "streams", :force => true do |t|
