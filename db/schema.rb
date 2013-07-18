@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130717021757) do
+ActiveRecord::Schema.define(:version => 20130718033636) do
 
   create_table "stream_items", :force => true do |t|
     t.string   "by_line"
@@ -21,10 +21,11 @@ ActiveRecord::Schema.define(:version => 20130717021757) do
     t.string   "stream_id"
     t.string   "title"
     t.string   "views"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.string   "string_id"
     t.text     "body"
+    t.boolean  "hide_stream_item", :default => false
   end
 
   create_table "streams", :force => true do |t|
