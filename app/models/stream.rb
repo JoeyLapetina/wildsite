@@ -4,6 +4,20 @@ class Stream < ActiveRecord::Base
 
   def items
   	items = StreamItem.where(stream_id: self.id.to_s)
+  	ordered_items = items.all.sort! {|a, b| a.created_at <=> b.created_at }
+  	unless ordered_items.nil?
+	  	new_streams = ordered_items.select {|s| s.hide_stream_item == false }
+	  	unless new_streams.nil?
+		  	orderd_items = ordered_items - new_streams
+		  	new_streams = new_streams.reverse
+		  	done = new_streams + ordered_items
+		  	return done
+		  else
+		  	return ordered_items
+		  end
+		end
   end
+
+ 
 
 end
