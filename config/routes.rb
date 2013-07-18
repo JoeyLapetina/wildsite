@@ -23,7 +23,7 @@ Wildsite::Application.routes.draw do
     end
   end
 
-  
+  devise_for :users
 
    match 'wildstar' => 'streams#index', :defaults => { filter: 'wildstar' }, as: 'wildstar_streams'
    match 'tera' => 'streams#index', :defaults => { filter: 'tera' }, as: 'tera_streams'
@@ -35,7 +35,7 @@ Wildsite::Application.routes.draw do
    match 'wildstar/jb_says_top/' => 'streams#index', :defaults => { filter: 'wildstar', category: 'jb_says_top' }
    match 'wildstar/joey_says_bottom/' => 'streams#index', :defaults => { filter: 'wildstar', category: 'joey_says_bottom' }
 
-   devise_for :users
+   
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
