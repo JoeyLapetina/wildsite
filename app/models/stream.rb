@@ -8,7 +8,7 @@ class Stream < ActiveRecord::Base
   	unless ordered_items.nil?
 	  	new_streams = ordered_items.select {|s| s.hide_stream_item == false }
 	  	unless new_streams.nil?
-		  	orderd_items = ordered_items - new_streams
+		  	ordered_items = ordered_items - new_streams
 		  	new_streams = new_streams.reverse
 		  	done = new_streams + ordered_items
 		  	return done
