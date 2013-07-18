@@ -4,25 +4,33 @@
       <table id="main_table" style="margin-left: 0px;">
         <tbody>
           <tr id="stream_table">
-            <td>
+            <td style="padding-left:120px;">
               
               <div class="left_add" style="width:180px !important; margin-left:0px; margin-top: 0px; margin-right:10px; margin-left:10px; ">
                 <div class="pull-right" style="margin-bottom:30px;">
-                  <p style="text-align:center;">Featured Sponsor</p>
-                  <script type="text/javascript"><!--
-                    google_ad_client = "ca-pub-0864897116796518";
-                    /* WIldScrape 1 */
-                    google_ad_slot = "1061179202";
-                    google_ad_width = 160;
-                    google_ad_height = 600;
-                    //-->
-                  </script>
-                  <script type="text/javascript"
-                    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-                  </script>
+                  <p style="text-align:center;"><%= link_to 'Featured Sponsor', "http://wildscrape.com/streams/75" %></p>
+                  <% if false %>
+                    <script type="text/javascript"><!--
+                      google_ad_client = "ca-pub-0864897116796518";
+                      /* WIldScrape 1 */
+                      google_ad_slot = "1061179202";
+                      google_ad_width = 160;
+                      google_ad_height = 600;
+                      //-->
+                    </script>
+                    <script type="text/javascript"
+                      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                    </script>
+                  <% else %>
+                    <%= link_to "http://www.mognation.com/" do %>
+                      <img src="https://s3.amazonaws.com/ccromembers_assets/redactor_assets/pictures/918/Wildscrape-Add.jpg" style="">
+                    <% end %>
+                  <% end %>
 
                   <div style="text-align:center;" >
-                    <h4>Featured</br>Sponsor</h4>
+                    <%= link_to "http://wildscrape.com/streams/75" do %>
+                      <h4>Featured</br>Sponsor</h4>
+                    <% end %>
 
                     <% link_to "Why Ads?", "https://www.heroku.com/pricing#2-1", target: "_blank" %>
                   </div>
