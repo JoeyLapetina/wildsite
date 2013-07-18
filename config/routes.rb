@@ -1,14 +1,8 @@
 Wildsite::Application.routes.draw do
 
-  
-  resources :stream_items
-
-
   resources :submissions
-
-
+  
   resources :words
-
 
   resources :streams do 
     member do
@@ -23,6 +17,12 @@ Wildsite::Application.routes.draw do
     end
   end
 
+  resources :stream_items do 
+    member do
+      get :hide
+    end 
+  end
+  
   devise_for :users
 
    match 'wildstar' => 'streams#index', :defaults => { filter: 'wildstar' }, as: 'wildstar_streams'

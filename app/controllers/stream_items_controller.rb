@@ -24,6 +24,14 @@ class StreamItemsController < ApplicationController
     end
   end
 
+  def hide
+    @stream_item = StreamItem.find(params[:id])
+    @stream_item.hide_stream_item = true
+    @stream_item.save
+
+    redirect_to :back
+  end
+
   # GET /stream_items/new
   # GET /stream_items/new.json
   def new
