@@ -9,6 +9,7 @@ class StreamsController < ApplicationController
   require 'open-uri'
 
   def index
+    
     @streams = nil
 
     cookies[:filter] = 'wildstar' if params[:filter] && params[:filter] == 'wildstar'
@@ -75,6 +76,9 @@ class StreamsController < ApplicationController
 
     if params[:category]
       @category = params[:category]
+      if @category == 'send_it'
+        Twitter.update("ScrapeBot9000 coming on line.")
+      end
 
       if @category == 'others'
         @streams = @streams.each.select {|s| s.category.nil? || s.category.empty? } 
