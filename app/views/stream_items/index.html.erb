@@ -26,7 +26,7 @@
               <% if current_user && current_user.admin? %>
                 <%= link_to 'HIDE', hide_stream_item_path(stream_item) %>
               <% end %>
-              <i class="pull-right"><small>Scraped at: <%= stream_item.created_at.to_formatted_s(:short) %></small></i>
+              <i class="pull-right"><small>Scraped: <%= (stream_item.created_at - 6.hours).to_formatted_s(:short) %>CST</small></i>
               
             </p>
 
