@@ -42,7 +42,7 @@
                 <% if stream.active %>
                   <td id="stream<%= stream.id %>" style="padding: 10px; padding-left: 13px;" >
                   <div class="span<%= stream.span %>" style="margin-left:0px; margin-top: -20px;">
-                    <div class="fix_me" style="margin-left: 0px; background-color:black; position:; width:100%; padding-top:10px; margin-top:-10px;">
+                    <div class="fix_me" style="padding-bottom: 6px; background-color:black; position:; width:100%; padding-top:10px; margin-top:-10px;">
                       <p style="margin-right: 0px;">
                         <div class="pull-left">
                           <% if false %>
@@ -51,13 +51,66 @@
                             <% end %></small>
                           <% end %>
 
-                          <% unless cookies["bump#{stream.id}"] %>
-                          <%= link_to bump_stream_path(stream), class: "pull-right bump", remote: true do %>
-                            <span class="label label-color" id="bump<%= stream.id %>"><i class="icon-thumbs-up"></i><%= " #{stream.rank}" %></span>
-                            <span class="label lable-color .hide" style="background-color:#f89406 !important;" id="bump_rank<%= stream.id %>"><i class="icon-thumbs-up"></i><%= " #{stream.rank + 1}" %></span>
-                          <% end %>
+                          <% if current_user %>
+                            <% if current_user.streams.include? stream %>
+                              <span id="fav<%= stream.id %>">
+                                <ul class="nav pull-right">
+                                  <li class="divider-vertical"></li>
+                                    <li class="dropdown">
+                                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <span class="label lable-color" style="background-color:#f89406 !important;">
+                                          <i class="icon-heart"></i>
+                                        </span>
+                                      </a>
+                                      <ul class="dropdown-menu">
+                                        <li>
+                                          <span id="bump<%= stream.id %>">
+                                            <%= link_to 'Un-favorite this stream? ', unmake_favorite_path(current_user, stream), class: "pull-right bump", remote: true %>
+                                          </span>
+                                        </li>
+                                      </ul>
+                                    <li>
+                                  </li>
+                                </ul>
+                              </span>
+                            <% else %>
+                              
+                              <%= link_to make_favorite_path(current_user, stream), class: "pull-right bump", remote: true do %>
+                                <span id="first_bump_holder<%= stream.id %>">
+                                  <span class="label label-color" id="first_bump<%= stream.id %>">
+                                    <i class="icon-thumbs-up"></i>
+                                  </span>
+                                </span>
+                              <% end %>
+                              
+                              <%= link_to unmake_favorite_path(current_user, stream), class: "pull-right bump", remote: true do %>
+                                <span id="second_bump_holder<%= stream.id %>">
+                                  <span class="label lable-color hide" id="second_bump<%= stream.id %>" style="background-color:#f89406 !important;">
+                                    <i class="icon-heart"></i>
+                                  </span>
+                                </span>
+                              <% end %>
+                                  
+                              
+                            <% end %>
+
+
                           <% else %>
-                            <span class="label lable-color" style="background-color:#f89406 !important;"><i class="icon-thumbs-up"></i><%= " #{stream.rank}" %></span>
+                            <% unless cookies["bump#{stream.id}"] %>
+                              <%= link_to bump_stream_path(stream), class: "pull-right bump", remote: true do %>
+                                <span class="label label-color" id="bump<%= stream.id %>">
+                                  <i class="icon-thumbs-up"></i><%= " #{stream.rank}" %>
+                                </span>
+                                <span class="label lable-color .hide" style="background-color:#f89406 !important;" id="bump_rank<%= stream.id %>">
+                                  <i class="icon-thumbs-up"></i>
+                                  <%= " #{stream.rank + 1}" %>
+                                </span>
+                              <% end %>
+                            <% else %>
+                              <span class="label lable-color" style="background-color:#f89406 !important;">
+                                <i class="icon-thumbs-up"></i><%= " #{stream.rank}" %>
+                              </span>
+                            <% end %>
                           <% end %>
 
                           <% if false %>
@@ -194,24 +247,58 @@
 </script>
 
 <% @streams.each do |stream| %>
-  <script>
-    $('#bump_rank<%=j stream.id.to_s %>').hide();
-    $('#bump<%= stream.id %>').click(function(){
-      $('#bump<%= stream.id %>').hide();
-      $('#bump_rank<%= stream.id %>').show();      
-    });
+  
 
-    $('#left<%= stream.id %>').click(function(){
-      $('#stream<%= stream.id %>').prependTo("#stream_table");
-    });
+  <% if current_user && @category == 'favorites'%>
+    <script>
+      $('#bump<%= stream.id %>').click(function(){
+        $('#stream<%= stream.id %>').hide('slow');
+      });
+    </script>
+  <% elsif current_user && current_user.streams.include?(stream) %>
+    <script>
+      $('#bump<%= stream.id %>').click(function(){
+        $('#fav<%= stream.id %>').hide('slow');
+      });
 
-    $('#right<%= stream.id %>').click(function(){
-      $('#stream<%= stream.id %>').appendTo("#stream_table");
-    });
+      $('#bump_rank<%= stream.id %>').click(function(){
+        $('#grr<%= stream.id %>').hide('slow');
+      });
+    </script>
+  <% end %>
 
+  <% if current_user %>
+    <script>
+    $('#first_bump<%= stream.id %>').click(function(){
+        $('#first_bump_holder<%= stream.id %>').hide('');
+        $('#second_bump<%= stream.id %>').show('slow');
+      });
+    $('#second_bump<%= stream.id %>').click(function(){
+      $('#second_bump_holder<%= stream.id %>').hide('slow');
+    });
     setTimeout(function(){updateStream(<%= stream.id %>)}, 0);
+    </script>
+  <% else %>
+    <script>
+      $('#bump_rank<%=j stream.id.to_s %>').hide();
+      $('#bump<%= stream.id %>').click(function(){
+        $('#bump<%= stream.id %>').hide();
+        $('#bump_rank<%= stream.id %>').show();      
+      });
 
-  </script>
+      $('#left<%= stream.id %>').click(function(){
+        $('#stream<%= stream.id %>').prependTo("#stream_table");
+      });
+
+      $('#right<%= stream.id %>').click(function(){
+        $('#stream<%= stream.id %>').appendTo("#stream_table");
+      });
+
+      
+
+    </script>
+  <% end %>
+
 <% end %>
  
 <!-- Modal -->

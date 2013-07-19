@@ -1,5 +1,7 @@
 Wildsite::Application.routes.draw do
 
+  resources :favorites
+
   resources :submissions
   
   resources :words
@@ -34,6 +36,8 @@ Wildsite::Application.routes.draw do
    match 'show/:filter/:category' => 'streams#index', :as => :categories
    match 'wildstar/jb_says_top/' => 'streams#index', :defaults => { filter: 'wildstar', category: 'jb_says_top' }
    match 'wildstar/joey_says_bottom/' => 'streams#index', :defaults => { filter: 'wildstar', category: 'joey_says_bottom' }
+   match ':user/likes/:stream' => 'favorites#make', as: 'make_favorite'
+   match ':user/unlike/:stream' => 'favorites#unmake', as: 'unmake_favorite'
 
    
 

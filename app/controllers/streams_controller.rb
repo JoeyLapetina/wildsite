@@ -90,6 +90,12 @@ class StreamsController < ApplicationController
         @top = false
         @category = nil
         cookies[:top]='off'
+      elsif @category == 'favorites'
+        if current_user
+          @streams = current_user.streams
+        else
+          @streams ||= Stream.where(game: @game, active: true)
+        end
       else 
         @streams = @streams.each.select {|s| s.category.split(" ").include? @category.singularize}
       end
