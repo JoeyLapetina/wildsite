@@ -1,5 +1,6 @@
 class StreamItemsController < ApplicationController
   load_and_authorize_resource
+  #has_mobile_fu
   # GET /stream_items
   # GET /stream_items.json
   layout :compute_layout
@@ -9,6 +10,7 @@ class StreamItemsController < ApplicationController
     @stream_items = @stream_items.sort! {|a, b| a.created_at <=> b.created_at}
 
     respond_to do |format|
+      #format.mobile {render :layout => '/layouts/main_page.html.erb'}
       format.html # index.html.erb
       format.json { render json: @stream_items }
     end
