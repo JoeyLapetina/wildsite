@@ -1,18 +1,11 @@
-<ul>
-  <li>
-    <%= link_to "Sign in", new_user_session_path %>
-  </li>
-  <li>
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-  </li>
-</ul>
+
 <table class="table span4">
   <% @stream_items.reverse.each do |stream_item| %>
     <% unless stream_item.hide_stream_item == true %>
       <tr>
         <td>
           <% @stream = Stream.find(stream_item.stream_id) %>
-          <div class="span4 stream_item" style="padding-bottom:0px; margin-top: 10px; margin-left: 0px !important;">
+          <div class="stream_item" style="padding-bottom:0px; margin-top: 10px; margin-left: 0px !important;">
             <% if stream_item.picture %>
               <%= link_to @stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" do %>
                 <%= image_tag @stream.picture_root ? "#{@stream.site_root}#{stream_item.picture}" : "#{stream_item.picture}", class: "pull-left", style: "width: 98%; padding-bottom: 10px;" %>

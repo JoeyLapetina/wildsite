@@ -52,7 +52,7 @@
                                     <li class="divider-vertical"></li>
                                       <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                          <span class="label lable-color" style="background-color:#f89406 !important;">
+                                          <span class="label lable-color" style="background-color:#f89406 !important; padding-left: 6px; padding-right: 7px; padding-top: 3px; padding-bottom: 3px;">
                                             <i class="icon-heart"></i>
                                           </span>
                                         </a>
@@ -70,7 +70,7 @@
                               <% else %>
                                 <%= link_to make_favorite_path(current_user, stream), class: "pull-right bump", remote: true do %>
                                   <span id="first_bump_holder<%= stream.id %>">
-                                    <span class="label label-color" id="first_bump<%= stream.id %>">
+                                    <span class="label label-color" style="padding-left: 6px; padding-right: 7px; padding-top: 3px; padding-bottom: 3px;" id="first_bump<%= stream.id %>">
                                       <i class="icon-thumbs-up"></i>
                                     </span>
                                   </span>
@@ -78,7 +78,7 @@
                                 
                                 <%= link_to unmake_favorite_path(current_user, stream), class: "pull-right bump", remote: true do %>
                                   <span id="second_bump_holder<%= stream.id %>">
-                                    <span class="label lable-color hide" id="second_bump<%= stream.id %>" style="background-color:#f89406 !important;">
+                                    <span class="label lable-color hide" id="second_bump<%= stream.id %>" style="background-color:#f89406 !important; padding-left: 6px; padding-right: 7px; padding-top: 3px; padding-bottom: 3px;">
                                       <i class="icon-heart"></i>
                                     </span>
                                   </span>
@@ -96,7 +96,7 @@
                                   </span>
                                 <% end %>
                               <% else %>
-                                <span class="label lable-color" style="background-color:#f89406 !important;">
+                                <span class="label lable-color" style="background-color:#f89406 !important; padding-left: 6px; padding-right: 7px; padding-top: 3px; padding-bottom: 3px;">
                                   <i class="icon-thumbs-up"></i><%= " #{stream.rank}" %>
                                 </span>
                               <% end %>
