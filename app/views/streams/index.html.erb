@@ -41,96 +41,83 @@
               <% @streams.each do |stream| %>
                 <% if stream.active %>
                   <td id="stream<%= stream.id %>" style="padding: 10px; padding-left: 13px;" >
-                  <div class="span<%= stream.span %>" style="margin-left:0px; margin-top: -20px;">
-                    <div class="fix_me" style="padding-bottom: 6px; background-color:black; position:; width:100%; padding-top:10px; margin-top:-10px;">
-                      <p style="margin-right: 0px;">
-                        <div class="pull-left">
-                          <% if false %>
-                            <small><%= link_to send_right_stream_path(stream), style: "margin-left:5px;", class: "pull-right", id: "right#{stream.id}", remote: true do %>
-                              <i class="icon-arrow-right"></i>
-                            <% end %></small>
-                          <% end %>
-
-                          <% if current_user %>
-                            <% if current_user.streams.include? stream %>
-                              <span id="fav<%= stream.id %>">
-                                <ul class="nav pull-right">
-                                  <li class="divider-vertical"></li>
-                                    <li class="dropdown">
-                                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <span class="label lable-color" style="background-color:#f89406 !important;">
-                                          <i class="icon-heart"></i>
-                                        </span>
-                                      </a>
-                                      <ul class="dropdown-menu">
-                                        <li>
-                                          <span id="bump<%= stream.id %>">
-                                            <%= link_to 'Un-favorite this stream? ', unmake_favorite_path(current_user, stream), class: "pull-right bump", remote: true %>
+                    <div class="span<%= stream.span %>" style="margin-left:0px; margin-top: -20px;">
+                      <div class="fix_me" style="padding-bottom: 6px; background-color:black; position:; width:100%; padding-top:10px; margin-top:-10px;">
+                        <p style="margin-right: 0px;">
+                          <div class="pull-left">
+                            <% if current_user %>
+                              <% if current_user.streams.include? stream %>
+                                <span id="fav<%= stream.id %>">
+                                  <ul class="nav pull-right">
+                                    <li class="divider-vertical"></li>
+                                      <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                          <span class="label lable-color" style="background-color:#f89406 !important;">
+                                            <i class="icon-heart"></i>
                                           </span>
-                                        </li>
-                                      </ul>
-                                    <li>
-                                  </li>
-                                </ul>
-                              </span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                          <li>
+                                            <span id="bump<%= stream.id %>">
+                                              <%= link_to 'Un-favorite this stream? ', unmake_favorite_path(current_user, stream), class: "pull-right bump", remote: true %>
+                                            </span>
+                                          </li>
+                                        </ul>
+                                      <li>
+                                    </li>
+                                  </ul>
+                                </span>
+                              <% else %>
+                                <%= link_to make_favorite_path(current_user, stream), class: "pull-right bump", remote: true do %>
+                                  <span id="first_bump_holder<%= stream.id %>">
+                                    <span class="label label-color" id="first_bump<%= stream.id %>">
+                                      <i class="icon-thumbs-up"></i>
+                                    </span>
+                                  </span>
+                                <% end %>
+                                
+                                <%= link_to unmake_favorite_path(current_user, stream), class: "pull-right bump", remote: true do %>
+                                  <span id="second_bump_holder<%= stream.id %>">
+                                    <span class="label lable-color hide" id="second_bump<%= stream.id %>" style="background-color:#f89406 !important;">
+                                      <i class="icon-heart"></i>
+                                    </span>
+                                  </span>
+                                <% end %>
+                              <% end %>
                             <% else %>
-                              
-                              <%= link_to make_favorite_path(current_user, stream), class: "pull-right bump", remote: true do %>
-                                <span id="first_bump_holder<%= stream.id %>">
-                                  <span class="label label-color" id="first_bump<%= stream.id %>">
+                              <% unless cookies["bump#{stream.id}"] %>
+                                <%= link_to bump_stream_path(stream), class: "pull-right bump", remote: true do %>
+                                  <span class="label label-color" id="bump<%= stream.id %>">
+                                    <i class="icon-thumbs-up"></i><%= " #{stream.rank}" %>
+                                  </span>
+                                  <span class="label lable-color .hide" style="background-color:#f89406 !important;" id="bump_rank<%= stream.id %>">
                                     <i class="icon-thumbs-up"></i>
+                                    <%= " #{stream.rank + 1}" %>
                                   </span>
-                                </span>
-                              <% end %>
-                              
-                              <%= link_to unmake_favorite_path(current_user, stream), class: "pull-right bump", remote: true do %>
-                                <span id="second_bump_holder<%= stream.id %>">
-                                  <span class="label lable-color hide" id="second_bump<%= stream.id %>" style="background-color:#f89406 !important;">
-                                    <i class="icon-heart"></i>
-                                  </span>
-                                </span>
-                              <% end %>
-                                  
-                              
-                            <% end %>
-
-
-                          <% else %>
-                            <% unless cookies["bump#{stream.id}"] %>
-                              <%= link_to bump_stream_path(stream), class: "pull-right bump", remote: true do %>
-                                <span class="label label-color" id="bump<%= stream.id %>">
+                                <% end %>
+                              <% else %>
+                                <span class="label lable-color" style="background-color:#f89406 !important;">
                                   <i class="icon-thumbs-up"></i><%= " #{stream.rank}" %>
                                 </span>
-                                <span class="label lable-color .hide" style="background-color:#f89406 !important;" id="bump_rank<%= stream.id %>">
-                                  <i class="icon-thumbs-up"></i>
-                                  <%= " #{stream.rank + 1}" %>
-                                </span>
                               <% end %>
-                            <% else %>
-                              <span class="label lable-color" style="background-color:#f89406 !important;">
-                                <i class="icon-thumbs-up"></i><%= " #{stream.rank}" %>
-                              </span>
                             <% end %>
+                          </div>
+                          <% if stream.stream_home_url.present? %>
+                            <small>
+                              <%= link_to stream.name, stream.stream_home_url , class: "", style: "margin-left:5px;", target: "_blank" %>
+                            </small>
+                          <% else %>
+                            <small>
+                              <%= link_to stream.name, stream.stream_url , class: "", style: "margin-left:5px;", target: "_blank" %>
+                            </small>
                           <% end %>
-
-                          <% if false %>
-                            <small><%= link_to send_left_stream_path(stream), style: "margin-right:5px;", class: "pull-right", id: "left#{stream.id}", remote: true do %>
-                              <i class="icon-arrow-left"></i>
-                            <% end %></small>
-                          <% end %>
-                        </div>
-                        <% if stream.stream_home_url.present? %>
-                        <small><%= link_to stream.name, stream.stream_home_url , class: "", style: "margin-left:5px;", target: "_blank" %></small>
-                        <% else %>
-                        <small><%= link_to stream.name, stream.stream_url , class: "", style: "margin-left:5px;", target: "_blank" %></small>
-                        <% end %>
-                      </p>
+                        </p>
+                      </div>
+                      <div id="stream_holder_<%= stream.id %>">
+                        <div class="progress progress-striped active" style="width:100%; margin-left:0px;">
+                          <div class="bar" style="width: 100%;"></div>
+                      </div>
                     </div>
-                    <div id="stream_holder_<%= stream.id %>">
-                      <div class="progress progress-striped active" style="width:100%; margin-left:0px;">
-                        <div class="bar" style="width: 100%;"></div>
-                    </div>
-                  </div>
                   </td>
                 <% end %>
               <% end %>
@@ -294,7 +281,7 @@
         $('#stream<%= stream.id %>').appendTo("#stream_table");
       });
 
-      
+      setTimeout(function(){updateStream(<%= stream.id %>)}, 0);
 
     </script>
   <% end %>
