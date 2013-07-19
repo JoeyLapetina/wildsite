@@ -6,6 +6,7 @@ class StreamItemsController < ApplicationController
 
   def index
     @stream_items = StreamItem.all
+    @stream_items = @stream_items.sort! {|a, b| a.created_at <=> b.created_at}
 
     respond_to do |format|
       format.html # index.html.erb
