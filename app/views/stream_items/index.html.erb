@@ -4,6 +4,7 @@
     <% unless stream_item.hide_stream_item == true %>
       <tr>
         <td>
+
           <% @stream = Stream.find(stream_item.stream_id) %>
           <div class="stream_item" style="padding-bottom:0px; margin-top: 10px; margin-left: 0px !important;">
             <% if stream_item.picture %>
@@ -19,13 +20,14 @@
             <% end %>
             
             <p>
-              <% if @stream.use_more == true %>
-                <%= link_to "[MORE]", @stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" %>
-              <% end %>
+              <%= link_to @stream.name, @stream, style: "margin-right:10px;", target: "_blank" %>
+              
+              
               <% if current_user && current_user.admin? %>
                 <%= link_to 'HIDE', hide_stream_item_path(stream_item) %>
               <% end %>
-              <%= link_to "[FROM: #{@stream.name}]", @stream.stream_url, class: 'pull-right', style: "margin-right:10px;", target: "_blank" %>
+              <i class="pull-right"><small>Scraped at: <%= stream_item.created_at.to_formatted_s(:short) %></small></i>
+              
             </p>
 
             <div class="pull-right" style="margin-right:10px">
