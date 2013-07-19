@@ -42,7 +42,7 @@
             </p>
 
             <div class="pull-right" style="margin-right:10px">
-              <%= "Replies: #{stream_item.replies}" if stream_item.replies %>
+              <%= "Replies: #{stream_item.replies}" if stream_item.replies.present? %>
               <% if @stream.stream_type == "forum" %>
                 <%= " | Views: #{stream_item.views}" if stream_item.views %>
               <% elsif @stream.stream_type == "reddit" %>
