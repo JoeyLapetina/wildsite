@@ -263,7 +263,7 @@
     $('#second_bump<%= stream.id %>').click(function(){
       $('#second_bump_holder<%= stream.id %>').hide('slow');
     });
-    setTimeout(function(){updateStream(<%= stream.id %>)}, 10000);
+    setTimeout(function(){updateStream(<%= stream.id %>)}, 0);
     </script>
   <% else %>
     <script>
@@ -281,7 +281,7 @@
         $('#stream<%= stream.id %>').appendTo("#stream_table");
       });
 
-      setTimeout(function(){updateStream(<%= stream.id %>)}, 10000);
+      setTimeout(function(){updateStream(<%= stream.id %>)}, 0);
 
     </script>
   <% end %>

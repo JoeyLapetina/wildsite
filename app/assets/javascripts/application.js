@@ -18,5 +18,5 @@
 
 function updateStream(stream_id) {
 	 $.getScript('/streams/' + stream_id +'.js');  
-	 setTimeout(function(){updateStream(stream_id)}, 1000000);
+	 setTimeout(function(){updateStream(stream_id)}, 50000);
 }  
