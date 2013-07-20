@@ -7,7 +7,7 @@ class Stream < ActiveRecord::Base
 
   def items
   	items = StreamItem.where(stream_id: self.id.to_s)
-  	items = items.sort! {|a, b| a.created_at <=> b.created_at }
+  	items = items.sort! {|a, b| b.created_at <=> a.created_at }
   end
 
 end
