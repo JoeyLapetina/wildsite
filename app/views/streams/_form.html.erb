@@ -12,89 +12,94 @@
   <% end %>
   <div class="field">
     <%= f.label :name %>
-    <%= f.text_field :name, style: "margin-right:20px;"  %><%= f.check_box :track %> Track stream</p>
-  </div>
+    <%= f.text_field :name %>
+    <p><%= f.check_box :track %> Track stream</p>
+    <p><%= f.check_box :is_ready %> Ready to tweet?</p>
+  </div></br>
   <div class="field">
     <%= f.label :game %>
     <%= f.text_field :game %>
-  </div>
+  </div></br>
   <div class="field">
     <%= f.label :category %>
     <%= f.text_field :category %>
-  </div>
+  </div></br>
   <div class="field">
     <%= f.check_box :active %> Active</p>
-  </div>
+  </div></br>
   <div class="field">
     <%= f.check_box :use_more %> Use More?</p>
-  </div>
+  </div></br>
   <div class="field">
     <%= f.label :stream_url %>
     <%= f.text_field :stream_url %>
-  </div>
+  </div></br>
   <div class="field">
     <%= f.label :stream_home_url %>
     <%= f.text_field :stream_home_url %>
-  </div>
+  </div></br>
   <div class="field">
     <%= f.label :span %>
     <%= f.text_field :span %>
-  </div>
+  </div></br>
     <div class="field">
     <%= f.label :stream_type %>
     <%= f.text_field :stream_type %>
-  </div>
+  </div></br>
   <div class="field">
     <%= f.label :item %>
-    <%= f.text_field :item, style: "margin-right:20px;"  %><%= f.check_box :reverse_stream %> Reverse stream</p>
-  </div>
+    <%= f.text_field :item, style: "margin-right:20px;"  %>
+    <p><%= f.check_box :reverse_stream %> Reverse stream</p>
+  </div></br>
   <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title %>
-  </div>
+  </div></br>
   <div class="field">
     <%= f.label :picture %>
-    <%= f.text_field :picture, style: "margin-right:20px;"  %><%= f.check_box :picture_root %> Use Root</p>
-  </div>
+    <%= f.text_field :picture, style: "margin-right:20px;"  %>
+    <p><%= f.check_box :picture_root %> Use Root</p>
+  </div></br>
   <div class="field">
     <%= f.label :body %>
     <%= f.text_field :body %>
-  </div>
+  </div></br>
   <div class="field">
     <%= f.label :item_link %>
-    <p><%= f.text_field :item_link, style: "margin-right:20px;" %><%= f.check_box :link_root %> Use Root</p>
-  </div>
+    <%= f.text_field :item_link, style: "margin-right:20px;" %>
+    <p><%= f.check_box :link_root %> Use Root</p>
+  </div></br>
   <div class="field">
     <%= f.label :limit %>
     <%= f.number_field :limit %>
-  </div>
+  </div></br>
 
   <p>For if it's a forum or something</p>
   <div class="field">
     <%= f.label :replies %>
     <%= f.text_field :replies %>
-  </div>
+  </div></br>
   <div class="field">
     <%= f.label :views %>
     <%= f.text_field :views %>
-  </div>
+  </div></br>
 
   <div class="field">
     <%= f.label :by_line %>
     <%= f.text_field :by_line %>
-  </div>
+  </div></br>
   <div class="field">
     <%= f.label :site_root %>
     <%= f.text_field :site_root %>
-  </div>
+  </div></br>
   <div class="field">
     <%= f.label :video %>
     <%= f.text_field :video %>
-  </div>
+  </div></br>
   <div class="field">
     <%= f.label :rank %>
     <%= f.number_field :rank %>
-  </div>
+  </div></br>
   
   <div class="actions">
     <%= f.submit %>

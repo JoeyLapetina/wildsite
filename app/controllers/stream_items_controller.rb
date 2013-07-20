@@ -1,5 +1,6 @@
 class StreamItemsController < ApplicationController
   load_and_authorize_resource
+
   #has_mobile_fu
   # GET /stream_items
   # GET /stream_items.json

@@ -77,7 +77,7 @@ class StreamsController < ApplicationController
     if params[:category]
       @category = params[:category]
       if @category == 'send_it'
-        Twitter.update("ScrapeBot9000 coming on line.")
+        Twitter.update("Charging systems.")
       end
 
       if @category == 'others'
@@ -96,11 +96,13 @@ class StreamsController < ApplicationController
         else
           @streams ||= Stream.where(game: @game, active: true)
         end
-      else 
+      elsif @category = 'send_it'
         @streams = @streams.each.select {|s| s.category.split(" ").include? @category.singularize}
       end
     end
     
+    
+
     respond_to do |format|
       format.html { render :layout => "main_page" }
       format.json { render json: @streams }

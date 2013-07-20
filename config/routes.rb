@@ -27,6 +27,7 @@ Wildsite::Application.routes.draw do
   
   devise_for :users
 
+   match ':id' => 'streams#show', as: 'short'
    match 'wildstar' => 'streams#index', :defaults => { filter: 'wildstar' }, as: 'wildstar_streams'
    match 'tera' => 'streams#index', :defaults => { filter: 'tera' }, as: 'tera_streams'
    match 'teso' => 'streams#index', :defaults => { filter: 'teso' }, as: 'teso_streams'

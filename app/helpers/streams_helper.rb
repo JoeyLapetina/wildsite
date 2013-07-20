@@ -88,6 +88,10 @@ module StreamsHelper
 		    stream_item.body = @body if @body
 		    stream_item.picture = @picture if @picture
 		    stream_item.save
+
+		    if @stream.is_ready
+			    Twitter.update("ALERT: New ##{@game.capitalize} data receved from #{@stream.name} - WildScrape.com/#{@stream.id}")
+			  end
 			end
 		end
 
