@@ -9,7 +9,10 @@
     <% data = Nokogiri::HTML(thing) %>
 
     <% data.css(@stream.item).reverse.each do |item| %>
-      <% feed_me(@stream, item) %>
+      <% @item_link = item.css(@stream.item_link).map { |link| link['href'] }.first unless @stream.item_link.empty? || item.at_css(@stream.item_link).nil? %>
+      <% unless @item_link.nil? || StreamItem.where(item_link: @item_link).present? %>
+        <% feed_me(@stream, item) %>
+      <% end %>
     <% end %>
 
     <% if @stream.reverse_stream == true %>
