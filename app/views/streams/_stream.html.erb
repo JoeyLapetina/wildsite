@@ -33,12 +33,15 @@
         <p><%= stream_item.body %></p>
       <% end %>
       
-      <% if @stream.use_more == true %>
+      <% if current_user && current_user.admin? %>
+        <%= link_to "[EDIT]", edit_stream_item_path(stream_item) %>
+      <% elsif @stream.use_more == true %>
         <%= link_to "[MORE]", @stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" %>
       <% end %>
+      
 
       <div class="pull-right" style="margin-right:10px">
-        <%= "Replies: #{stream_item.replies}" if stream_item.replies %>
+        <%= "Replies: #{stream_item.replies}" if stream_item.replies.present? %>
         <% if @stream.stream_type == "forum" %>
           <%= " | Views: #{stream_item.views}" if stream_item.views %>
         <% elsif @stream.stream_type == "reddit" %>
