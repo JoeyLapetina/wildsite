@@ -48,6 +48,7 @@ class StreamsController < ApplicationController
         @streams.sort! {|a, b| b.rank <=> a.rank } 
         @game = 'all'
         cookies[:filter]='all'
+        @game ||= 'wildstar'
       end
       @game_streams = @streams
     else
