@@ -7,18 +7,11 @@
   <% else %>
 
     <% data = Nokogiri::HTML(thing) %>
-  
-    <% if @stream.reverse_stream == true %>
-      <% data.css(@stream.item).each do |item| %>
-        <% feed_me(@stream, item) %>
-      <% end %>
-    <% else %>
-      <% data.css(@stream.item).reverse.each do |item| %>
-        <% feed_me(@stream, item) %>
-      <% end %>
-    <% end %>   
-  <% end %>
 
+    <% data.css(@stream.item).reverse.each do |item| %>
+      <% feed_me(@stream, item) %>
+    <% end %>
+      
   <% @stream.items.each do |stream_item| %>
     <div class="span<%= @stream.span %> stream_item" style="padding-bottom:20px; margin-top: 10px; margin-left: 0px !important;">
       <% if stream_item.picture %>
