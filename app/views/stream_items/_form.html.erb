@@ -12,38 +12,39 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :body %><br />
+    <%= f.label :body %> 
     <%= f.text_field :body %>
-  </div>
+    <p><%= f.check_box :hide_stream_item %> Hidden?</p>
+  </div><br />
   <div class="field">
-    <%= f.label :by_line %><br />
+    <%= f.label :by_line %> 
     <%= f.text_field :by_line %>
-  </div>
+  </div><br />
   <div class="field">
-    <%= f.label :item_link %><br />
+    <%= f.label :item_link %> 
     <%= f.text_field :item_link %>
-  </div>
+  </div><br />
   <div class="field">
-    <%= f.label :picture %><br />
+    <%= f.label :picture %> 
     <%= f.text_field :picture %>
-  </div>
+  </div><br />
   <div class="field">
-    <%= f.label :replies %><br />
+    <%= f.label :replies %> 
     <%= f.text_field :replies %>
-  </div>
+  </div><br />
   <div class="field">
-    <%= f.label :stream_id %><br />
+    <%= f.label :stream_id %> 
     <%= f.text_field :stream_id %>
-  </div>
+  </div><br />
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title %> 
     <%= f.text_field :title %>
-  </div>
+  </div><br />
   <div class="field">
-    <%= f.label :views %><br />
+    <%= f.label :views %> 
     <%= f.text_field :views %>
   </div>
   <div class="actions">
     <%= f.submit %>
-  </div>
+  </div><br />
 <% end %>
