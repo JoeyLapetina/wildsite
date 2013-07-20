@@ -9,9 +9,9 @@ class Stream < ActiveRecord::Base
   	items = StreamItem.where(stream_id: self.id.to_s)
   	new_streams = items.select {|s| s.created_at > ('2013-07-19 22:36:07 -0500'.to_time)}
   	old_streams = items.select {|s| s.created_at < ('2013-07-19 22:36:07 -0500'.to_time)}
-  	new_streams = new_streams.sort! {|a, b| b.created_at <=> a.created_at }
+  	new_streams = new_streams.sort! {|a, b| a.created_at <=> b.created_at }
   	old_streams = old_streams.sort! {|a, b| a.created_at <=> b.created_at }
-  	streams =  old_streams + new_streams
+  	streams =   new_streams + old_streams
   	return streams
   end
 
