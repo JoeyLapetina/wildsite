@@ -7,25 +7,12 @@ class Stream < ActiveRecord::Base
 
   def items
   	items = StreamItem.where(stream_id: self.id.to_s)
-  	if Time.now < '2013-07-19 22:36:07 -0500'.to_time
-  		ordered_items = items.all.sort! {|a, b| b.created_at <=> a.created_at }
-	  	unless ordered_items.nil?
-		  	new_streams = ordered_items.select {|s| s.hide_stream_item == false }
-		  	unless new_streams.nil?
-			  	ordered_items = ordered_items - new_streams
-			  	new_streams = new_streams.reverse
-			  	done = new_streams + ordered_items
-			  	return done
-			  else
-			  	return ordered_items
-			  end
-			end
-		else
-			ordered_items = items.all.sort! {|a, b| b.created_at <=> a.created_at }
-			return ordered_items
-		end
+  	new_streams = items.select {|s| s.created_at > ('2013-07-19 22:36:07 -0500'.to_time)}
+  	old_streams = items.select {|s| s.created_at < ('2013-07-19 22:36:07 -0500'.to_time)}
+  	new_streams = new_streams.sort! {|a, b| b.created_at <=> a.created_at }
+  	old_streams = old_streams.sort! {|a, b| a.created_at <=> b.created_at }
+  	streams =  old_streams + new_streams
+  	return streams
   end
-
- 
 
 end
