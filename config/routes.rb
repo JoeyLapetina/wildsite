@@ -27,7 +27,7 @@ Wildsite::Application.routes.draw do
   
   devise_for :users
 
-   match ':id' => 'streams#show', as: 'short'
+  
    match 'wildstar' => 'streams#index', :defaults => { filter: 'wildstar' }, as: 'wildstar_streams'
    match 'tera' => 'streams#index', :defaults => { filter: 'tera' }, as: 'tera_streams'
    match 'teso' => 'streams#index', :defaults => { filter: 'teso' }, as: 'teso_streams'
@@ -39,6 +39,7 @@ Wildsite::Application.routes.draw do
    match 'wildstar/joey_says_bottom/' => 'streams#index', :defaults => { filter: 'wildstar', category: 'joey_says_bottom' }
    match ':user/likes/:stream' => 'favorites#make', as: 'make_favorite'
    match ':user/unlike/:stream' => 'favorites#unmake', as: 'unmake_favorite'
+   match 's/:id' => 'streams#show', as: 'short'
 
    
 
