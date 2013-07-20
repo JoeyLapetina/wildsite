@@ -76,27 +76,16 @@ class StreamsController < ApplicationController
 
     if params[:category]
       @category = params[:category]
-      if @category == 'send_it'
-        Twitter.update("Charging systems.")
-      end
 
       if @category == 'others'
         @streams = @streams.each.select {|s| s.category.nil? || s.category.empty? } 
-      elsif @category == 'jb_says_top'
-        @top = true
-        @category = nil
-        cookies[:top]='on'
-      elsif @category == 'joey_says_bottom'
-        @top = false
-        @category = nil
-        cookies[:top]='off'
       elsif @category == 'favorites'
         if current_user
           @streams = current_user.streams
         else
           @streams ||= Stream.where(game: @game, active: true)
         end
-      elsif @category = 'send_it'
+      else
         @streams = @streams.each.select {|s| s.category.split(" ").include? @category.singularize}
       end
     end
