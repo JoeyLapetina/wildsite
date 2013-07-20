@@ -90,7 +90,7 @@ module StreamsHelper
 		    stream_item.save
 
 		    if @stream.is_ready
-			    Twitter.update("ALERT: New ##{@game.capitalize} data receved from #{@stream.name} - WildScrape.com/#{@stream.id}")
+			    Twitter.update("ALERT: New ##{@game.capitalize} data receved from #{@stream.name} - WildScrape.com/s/#{@stream.id}")
 			  end
 			end
 		end
