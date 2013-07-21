@@ -90,29 +90,41 @@
             		</div>
               </td>
             <% end %>
+
+
             <% @streams.each do |stream| %>
              	<% unless @stream && @stream.id == stream.id %>
 	              <% if stream.active || (current_user && current_user.admin) %>
 	                <td id="stream<%= stream.id %>" style="padding: 10px; padding-left: 13px;" >
-	                <div class="span<%= stream.span %>" style="margin-left:0px; margin-top: -20px;">
-	                  <div class="fix_me" style="margin-left: 0px; background-color:black; position:; width:100%; padding-top:10px; margin-top:-10px;">
-	                    <p style="margin-right: 0px;">
-	                      <div class="pull-left">
-	                        <% unless cookies["bump#{stream.id}"] %>
-		                        <%= link_to bump_stream_path(stream), class: "pull-right bump", remote: true do %>
-		                          <span class="label label-color" id="bump<%= stream.id %>"><i class="icon-thumbs-up"></i><%= " #{stream.rank}" %></span>
-		                          <span class="label lable-color hide" style="background-color:#f89406 !important;" id="bump_rank<%= stream.id %>"><i class="icon-thumbs-up"></i><%= " #{stream.rank + 1}" %></span>
-		                        <% end %>
-	                        <% else %>
-	                          <span class="label lable-color" style="background-color:#f89406 !important;"><i class="icon-thumbs-up"></i><%= " #{stream.rank}" %></span>
-	                        <% end %>
-
-	                      </div>
-	                      <% if stream.stream_home_url %>
-                          <small><%= link_to stream.name, stream.stream_home_url , class: "", style: "margin-left:5px;", target: "_blank" %></small>
-                        <% else %>
-                          <small><%= link_to stream.name, stream.stream_url , class: "", style: "margin-left:5px;", target: "_blank" %></small>
-                        <% end %>
+	                   <div class="span<%= stream.span %>" style="margin-left:0px; margin-top: -20px;">
+	                     <div class="fix_me" style="margin-left: 0px; background-color:black; position:; width:100%; padding-top:10px; margin-top:-10px;">
+	                       <p style="margin-right: 0px;">
+	                         <div class="pull-left">
+	                           <% unless cookies["bump#{stream.id}"] %>
+		                            <%= link_to bump_stream_path(stream), class: "pull-right bump", remote: true do %>
+		                              <span class="label label-color" id="bump<%= stream.id %>">
+                                    <i class="icon-thumbs-up"></i><%= " #{stream.rank}" %>
+                                  </span>
+		                              <span class="label lable-color hide" style="background-color:#f89406 !important;" id="bump_rank<%= stream.id %>">
+                                    <i class="icon-thumbs-up"></i><%= " #{stream.rank + 1}" %>
+                                  </span>
+		                            <% end %>
+	                            <% else %>
+	                              <span class="label lable-color" style="background-color:#f89406 !important;">
+                                  <i class="icon-thumbs-up"></i><%= " #{stream.rank}" %>
+                                </span>
+	                            <% end %>
+                            </div>
+	                          <% if stream.stream_home_url %>
+                              <small>
+                                <%= link_to stream.name, stream.stream_home_url , class: "", style: "margin-left:5px;", target: "_blank" %>
+                              </small>
+                            <% else %>
+                              <small>
+                                <%= link_to stream.name, stream.stream_url , class: "", style: "margin-left:5px;", target: "_blank" %>
+                              </small>
+                            <% end %>
+                          </div>
 	                    </p>
 	                  </div>
 	                  <div id="stream_holder_<%= stream.id %>">
@@ -124,6 +136,8 @@
 	              <% end %>
 	            <% end %>
             <% end %>
+
+
           </tr>
         </tbody>
       </table>

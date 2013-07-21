@@ -92,6 +92,8 @@ GEM
     pg (0.14.1)
     polyglot (0.3.3)
     rack (1.4.5)
+    rack-block (0.1.1)
+      rack (>= 1.3)
     rack-cache (1.2)
       rack (>= 0.4)
     rack-contrib (1.1.0)
@@ -178,6 +180,7 @@ DEPENDENCIES
   meta_request
   nokogiri
   pg
+  rack-block (~> 0.1.1)
   rails (= 3.2.13)
   rails-footnotes
   sass-rails (~> 3.2.3)
