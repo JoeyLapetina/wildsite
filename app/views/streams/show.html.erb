@@ -45,7 +45,7 @@
                   <div class="fix_me" style="margin-left: 0px; padding-top:10px; margin-top:0px;">
 
                     <div>
-                      <% if cookies["bump#{stream.id}"] %>
+                      <% if Impression.all.select { |i| i.impressionable_type == 'Stream' && i.impressionable_id == stream.id && i.action_name == 'bump' && i.ip_address == request.remote_ip && i.created_at > 3.hours.ago }.first %>
 
                       	<span class="label lable-color" style="background-color:#f89406 !important; padding-left:10px; padding-right:10px;">
                         	<i class="icon-thumbs-up"></i><%= " #{stream.rank} : Featured " %>
