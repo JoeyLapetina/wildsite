@@ -5,6 +5,7 @@ gem 'unicorn'
 gem "twitter"
 gem 'figaro'
 gem "rack-block", "~> 0.1.1"
+gem 'impressionist'
 #gem 'mobile-fu'
 
 # Bundle edge Rails instead:

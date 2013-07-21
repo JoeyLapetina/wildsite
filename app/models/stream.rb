@@ -1,4 +1,6 @@
 class Stream < ActiveRecord::Base
+	is_impressionable
+	
 	require 'openssl'
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 

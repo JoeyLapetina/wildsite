@@ -9,7 +9,7 @@
       <% data = Nokogiri::XML(thing) %>
 
       <% data.xpath(@stream.item).each do |item| %>
-        <% @item_link = i.xpath(@stream.item_link).inner_text unless @stream.item_link.empty? || i.xpath(@stream.item_link).inner_text.nil? %>
+        <% @item_link = item.xpath(@stream.item_link).inner_text unless @stream.item_link.empty? || item.xpath(@stream.item_link).inner_text.nil? %>
         <% unless @item_link.nil? || StreamItem.where(item_link: @item_link).present? %>
           <% feed_me(@stream, item) %>
         <% end %>
@@ -38,8 +38,9 @@
             <%= link_to stream_item.title , @stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" %>
           </h5>
 
+
           <% if stream_item.body %>
-            <p><%= stream_item.body %></p>
+          <p><%= stream_item.body %></p>
           <% end %>
           
           <% if current_user && current_user.admin? %>

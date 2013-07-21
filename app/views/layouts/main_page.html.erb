@@ -124,7 +124,7 @@
 <% end %>       
           
           <% unless @category %>
-            
+            <% @game ||= 'wildstar' %>
             <%= link_to "http://wildscrape.com/#{@game}", class: "brand", style: "color:white !important;" do %>
               <b>WildScrape:</b><%= "#{@game.capitalize}"%>
             <% end %>

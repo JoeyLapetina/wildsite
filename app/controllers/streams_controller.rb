@@ -212,16 +212,20 @@ class StreamsController < ApplicationController
 
   def bump
     @stream = Stream.find(params[:id])
-    cookies["bump#{@stream.id}"] = { value: "#{@stream.id}", expires: 1.hour.from_now }
+    @game = @stream.game
+    @streams = Stream.where(game: @game, active: true)
+    @game_streams = @streams
     
-    if cookies["bump#{@stream.id}"]
-      if params[:featured]
-        bump_it(@stream.id, 3)
-      else
-        bump_it(@stream.id, 1)
+    @hit = Impression.all.select { |i| i.impressionable_id == @stream.id && i.impressionable_type == "Stream" && i.action_name == 'bump' && i.ip_address == request.remote_ip && i.created_at > 3.hours.ago }.first
+    
+    if @hit.nil?
+      impressionist(@stream)
+        if params[:featured]
+          bump_it(@stream.id, 3)
+        else
+          bump_it(@stream.id, 1)
+        end
       end
-    end
-
   end
 
   def send_left
