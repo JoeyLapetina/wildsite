@@ -6,10 +6,12 @@ Twitter.configure do |config|
   config.oauth_token_secret = "hh4xEC2IRpdxytab4OycOeWcyylTLBG5i41fvAZnpA"
 end
 
-use Rack::Block do
-  ip_pattern '83.255.120.15' do
+if false
+#use Rack::Block do
+#  ip_pattern '83.255.120.15' do
   # expressions like '192.0.0.' also available
-    halt 404
-  end
+#    halt 404
+#  end
+#end
+#run App.new
 end
-run App.new
