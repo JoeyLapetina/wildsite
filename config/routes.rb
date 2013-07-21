@@ -1,5 +1,6 @@
 Wildsite::Application.routes.draw do
 
+
   resources :favorites
 
   resources :submissions
