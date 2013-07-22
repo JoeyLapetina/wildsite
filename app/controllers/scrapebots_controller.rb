@@ -18,14 +18,21 @@ class ScrapebotsController < ApplicationController
   # GET /scrapebots/1
   # GET /scrapebots/1.json
   def show
-    @scrapebot = Scrapebot.find(params[:id])
-    @stream_items = StreamItem.all.select {|a| a.stream.game == @scrapebot.game }
-    @stream_items = @stream_items.sort! {|a, b| a.created_at <=> b.created_at}
+    @scrapebot = Scrapebot.all.select {|s| s.game == params[:game]}.first
+    unless @scrapebot.nil?
+      @stream_items = StreamItem.all.select {|a| a.stream.game == @scrapebot.game }
+      @stream_items = @stream_items.sort! {|a, b| a.created_at <=> b.created_at}
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @scrapebot }
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @scrapebot }
+      end
+
+    else
+      redirect_to root_path
     end
+
+    
   end
 
   # GET /scrapebots/new
