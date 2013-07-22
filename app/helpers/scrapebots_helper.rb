@@ -1,0 +1,2 @@
+module ScrapebotsHelper
+end

@@ -1,5 +1,7 @@
 Wildsite::Application.routes.draw do
 
+  resources :scrapebots
+
 
   resources :favorites
 
@@ -41,6 +43,8 @@ Wildsite::Application.routes.draw do
    match ':user/likes/:stream' => 'favorites#make', as: 'make_favorite'
    match ':user/unlike/:stream' => 'favorites#unmake', as: 'unmake_favorite'
    match 's/:id' => 'streams#show', as: 'short'
+   match 'ScrapeBot9000' => 'scrapebots#show', :defaults => { id: 1 }, as: 'ScrapeBot9000'
+
 
    
 

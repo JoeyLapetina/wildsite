@@ -1,0 +1,31 @@
+<h1>Listing scrapebots</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Bio</th>
+    <th>Game</th>
+    <th>Stream count</th>
+    <th>Stream item count</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @scrapebots.each do |scrapebot| %>
+  <tr>
+    <td><%= scrapebot.name %></td>
+    <td><%= scrapebot.bio %></td>
+    <td><%= scrapebot.game %></td>
+    <td><%= scrapebot.stream_count %></td>
+    <td><%= scrapebot.stream_item_count %></td>
+    <td><%= link_to 'Show', scrapebot %></td>
+    <td><%= link_to 'Edit', edit_scrapebot_path(scrapebot) %></td>
+    <td><%= link_to 'Destroy', scrapebot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Scrapebot', new_scrapebot_path %>

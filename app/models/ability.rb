@@ -9,7 +9,9 @@ class Ability
       
       can :read, Stream
       can :read, StreamItem
-      can :create, Submission 
+      can :read, Scrapebot
+      can :create, Submission
+
 
       if user.admin?
         can :manage, :all

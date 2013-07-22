@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130721160831) do
+ActiveRecord::Schema.define(:version => 20130722004108) do
 
   create_table "favorites", :force => true do |t|
     t.integer  "stream_id"
@@ -45,6 +45,16 @@ ActiveRecord::Schema.define(:version => 20130721160831) do
   add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], :name => "poly_session_index"
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], :name => "impressionable_type_message_index"
   add_index "impressions", ["user_id"], :name => "index_impressions_on_user_id"
+
+  create_table "scrapebots", :force => true do |t|
+    t.string   "name"
+    t.text     "bio"
+    t.string   "game"
+    t.integer  "stream_count"
+    t.integer  "stream_item_count"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "stream_items", :force => true do |t|
     t.string   "by_line"

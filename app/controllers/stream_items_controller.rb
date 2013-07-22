@@ -97,7 +97,7 @@ class StreamItemsController < ApplicationController
   end
 
   def compute_layout
-    if params[:action] == "edit"
+    if params[:action] == "edit" || "show"
       "application"
     elsif params[:action] == "new"
       'application'
