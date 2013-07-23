@@ -90,7 +90,16 @@ module StreamsHelper
 		    stream_item.save
 
 		    if @stream.is_ready
-			    Twitter.update("ALERT: New ##{@game.capitalize} data receved from #{@stream.name} - WildScrape.com/s/#{@stream.id}")
+		    	alert = ['ALERT', "BLOOP", "BEEP", "CLUNK", "SCRAPE", "ZING", "ZAAM"]
+		    	mew = [": New", ": Fresh", " ALERT:", " BLOOP:", " BEEP:", " CLUNK:", " SCRAPE:", " ZING:", " ZAAM:"]
+		    	data = ["data", "info", "news", "update"]
+		    	receved = ["receved", "procured", "obtained", "scraped", "found", "scavenged"]
+		    	i = rand(2)+1
+		    	if i == 1 
+			    	Twitter.update("#{alert[rand(alert.length)]}#{mew[rand(mew.length)]} ##{@game.capitalize} #{data[rand(data.length)]} #{receved[rand(receved.length)]} from #{@stream.name} - WildScrape.com/s/#{@stream.id}")
+			  	elsif i == 2
+			    	Twitter.update("#{@stream.name} ##{@game.capitalize} #{data[rand(data.length)]} #{receved[rand(receved.length)]} -#{alert[rand(alert.length)]}#{mew[rand(mew.length)]}- WildScrape.com/s/#{@stream.id}")
+			  	end
 			  end
 			end
 		end
