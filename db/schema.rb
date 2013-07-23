@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130722004108) do
+ActiveRecord::Schema.define(:version => 20130723050931) do
 
   create_table "favorites", :force => true do |t|
     t.integer  "stream_id"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20130722004108) do
     t.boolean  "reverse_stream",  :default => false
     t.boolean  "track",           :default => false
     t.boolean  "is_ready",        :default => false
+    t.string   "tweet_name"
   end
 
   create_table "submissions", :force => true do |t|
