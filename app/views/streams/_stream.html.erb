@@ -45,6 +45,7 @@
           
           <% if current_user && current_user.admin? %>
             <%= link_to "[EDIT]", edit_stream_item_path(stream_item) %>
+            <%= link_to "[DELETE]", stream_item, :method => 'delete', :confirm => "Are you sure you want to delete this?" %>
           <% elsif @stream.use_more == true %>
             <%= link_to "[MORE]", @stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" %>
           <% end %>
@@ -77,6 +78,7 @@
           
           <% if current_user && current_user.admin? %>
             <%= link_to "[EDIT]", edit_stream_item_path(stream_item) %>
+            <%= link_to "[DELETE]", stream_item, :method => 'delete', :confirm => "Are you sure you want to delete this?" %>
           <% elsif @stream.use_more == true %>
             <%= link_to "[MORE]", @stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" %>
           <% end %>
