@@ -63,17 +63,8 @@ class StreamsController < ApplicationController
 
     @drop_list = Array.new
     
-    Word.all.each do |w|
-      @drop_list << w.word
-    end
+    @top = true
 
-    if cookies[:top] && cookies[:top] == 'on'
-      @top = true
-    elsif cookies[:top] && cookies[:top] == 'off'
-      @top = false
-    else
-      @top = true
-    end
 
     if params[:category]
       @category = params[:category]

@@ -4,10 +4,12 @@ class ScrapebotsController < ApplicationController
   #has_mobile_fu
   # GET /stream_items
   # GET /stream_items.json
-  layout 'application'
+  layout 'awesome'
 
   def index
     @scrapebots = Scrapebot.all
+    @stream_items = StreamItem.all
+    @stream_items = @stream_items.sort! {|a, b| a.created_at <=> b.created_at}
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,14 +1,6 @@
-<table class="table span4">
-  <tr>
-    <td style="text-align:center; border-color:#33b5e5;">
-      <h1><%= link_to "WildScrape", root_path %></h1>
-    </td>
-  </tr>
+<div class="table span3 pull-left" style="border-color:#33b5e5;">
   <% @stream_items.reverse.each do |stream_item| %>
     <% unless stream_item.hide_stream_item == true %>
-      <tr>
-        <td style="border-color:#33b5e5;">
-
           <% @stream = Stream.find(stream_item.stream_id) %>
           <div class="stream_item" style="padding-bottom:0px; margin-top: 10px; margin-left: 0px !important;">
             <% if stream_item.picture %>
@@ -49,8 +41,8 @@
               <% end %>
             </div>
           </div>
-        </td>
-      </tr>
+       
+      
     <% end %>
   <% end %>
-</table>
+

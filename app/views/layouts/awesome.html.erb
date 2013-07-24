@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WildScrape</title>
+  <link href="<%= asset_path('favicon.ico') %>" rel="shortcut icon">
+  <link href='http://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+  <%= csrf_meta_tags %>
+  <style>
+  .fix_me {
+    position:;
+  }
+
+  .my_tab p {
+    font-family: 'Ultra', serif;
+    color:black;
+    text-align: center;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    font-weight: bold;
+    font-size: 125%;
+  }
+
+  .my_tab a:hover {
+    text-decoration: none;
+  }
+
+  .navbar-inverse a {
+    color:#33b5e5 !important;
+  }
+  </style>
+</head>
+  <body class="off bumpers" style="margin-bottom:100px; <%= "margin-top:60px" if @top == true %>">
+   
+
+    <% if params[:notice] %>
+      <div id="notice" class="btn btn-inverse"><%= notice %></div>
+    <% end %>
+
+  	
+
+    <div class="navbar navbar-fixed-top navbar-inverse" style="min-width:1100px; height:45px;">
+      <div class="navbar-inner" style="min-width:1100px; height:45px;">
+        <div class="container" style="background-color:black; width:100%; height:46px; border-bottom-color: #33b5e5; border-bottom-width: 1px; border-bottom-style: solid; padding-left:30px; padding-right:50px;">      
+  
+
+          <% unless @category %>
+            <% @game ||= 'wildstar' %>
+            <%= link_to "http://wildscrape.com/#{@game}", class: "brand", style: "color:white !important;" do %>
+              <b>WildScrape:</b><%= "#{@game.capitalize}"%>
+            <% end %>
+          <% else %>
+            <%= link_to "http://wildscrape.com/#{@game}", class: "brand" do %><b>WildScrape:</b><%= "#{@game.capitalize}"%><% end %>
+          <% end %>
+
+        <% if false %>
+          <ul class="nav" style="margin-top: 2px;">
+            
+
+            <% if @category && @category == 'blogs' %>
+              <li class="active">
+                <%= link_to categories_path(@game, 'blogs'), style: "color:white !important;" do %>
+                  <span class="label label-info", style="color:black; background-color:white;">
+                    <%= @game_streams.select {|s| s.category.split(" ").include? 'blog'}.length %>
+                  </span>
+                  <%= " Blogs" %>
+                <% end %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to categories_path(@game, 'blogs') do %>
+                  <span class="label ", style="color:black;">
+                    <%= @game_streams.select {|s| s.category.split(" ").include? 'blog'}.length %>
+                  </span>
+                   <%= " Blogs" %>
+                <% end %>
+              </li>
+            <% end %>
+            
+            <% if @category && @category == 'videos' %>
+              <li class="active">
+                <%= link_to categories_path(@game, 'videos'), style: "color:white !important;"  do %>
+                  <span class="label label-info", style="color:black; background-color:white;">
+                    <%= @game_streams.select {|s| s.category.split(" ").include? 'video'}.length %>
+                  </span>
+                   <%= " Videos" %>
+                <% end %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to categories_path(@game, 'videos') do %>
+                <span class="label ", style="color:black;">
+                  <%= @game_streams.select {|s| s.category.split(" ").include? 'video'}.length %>
+                </span>
+                 <%= " Videos" %>
+                <% end %>
+              </li>
+            <% end %>
+
+            <% if @category && @category == 'podcasts' %>
+              <li class="active">
+                <%= link_to categories_path(@game, 'podcasts'), style: "color:white !important;" do %>
+                  <span class="label label-info", style="color:black; background-color:white;">
+                    <%= @game_streams.select {|s| s.category.split(" ").include? 'podcast'}.length %>
+                  </span>
+                   <%= " Podcasts" %>
+                <% end %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to categories_path(@game, 'podcasts') do %>
+                  <span class="label ", style="color:black;">
+                    <%= @game_streams.select {|s| s.category.split(" ").include? 'podcast'}.length %>
+                  </span>
+                   <%= " Podcasts" %>
+                <% end %>
+              </li>
+            <% end %>
+
+            <% if @category && @category == 'boards' %>
+              <li class="active">
+                <%= link_to categories_path(@game, 'boards'), style: "color:white !important;" do %>
+                  <span class="label label-info", style="color:black; background-color:white;">
+                    <%= @game_streams.select {|s| s.category.split(" ").include? 'board'}.length %>
+                  </span>
+                   <%= " Boards" %>
+                <% end %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to categories_path(@game, 'boards') do %>
+                  <span class="label ", style="color:black;">
+                    <%= @game_streams.select {|s| s.category.split(" ").include? 'board'}.length %>
+                  </span>
+                   <%= " Boards" %>
+                <% end %>
+              </li>
+            <% end %>
+
+            <% if @category && @category == 'mainstreams' %>
+              <li class="active">
+                <%= link_to categories_path(@game, 'mainstreams'), style: "color:white !important;" do %>
+                  <span class="label label-info", style="color:black; background-color:white;">
+                    <%= @game_streams.select {|s| s.category.split(" ").include? 'mainstream'}.length %>
+                  </span>
+                   <%= " Mainstream Sites" %>
+                <% end %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to categories_path(@game, 'mainstreams') do %>
+                  <span class="label ", style="color:black;">
+                    <%= @game_streams.select {|s| s.category.split(" ").include? 'mainstream'}.length %>
+                  </span>
+                   <%= " Mainstream Sites" %>
+                <% end %>
+              </li>
+            <% end %>
+
+            <li>
+              <ul class="nav pull-right">
+                <li class="divider-vertical"></li>
+                <% if current_user %>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <i class="icon-heart"></i> <%= current_user.email %> <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <%= link_to categories_path(@game, 'favorites') do %>
+                          <i class="icon-heart"></i> <%= "My #{@game} Favorites!" %>
+                        <% end %>
+                      </li>
+                      <li class="divider"></li>
+                      <li>
+                        <%= link_to "#wildScrapeModal", role: "button", "data-toggle" => "modal" do %>
+                          
+                            <i class="icon-rocket"></i>
+                            
+                             Info
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to "#gamesModal", role: "button", "data-toggle" => "modal" do %>
+                          
+                            <i class="icon-gamepad"></i>
+                         
+                           Scrapes
+                        <% end %>
+                      </li>
+                      <li class="divider"></li>
+                      <li>
+                        <%= link_to destroy_user_session_path, :method => :delete do %>
+                          <i class="icon-signout"></i> Sign out
+                        <% end %>
+                      </li>
+                    </ul>
+                  </li>
+                <% else %>
+                  <li>
+                    <%= link_to "#modal-log-in", 'data-toggle' => "modal" do %>
+                      <i class="icon-signin"></i> Sign in
+                    <% end %>
+                  </li>
+                <% end %>
+                <li>
+                  <%= link_to scrapebot_path(:game => @game) do %>
+                    <%= image_tag "https://si0.twimg.com/profile_images/378800000149227367/6b2cca11b434c22f7af402aae4e6e4dc_bigger.jpeg", style: "width: 30px; margin-top: -5px; border-color: #33b5e5; border-width: 1px;" %>
+                  <% end %>
+                </li>
+              </ul>
+
+            </li>
+          </ul>
+        <% end %>
+         
+        </div>
+      </div>
+    </div>
+
+    <div class="" style="margin-top:10px;">  
+      <%= yield %>
+    </div>
+
+  </body>
+</html>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-39871477-1', 'wildscrape.com');
+  ga('send', 'pageview');
+</script>
+
+<div class="modal hide fade" id="modal-log-in" style="width: 375px; background-color:black; border-color:#33b5e5;">
+  <div class="modal-header" style="height:30px;">
+    <h3 class="pull-left" style="margin-top: 5px; color:white;">WildScrape</h3> 
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  </div>
+  <div class="modal-body">
+    <h4 style="color:white">Sign in</h4>
+
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <div><%= f.label :email %>
+      <%= f.email_field :email, :autofocus => true %></div></br>
+
+      <div><%= f.label :password %>
+      <%= f.password_field :password %></div></br>
+
+      <% if false %>
+        <% if devise_mapping.rememberable? %>
+          <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+        <% end %>
+      <% end %>
+
+      <div><%= f.submit "Sign in", class: 'btn btn-info' %></div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
+
