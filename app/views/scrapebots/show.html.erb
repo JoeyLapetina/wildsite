@@ -78,9 +78,9 @@
 
 <div class="row-fluid">
   <div class="container" style="margin-top:50px;">
-    <% @stream_items.each do |stream_item| %>
+    <% @stream_items.reverse.each do |stream_item| %>
       <% unless stream_item.hide_stream_item == true %>
-        <div class="span4 pull left" style="padding:5px; margin:10px; height: 420px; background-color:rgba(0,41,255,0.21);">
+        <div class="span4 pull left" style="border-style: solid; border-color: rgba(0,41,255,0.45); border-width: 1px; padding:5px; margin:10px; height: 420px; background-color:rgba(0,41,255,0.21);">
           <% @stream = Stream.find(stream_item.stream_id) %>
           <div class="stream_item" style="padding-bottom:0px; margin-top: 10px; padding-left: 6px; margin-left: 0px !important;">
             <div class="bot_div" style="height: 25px;">
