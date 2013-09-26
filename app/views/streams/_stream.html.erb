@@ -27,72 +27,76 @@
 
     <% if @stream.reverse_stream == true %>
       <% @stream.items.reverse.each do |stream_item| %>
-        <div class="span<%= @stream.span %> stream_item" style="padding-bottom:20px; margin-top: 10px; margin-left: 0px !important;">
-          <% if stream_item.picture %>
-            <%= link_to stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" do %>
-              <%= image_tag stream.picture_root ? "#{@stream.site_root}#{stream_item.picture}" : "#{stream_item.picture}", class: "pull-left", style: "width: 98%; padding-bottom: 10px;" %>
+        <% unless stream_item.hide_stream_item == true %>
+          <div class="span<%= @stream.span %> stream_item" style="padding-bottom:20px; margin-top: 10px; margin-left: 0px !important;">
+            <% if stream_item.picture %>
+              <%= link_to stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" do %>
+                <%= image_tag stream.picture_root ? "#{@stream.site_root}#{stream_item.picture}" : "#{stream_item.picture}", class: "pull-left", style: "width: 98%; padding-bottom: 10px;" %>
+              <% end %>
             <% end %>
-          <% end %>
-          
-          <h5>
-            <%= link_to stream_item.title , @stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" %>
-          </h5>
+            
+            <h5>
+              <%= link_to stream_item.title , @stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" %>
+            </h5>
 
 
-          <% if stream_item.body %>
-          <p><%= stream_item.body %></p>
-          <% end %>
-          
-          <% if current_user && current_user.admin? %>
-            <%= link_to "[EDIT]", edit_stream_item_path(stream_item) %>
-            <%= link_to "[DELETE]", stream_item, :method => 'delete', :confirm => "Are you sure you want to delete this?" %>
-          <% elsif @stream.use_more == true %>
-            <%= link_to "[MORE]", @stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" %>
-          <% end %>
-          
-
-          <div class="pull-right" style="margin-right:10px">
-            <%= "Replies: #{stream_item.replies}" if stream_item.replies.present? %>
-            <% if @stream.stream_type == "forum" %>
-              <%= " | Views: #{stream_item.views}" if stream_item.views %>
-            <% elsif @stream.stream_type == "reddit" %>
-              <%= "Rank: #{stream_item.views}" if stream_item.views %>
+            <% if stream_item.body %>
+            <p><%= stream_item.body %></p>
             <% end %>
+            
+            <% if current_user && current_user.admin? %>
+              <%= link_to "[EDIT]", edit_stream_item_path(stream_item) %>
+              <%= link_to "[DELETE]", stream_item, :method => 'delete', :confirm => "Are you sure you want to delete this?" %>
+            <% elsif @stream.use_more == true %>
+              <%= link_to "[MORE]", @stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" %>
+            <% end %>
+            
+
+            <div class="pull-right" style="margin-right:10px">
+              <%= "Replies: #{stream_item.replies}" if stream_item.replies.present? %>
+              <% if @stream.stream_type == "forum" %>
+                <%= " | Views: #{stream_item.views}" if stream_item.views %>
+              <% elsif @stream.stream_type == "reddit" %>
+                <%= "Rank: #{stream_item.views}" if stream_item.views %>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     <% else %>
       <% @stream.items.each do |stream_item| %>
-        <div class="span<%= @stream.span %> stream_item" style="padding-bottom:20px; margin-top: 10px; margin-left: 0px !important;">
-          <% if stream_item.picture %>
-            <%= link_to stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" do %>
-              <%= image_tag stream.picture_root ? "#{@stream.site_root}#{stream_item.picture}" : "#{stream_item.picture}", class: "pull-left", style: "width: 98%; padding-bottom: 10px;" %>
+        <% unless stream_item.hide_stream_item == true %>
+          <div class="span<%= @stream.span %> stream_item" style="padding-bottom:20px; margin-top: 10px; margin-left: 0px !important;">
+            <% if stream_item.picture %>
+              <%= link_to stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" do %>
+                <%= image_tag stream.picture_root ? "#{@stream.site_root}#{stream_item.picture}" : "#{stream_item.picture}", class: "pull-left", style: "width: 98%; padding-bottom: 10px;" %>
+              <% end %>
             <% end %>
-          <% end %>
-          
-          <h5><%= link_to stream_item.title , @stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" %></h5>
+            
+            <h5><%= link_to stream_item.title , @stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" %></h5>
 
-          <% if stream_item.body %>
-            <p><%= stream_item.body %></p>
-          <% end %>
-          
-          <% if current_user && current_user.admin? %>
-            <%= link_to "[EDIT]", edit_stream_item_path(stream_item) %>
-            <%= link_to "[DELETE]", stream_item, :method => 'delete', :confirm => "Are you sure you want to delete this?" %>
-          <% elsif @stream.use_more == true %>
-            <%= link_to "[MORE]", @stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" %>
-          <% end %>
-          
-
-          <div class="pull-right" style="margin-right:10px">
-            <%= "Replies: #{stream_item.replies}" if stream_item.replies.present? %>
-            <% if @stream.stream_type == "forum" %>
-              <%= " | Views: #{stream_item.views}" if stream_item.views %>
-            <% elsif @stream.stream_type == "reddit" %>
-              <%= "Rank: #{stream_item.views}" if stream_item.views %>
+            <% if stream_item.body %>
+              <p><%= stream_item.body %></p>
             <% end %>
+            
+            <% if current_user && current_user.admin? %>
+              <%= link_to "[EDIT]", edit_stream_item_path(stream_item) %>
+              <%= link_to "[DELETE]", stream_item, :method => 'delete', :confirm => "Are you sure you want to delete this?" %>
+            <% elsif @stream.use_more == true %>
+              <%= link_to "[MORE]", @stream.link_root ? "#{@stream.site_root}#{stream_item.item_link}" : "#{stream_item.item_link}", target: "_blank" %>
+            <% end %>
+            
+
+            <div class="pull-right" style="margin-right:10px">
+              <%= "Replies: #{stream_item.replies}" if stream_item.replies.present? %>
+              <% if @stream.stream_type == "forum" %>
+                <%= " | Views: #{stream_item.views}" if stream_item.views %>
+              <% elsif @stream.stream_type == "reddit" %>
+                <%= "Rank: #{stream_item.views}" if stream_item.views %>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% end >
       <% end %>
     <% end %>
   <% end %>  
