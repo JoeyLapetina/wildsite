@@ -34,48 +34,6 @@
   </style>
 </head>
   <body class="off bumpers" style="margin-bottom:100px; <%= "margin-top:60px" if @top == true %>">
-    <% if false %>
-      <div class="pull-left shadow" style="position:fixed; background:black; z-index: 1 !important;">
-        <div style="background:#33b5e5;">
-          <div class="my_tab" style="padding:5px;">
-            <%= link_to "#wildScrapeModal", role: "button", "data-toggle" => "modal" do %>
-              <p style="margin-bottom: 5px;" ><i class="icon-rocket" style="font-size: 120% !important;"></i></p>
-              <p>W</p>
-              <p>I</p>
-              <p>L</p>
-              <p>D</p>
-              <p>S</p>
-              <p>C</p>
-              <p>R</p>
-              <p>A</p>
-              <p>P</p>
-              <p>E</p>
-            <% end %>
-          </div>
-        </div>
-      </div>
-
-       <div class="pull-left shadow" style="position:fixed; background:black; z-index: 1 !important; margin-top:250px;">
-        <div style="background:#33b5e5;">
-          <div class="my_tab" style="padding:5px;">
-            <%= link_to "#gamesModal", role: "button", "data-toggle" => "modal" do %>
-              <p style="margin-bottom: 5px;" ><i class="icon-gamepad" style="font-size: 120% !important;"></i></p>
-              <p>O</p>
-              <p>T</p>
-              <p>H</p>
-              <p>E</p>
-              <p>R</p>
-              <p></br></p>
-              <p>G</p>
-              <p>A</p>
-              <p>M</p>
-              <p>E</p>
-              <p>S</p>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    <% end %>
     
     <div id="left_box" style="position:fixed;">
 
@@ -84,26 +42,6 @@
     <div id="right_box" style="position:fixed;">
     
     </div>
-
-    <% if false %>
-      <div class="box_rotate shadow" style="background-color:black; width:3000px; height:30px; margin-left:-1487px; position: fixed;">
-        <h5><a href="#myModal" id="other_games_link" class="" role="button" data-toggle="modal"><i class="icon-beaker"></i> WildScrape!</a></h5>
-      </div>
-    <% end %>
-
-    <% if false %>
-        <%= link_to "#", remote: true do %>
-          <div id="left">
-            <p><i class="icon-lines"></i> Left</p>
-          </div>
-        <% end %>
-
-        <%= link_to "#", remote: true do %>
-          <div id="right">
-            <p><i class="icon-lines"></i> Right</p>
-          </div>
-        <% end %>
-    <% end %>
 
     <% if params[:notice] %>
       <div id="notice" class="btn btn-inverse"><%= notice %></div>
