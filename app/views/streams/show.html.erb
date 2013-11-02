@@ -9,6 +9,7 @@
               <div class="left_add" style="min-width:161px !important; margin-left:0px; margin-top: 0px; margin-right:10px; margin-left:10px;">
                 <div class="pull-right" style="margin-bottom:30px;">
                   <p style="text-align:center;"><%= link_to 'Featured Sponsor', "http://wildscrape.com/streams/75" %></p>
+                  
                   <% if false %>
                     <script type="text/javascript"><!--
                       google_ad_client = "ca-pub-0864897116796518";
@@ -22,11 +23,11 @@
                       src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
                     </script>
                   <% else %>
-                    <%= link_to "http://www.mognation.com/" do %>
+                    <%= link_to "http://www.mognation.com/", target: "_blank" do %>
                       <img src="https://s3.amazonaws.com/ccromembers_assets/redactor_assets/pictures/918/Wildscrape-Add.jpg" style="">
                     <% end %>
                   <% end %>
-
+                
                   <div style="text-align:center;" >
                     <%= link_to "http://wildscrape.com/streams/75", target: "_blank" do %>
                       <h4>Featured</br>Sponsor</h4>
@@ -72,7 +73,7 @@
                         </div>
                       <% end %>
                     <% else %>
-                      <small><%= link_to stream.name, stream.stream_url , class: "", style: "margin-left:5px;", target: "_blank" %></small>
+                     
                       <%= link_to stream.stream_home_url, style: "color: white !important;", class: "", target: "_blank" do %>
                         <div style="background:#33b5e5; width:99%;">
                           <h4 style="padding:5px; margin-top: 20px;">
