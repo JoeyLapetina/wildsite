@@ -81,7 +81,8 @@ class StreamsController < ApplicationController
         @streams = @streams.each.select {|s| s.category.split(" ").include? @category.singularize}
       end
     end
-    
+
+    @stream = Stream.find_by_id(81)
     
 
     respond_to do |format|

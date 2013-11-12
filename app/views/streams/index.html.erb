@@ -39,10 +39,62 @@
                   </div>
                 </div>
               </div>
+            <% if @stream && (@stream.active || (current_user && current_user.admin)) %>
+              <% stream = @stream %>
+              <td id="stream<%= stream.id %>" style="padding: 10px; padding-left: 20px; padding-right: 20px; background:rgba(0, 41, 255, 0.1)" >
+                <div class="span<%= stream.span %>" style="margin-left:0px; margin-top: -20px;">
+                  <div class="fix_me" style="margin-left: 0px; padding-top:10px; margin-top:0px;">
+
+                    <div>
+                      <% if Impression.all.select { |i| i.impressionable_type == 'Stream' && i.impressionable_id == stream.id && i.action_name == 'bump' && i.ip_address == request.remote_ip && i.created_at > 3.hours.ago }.first %>
+
+                        <span class="label lable-color" style="background-color:#f89406 !important; padding-left:10px; padding-right:10px;">
+                          <i class="icon-thumbs-up"></i><%= " #{stream.rank} : Featured " %>
+                        </span>
+
+                      <% else %>
+                        <%= link_to bump_stream_path(stream, featured: true), class: "bump", remote: true do %>
+                          <span class="label label-color" id="bump<%= stream.id %>" style="padding-left:10px; padding-right:10px;">
+                            <i class="icon-thumbs-up"></i><%= " #{stream.rank} : Featured" %>
+                          </span>
+                          <span class="label lable-color hide" id="bump_rank<%= stream.id %>" style="background-color:#f89406 !important; padding-left:10px; padding-right:10px;">
+                            <i class="icon-thumbs-up"></i><%= " #{stream.rank + 3} : Featured " %>
+                          </span>
+                        <% end %>
+                      <% end %>
+
+                    </div>
+                    <% if stream.stream_home_url.present? %>
+                      <%= link_to stream.stream_home_url, style: "color: white !important;", class: "", target: "_blank" do %>
+                        <div style="background:#33b5e5; width:99%;">
+                          <h4 style="padding:5px; margin-top: 20px;">
+                            <%= stream.name %>
+                          </h4>
+                        </div>
+                      <% end %>
+                    <% else %>
+                     
+                      <%= link_to stream.stream_home_url, style: "color: white !important;", class: "", target: "_blank" do %>
+                        <div style="background:#33b5e5; width:99%;">
+                          <h4 style="padding:5px; margin-top: 20px;">
+                            <%= stream.name %>
+                          </h4>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div id="stream_holder_<%= stream.id %>">
+                    <div class="progress progress-striped active" style="width:100%; margin-left:0px;">
+                      <div class="bar" style="width: 100%;"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            <% end %>
               
             </td>
               <% @streams.each do |stream| %>
-                <% if stream.active %>
+                <% if stream.active && stream != @stream %>
                   <td id="stream<%= stream.id %>" style="padding: 10px; padding-left: 13px;" >
                     <div class="span<%= stream.span %>" style="margin-left:0px; margin-top: -20px;">
                       <div class="fix_me" style="padding-bottom: 6px; background-color:black; position:; width:100%; padding-top:10px; margin-top:-10px;">
