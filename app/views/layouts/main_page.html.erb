@@ -218,10 +218,17 @@
                     <%= image_tag "https://si0.twimg.com/profile_images/378800000149227367/6b2cca11b434c22f7af402aae4e6e4dc_bigger.jpeg", style: "width: 30px; margin-top: -5px; border-color: #33b5e5; border-width: 1px;" %>
                   <% end %>
                 </li>
+                <li>
+                  <%= link_to "#joey", role: "button", "data-toggle" => "modal", class: "pull-right" do %>
+                    <i class="icon-rocket"></i> Joey Needs Work! [Resume Here]
+                  <% end %>
+                </li>
               </ul>
 
             </li>
           </ul>
+
+
 
          
         </div>
@@ -369,6 +376,101 @@
     <% end %>
 
     <%= render "devise/shared/links" %>
+  </div>
+</div>
+
+<div class="modal hide fade" id="joey" style="width: 640px; background-color:black; border-color:#33b5e5;">
+  <div class="modal-header" style="height:30px;">
+    <h3 class="pull-left" style="margin-top: 5px; color:white;">Joey Lapetina III</h3> 
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  </div>
+  <div class="modal-body">
+    <p>29406 Legends Bluff Dr. Spring, Tx. 77386 | JoeyLapetina@gmail.com</p>
+    
+    <hr />
+
+    <p>Solutions-focused, Military professional with experience in team management, analytical thinking, and creative design. I want to do anything. If you know of a job in the Houston area - let me know.</p>
+
+    <br />
+
+    <h4>EXPERIENCE</h4>
+
+    <table class="table">
+      <tr>
+        <td class="span2">
+          10/2013 to Current
+        </td>
+        <td>
+          <h5 style="margin-top:0px;">Applications Developer</h5>
+          <p><%= link_to 'Scouting.io', 'https://scouting.io/', :target => '_blank' %> - The Woodlands, Tx.</p>
+          <p>Collaborated with end users to create clean interfaces and simple, intuitive interactions and experiences. Created front-end applications with Javascript and other AJAX tool sets.</p>
+        </td>
+      </tr>
+      <tr>
+        <td class="span2">
+          04/2012 to 10/2013
+        </td>
+        <td>
+          <h5 style="margin-top:0px;">Applications Developer</h5>
+          <p><%= link_to 'Committee of Chief Risk Officers', 'https://ccro.org/', :target => '_blank' %> - The Woodlands, Tx.</p>
+          <p>Built applications for CXOs and Risk Officers from all over the energy industry that allowed them to communicate with each-other on important issues without breaking any antitrust laws. </p>
+        </td>
+      </tr>
+      <tr>
+        <td class="span2">
+          08/2007 to 04/2012
+        </td>
+        <td>
+          <h5 style="margin-top:0px;">Lead Inventory Control Specialist</h5>
+          <p><%= link_to 'Apple', 'http://www.apple.com/retail/thewoodlands/', :target => '_blank' %> - The Woodlands, Tx.</p>
+          <p>Directed Back of house operations with a focus on team building, unit accuracy, and shrink. Lead my store to have some of the highest Unit accuracy and lowest shrink in all of Apple. We were also awarded for having above 99% accuracy on many of our physical inventories. </p>
+        </td>
+      </tr>
+      <tr>
+        <td class="span2">
+          01/2003 to 06/2007
+        </td>
+        <td>
+          <h5 style="margin-top:0px;">Military Police</h5>
+          <p><%= link_to 'US Army', 'http://www.goarmy.com/', :target => '_blank' %> - Germany, Italy</p>
+          <p>I was proud to serve my country as a soldier and Military Police. The Army instilled in me Loyalty, Duty, Respect, Selfless Service, Honor, Integrity, and Personal Courage.</p>
+        </td>
+      </tr>
+    </table>
+
+    <br />
+
+    <h4>PROJECTS</h4>
+
+    <table class="table">
+      <tr>
+        <td>
+          <h4><%= link_to 'WildScrape', 'http://wildscrape.com/', :target => '_blank' %></h4>
+          <p>Community gaming project. WildScrape has been called ‘Very Cool’ by Jeremy Gaffney the executive producer of Carbine studios - the company behind the upcoming triple-A MMO WildStar. WildScrape is a scraping tool that pulls in streams of content live from the web and dynamically shows massive amounts of data in an easy to understand format.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4><%= link_to 'The CCRO Website', 'http://ccro.org/', :target => '_blank' %></h4>
+          <p>This is the main project I have been working on for the last two years. The CCRO is a non-profit organisation that allows the CXOs of major national and international energy companies to speak with each other about a wide variety of topics without breaking any antitrust law. The site is a content management and social network hybrid platform that consists of many different applications including blogs, surveys tools, white paper libraries, advertizing systems, and much more.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4><%= link_to 'The EDH site', 'http://energydatahub.com/', :target => '_blank' %></h4>
+          <p>This was a small two week project I worked on as a spin off of the CCRO. The Energy Data Hub is a service for energy companies that allows them to upload their transactional data and in return get composite industry data they would not otherwise have access to. This site allows people to request information about the company and sign up to join with the service.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4><%= link_to 'Scouting.io', 'https://scouting.io/', :target => '_blank' %></h4>
+          <p>This is the project I have been working on for the last four months and I am currently working on. We have set up an amazing back end service that will hold all information for the entire Boy Scouts of America. On top of that backend we are building a series of applications. Right now we are working on a social networking service built on top of the scouting hierarchy and a robo calling application.  </p>
+        </td>
+      </tr>
+    </table>
+
+
+
   </div>
 </div>
 
